@@ -16,10 +16,11 @@ namespace HangmanLogic.Logic
     {
         public static void PrintMenu()
         {
+            Console.Clear();
             Console.WriteLine("Welcome to the Hangman Game!");
-            Console.WriteLine("N = New Game");
+            Console.WriteLine("n = New Game");
             // Console.WriteLine("D = New Dictionary");
-            Console.WriteLine("C = Choose Difficulty");
+            Console.WriteLine("c = Choose Difficulty");
             // Console.WriteLine("F = New Category");
             Console.WriteLine("Esc = Exit");
         }
@@ -30,11 +31,12 @@ namespace HangmanLogic.Logic
             while (true)
             {
                 PrintMenu();
-                string input = Console.ReadLine();
+                char input = Console.ReadKey().KeyChar;
 
-                if (input == "N")
+                if (input == 'n')
                 {
-                    Console.WriteLine("Please input a category");
+                    Console.Clear();
+                    Console.WriteLine("Please input a category (name for GameTracker)");
                     string category = Console.ReadLine();
 
                     Console.WriteLine("Please select a difficulty");
@@ -42,14 +44,14 @@ namespace HangmanLogic.Logic
                     Console.WriteLine("2 - Normal");
                     Console.WriteLine("3 - Hard");
                     Console.WriteLine("4 - Insane");
-                    int difficultyIndex = Int32.Parse(Console.ReadLine());
+                    char difficultyIndex = Console.ReadKey().KeyChar;
 
                     switch (difficultyIndex)
                     {
-                        case 1: StartGame(category, Difficulty.Easy); break;
-                        case 2: StartGame(category, Difficulty.Normal); break;
-                        case 3: StartGame(category, Difficulty.Hard); break;
-                        case 4: StartGame(category, Difficulty.Insane); break;
+                        case '1': StartGame(category, Difficulty.Easy); break;
+                        case '2': StartGame(category, Difficulty.Normal); break;
+                        case '3': StartGame(category, Difficulty.Hard); break;
+                        case '4': StartGame(category, Difficulty.Insane); break;
                         default: Console.WriteLine("No such value"); break;
                     }
                 }
@@ -60,11 +62,11 @@ namespace HangmanLogic.Logic
         {
             List<Word> words = new List<Word>
             {
-                new Word("Apple"),
-                new Word("Stuff"),
-                new Word("Elephant"),
-                new Word("Archipelago"),
-                new Word("Imagination")
+                new Word("apple"),
+                new Word("stuff"),
+                new Word("elephant"),
+                new Word("archipelago"),
+                new Word("imagination")
             };
 
             IGameTracker gameTracker = new GameTracker(category, words, difficulty);
@@ -82,9 +84,9 @@ namespace HangmanLogic.Logic
                 Console.Clear();
                 PrintGameData(printWord, gameTracker);
 
-                char input = (char)Console.Read();
+                char input = Console.ReadKey().KeyChar;
 
-                if (gameTracker.GuessCharacterInWord(input))
+                if (gameTracker.GuessCharacterInWord(input) && !printWord.Name.Contains(input))
                 {
                     if (gameTracker.Win())
                     {
@@ -93,11 +95,13 @@ namespace HangmanLogic.Logic
                     }
                     else
                     {
-                        for (int i = 0; i < printWord.Name.Length; i++)
+                        for (int i = 0; i < chosenWord.Name.Length; i++)
                         {
-                            if(chosenWord.Name[i] == input)
+                            if (chosenWord.Name[i] == input)
                             {
-                                printWord.Name[i] = input;
+                                StringBuilder sb = new StringBuilder(printWord.Name);
+                                sb[i] = input;
+                                printWord.Name = sb.ToString();
                             }
                         }
                         continue;
@@ -144,6 +148,7 @@ namespace HangmanLogic.Logic
                 Console.ReadKey();
             }
         }
+
         public static void PrintGameData(Word printWord, IGameTracker gameTracker)
         {
             for (int i = 0; i < printWord.Name.Length; i++)
@@ -152,14 +157,14 @@ namespace HangmanLogic.Logic
             }
 
             Console.WriteLine("Please input a character:");
-            Console.WriteLine("Number of attempts:" + gameTracker.GetAttemptCount());
+            Console.WriteLine("Number of attempts:" + gameTracker.GetTries());
             Console.WriteLine("Number of jokers:" + gameTracker.GetJokerCount());
             Console.WriteLine("Input ! to use a Joker");
         }
 
         public static void PrintStatistics(Word chosenWord, IGameTracker gameTracker)
         {
-            Console.WriteLine("Number of attempts:" + gameTracker.GetAttemptCount());
+            Console.WriteLine("Attempts made:" + gameTracker.GetAttemptCount());
             Console.WriteLine("Jokers available:" + gameTracker.GetJokerCount());
             Console.WriteLine("Word:" + chosenWord.Name);
             Console.WriteLine("Score:" + gameTracker.GetScore());

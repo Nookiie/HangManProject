@@ -169,14 +169,14 @@ namespace Data.Entities
 
         public int GetJokerCount() => Jokers;
 
-        public int GetAttemptCount() => (MAX_FAILS - CurrentFails);
+        public int GetTries() => (MAX_FAILS - CurrentFails);
 
         public bool Win()
         {
             CurrentWins++;
             Score += SCORE_MULTIPLIER;
 
-            if (CurrentWins == ChosenWord.Name.Length)
+            if (CurrentWins == ChosenWord.Name.Length - 1)
                 return true;
             else
                 return false;
@@ -193,5 +193,6 @@ namespace Data.Entities
             Score = 0;
         }
 
+        public int GetAttemptCount() => (CurrentFails + CurrentWins);
     }
 }

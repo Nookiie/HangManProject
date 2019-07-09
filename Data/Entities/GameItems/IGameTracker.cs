@@ -26,6 +26,8 @@ namespace Data.Entities
 
         int GetJokerCount();
 
+        int GetTries();
+
         int GetAttemptCount();
 
         int GetScore();
