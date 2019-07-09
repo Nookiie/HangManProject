@@ -20,7 +20,7 @@ namespace HangmanLogic.Logic
             Console.WriteLine("Welcome to the Hangman Game!");
             Console.WriteLine("n = New Game");
             // Console.WriteLine("D = New Dictionary");
-            Console.WriteLine("c = Choose Difficulty");
+            // Console.WriteLine("c = Choose Difficulty");
             // Console.WriteLine("F = New Category");
             Console.WriteLine("Esc = Exit");
         }
@@ -55,6 +55,11 @@ namespace HangmanLogic.Logic
                         default: Console.WriteLine("No such value"); break;
                     }
                 }
+
+                if ((ConsoleKey)input == ConsoleKey.Escape)
+                {
+                    break;
+                }
             }
         }
 
@@ -85,6 +90,29 @@ namespace HangmanLogic.Logic
                 PrintGameData(printWord, gameTracker);
 
                 char input = Console.ReadKey().KeyChar;
+
+                if (input == '!') // Use of Joker
+                {
+                    if (gameTracker.GetJokerCount() == 0)
+                        continue;
+
+                    while (true)
+                    {
+                        Random rnd = new Random();
+                        int randomIndex = rnd.Next(0, chosenWord.Name.Length);
+                        input = chosenWord.Name[randomIndex];
+
+                        if (printWord.Name.Contains(input)) // Find me another letter if it's already on the guessed list
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            gameTracker.UseJoker();
+                            break;
+                        }
+                    }
+                }
 
                 if (gameTracker.GuessCharacterInWord(input) && !printWord.Name.Contains(input))
                 {
@@ -120,10 +148,6 @@ namespace HangmanLogic.Logic
                     }
                 }
 
-                else if (input == '!')
-                {
-                    // gameTracker.RevealRandomWord();
-                }
             }
         }
 

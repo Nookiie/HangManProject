@@ -12,6 +12,8 @@ namespace Data.Entities
 
         Word GetRandomWord();
 
+        Word GetWordByID(int id);
+
         Word GetWordByName(string name);
 
         void PopulateDictionary(List<Word> words);
@@ -33,5 +35,7 @@ namespace Data.Entities
         int GetScore();
 
         void CleanUp();
+
+        void UseJoker();
     }
 }

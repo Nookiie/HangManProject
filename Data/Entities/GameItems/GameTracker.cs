@@ -91,13 +91,13 @@ namespace Data.Entities
 
         #endregion
 
-        public int CurrentFails { get; set; } = 0;
+        private int _currentFails = 0;
 
-        public int CurrentWins { get; set; } = 0;
+        private int _currentWins = 0;
 
-        public int Jokers { get; set; } = 1;
+        private int _jokers = 1;
 
-        public int Score { get; set; } = 0;
+        private int _score = 0;
 
         #endregion
 
@@ -141,9 +141,9 @@ namespace Data.Entities
 
         public bool Fail()
         {
-            CurrentFails++;
+            _currentFails++;
 
-            if (CurrentFails >= MAX_FAILS)
+            if (_currentFails >= MAX_FAILS)
                 return true;
             else
                 return false;
@@ -167,32 +167,37 @@ namespace Data.Entities
             }
         }
 
-        public int GetJokerCount() => Jokers;
+        public int GetJokerCount() => _jokers;
 
-        public int GetTries() => (MAX_FAILS - CurrentFails);
+        public int GetTries() => (MAX_FAILS - _currentFails);
 
         public bool Win()
         {
-            CurrentWins++;
-            Score += SCORE_MULTIPLIER;
+            _currentWins++;
+            _score += SCORE_MULTIPLIER;
 
-            if (CurrentWins == ChosenWord.Name.Length - 1)
+            if (_currentWins == ChosenWord.Name.Length - 1)
                 return true;
             else
                 return false;
         }
 
-        public int GetScore() => Score;
+        public int GetScore() => _score;
         #endregion
 
         public void CleanUp()
         {
-            Jokers = 1;
-            CurrentFails = 0;
-            CurrentWins = 0;
-            Score = 0;
+            _jokers = 1;
+            _currentFails = 0;
+            _currentWins = 0;
+            _score = 0;
         }
 
-        public int GetAttemptCount() => (CurrentFails + CurrentWins);
+        public int GetAttemptCount() => (_currentFails + _currentWins);
+
+        public void UseJoker()
+        {
+            _jokers--;
+        }
     }
 }
