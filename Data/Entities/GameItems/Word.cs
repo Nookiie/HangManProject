@@ -17,6 +17,5 @@ namespace Data.Entities
         }
 
         public string Name { get; set; }
-
     }
 }

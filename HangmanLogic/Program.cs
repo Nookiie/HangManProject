@@ -7,7 +7,7 @@ namespace HangmanLogic
     {
         public static void Main(string[] args)
         {
-
+            GameLogic.Initialize();
         }
     }
 }

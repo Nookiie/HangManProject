@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "HangmanLogic\Common.csproj", "{C89464F0-2BC1-4D4B-803B-06E817138986}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "HangmanLogic\Logic.csproj", "{C89464F0-2BC1-4D4B-803B-06E817138986}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "HangmanTest\Test.csproj", "{331490B7-0A7D-4B5B-9666-5327EA25551F}"
 EndProject

@@ -26,35 +26,16 @@ namespace Data.Entities
 
         public GameTracker(string name, List<Word> words, Difficulty difficulty)
         {
-            if (difficulty == Difficulty.Easy)
+            switch (difficulty)
             {
-                words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_EASY);
-                _scoreMultiplier = 5;
+                case Difficulty.Easy: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_EASY); break;
+                case Difficulty.Normal: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_NORMAL); break;
+                case Difficulty.Hard: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_HARD); break;
+                case Difficulty.Insane: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); break;
+                default: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); break;
             }
 
-            else if (difficulty == Difficulty.Normal)
-            {
-                words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_NORMAL);
-                _scoreMultiplier = 10;
-            }
-
-            else if (difficulty == Difficulty.Hard)
-            {
-                words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_HARD);
-                _scoreMultiplier = 15;
-            }
-
-            else if (difficulty == Difficulty.Insane)
-            {
-                words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE);
-                _scoreMultiplier = 20;
-            }
-
-            foreach (var word in words)
-            {
-                this.Words.Add(word);
-            }
-
+            this.Words = words;
             this.Category = name;
         }
 
@@ -81,12 +62,7 @@ namespace Data.Entities
                 words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE);
             }
 
-            foreach (var word in words)
-            {
-                this.Words.Add(word);
-            }
-
-
+            this.Words = words;
         }
 
         #endregion
@@ -107,11 +83,11 @@ namespace Data.Entities
 
         private const int MAX_WORD_SIZE_HARD = 15;
 
-        private const int MAX_WORD_SIZE = 20;
+        private const int MAX_WORD_SIZE = 20; // Also goes for Insane (max word size value)
 
         private const int MAX_FAILS = 9;
 
-        private int _scoreMultiplier = 5;
+        private const int SCORE_MULTIPLIER = 5;
 
         #endregion
 
@@ -153,9 +129,9 @@ namespace Data.Entities
             return Words[randomIndex];
         }
 
-        public void AssignRandomWord()
+        public void AssignWord(Word word)
         {
-            ChosenWord = GetRandomWord();
+            ChosenWord = word;
         }
 
         public bool GuessCharacterInWord(char input)
@@ -167,7 +143,7 @@ namespace Data.Entities
         {
             CurrentFails++;
 
-            if (CurrentFails > MAX_FAILS)
+            if (CurrentFails >= MAX_FAILS)
                 return true;
             else
                 return false;
@@ -191,27 +167,31 @@ namespace Data.Entities
             }
         }
 
-        public void CleanUp()
-        {
-            Jokers = 1;
-            CurrentFails = 0;
-        }
-
         public int GetJokerCount() => Jokers;
 
-        public int GetAttemptCount() => MAX_FAILS - CurrentFails;
+        public int GetAttemptCount() => (MAX_FAILS - CurrentFails);
 
         public bool Win()
         {
             CurrentWins++;
-            Score += _scoreMultiplier;
+            Score += SCORE_MULTIPLIER;
 
-            if (CurrentWins == ChosenWord.Name.Length - 1)
+            if (CurrentWins == ChosenWord.Name.Length)
                 return true;
             else
                 return false;
         }
 
+        public int GetScore() => Score;
         #endregion
+
+        public void CleanUp()
+        {
+            Jokers = 1;
+            CurrentFails = 0;
+            CurrentWins = 0;
+            Score = 0;
+        }
+
     }
 }

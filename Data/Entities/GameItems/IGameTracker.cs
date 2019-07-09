@@ -22,10 +22,14 @@ namespace Data.Entities
 
         bool Fail();
 
-        void AssignRandomWord();
+        void AssignWord(Word word);
 
         int GetJokerCount();
 
         int GetAttemptCount();
+
+        int GetScore();
+
+        void CleanUp();
     }
 }
