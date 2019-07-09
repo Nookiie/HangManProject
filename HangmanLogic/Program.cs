@@ -1,4 +1,5 @@
 ﻿using System;
+using HangmanLogic.Logic;
 
 namespace HangmanLogic
 {

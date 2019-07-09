@@ -26,41 +26,40 @@ namespace Data.Entities
 
         public GameTracker(string name, List<Word> words, Difficulty difficulty)
         {
-
-            foreach (var word in words)
-            {
-                this.Words.Add(word);
-            }
-            this.Category = name;
-
             if (difficulty == Difficulty.Easy)
             {
                 words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_EASY);
+                _scoreMultiplier = 5;
             }
 
             else if (difficulty == Difficulty.Normal)
             {
                 words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_NORMAL);
+                _scoreMultiplier = 10;
             }
 
             else if (difficulty == Difficulty.Hard)
             {
                 words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_HARD);
+                _scoreMultiplier = 15;
             }
 
             else if (difficulty == Difficulty.Insane)
             {
                 words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE);
+                _scoreMultiplier = 20;
             }
 
+            foreach (var word in words)
+            {
+                this.Words.Add(word);
+            }
+
+            this.Category = name;
         }
 
         public GameTracker(List<Word> words, Difficulty difficulty)
         {
-            foreach (var word in words)
-            {
-                this.Words.Add(word);
-            }
 
             if (difficulty == Difficulty.Easy)
             {
@@ -81,6 +80,12 @@ namespace Data.Entities
             {
                 words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE);
             }
+
+            foreach (var word in words)
+            {
+                this.Words.Add(word);
+            }
+
 
         }
 
@@ -106,11 +111,17 @@ namespace Data.Entities
 
         private const int MAX_FAILS = 9;
 
+        private int _scoreMultiplier = 5;
+
         #endregion
 
         public int CurrentFails { get; set; } = 0;
 
+        public int CurrentWins { get; set; } = 0;
+
         public int Jokers { get; set; } = 1;
+
+        public int Score { get; set; } = 0;
 
         #endregion
 
@@ -184,6 +195,21 @@ namespace Data.Entities
         {
             Jokers = 1;
             CurrentFails = 0;
+        }
+
+        public int GetJokerCount() => Jokers;
+
+        public int GetAttemptCount() => MAX_FAILS - CurrentFails;
+
+        public bool Win()
+        {
+            CurrentWins++;
+            Score += _scoreMultiplier;
+
+            if (CurrentWins == ChosenWord.Name.Length - 1)
+                return true;
+            else
+                return false;
         }
 
         #endregion

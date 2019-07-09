@@ -14,9 +14,13 @@ namespace Data.Context
 
         }
 
+        #region GameEntities
+
         public DbSet<Word> Words { get; set; }
 
         public DbSet<GameTracker> GameTrackers { get; set; }
+
+        #endregion
 
         public DbSet<User> Users { get; set; }
     }

@@ -77,9 +77,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\Common.csproj",
-      "projectName": "Common",
-      "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\Common.csproj",
+      "projectUniqueName": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\Logic.csproj",
+      "projectName": "Logic",
+      "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\Logic.csproj",
       "packagesPath": "C:\\Users\\Nookie\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\obj\\",
       "projectStyle": "PackageReference",

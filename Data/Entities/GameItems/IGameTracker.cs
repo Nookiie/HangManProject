@@ -10,10 +10,22 @@ namespace Data.Entities
 
         bool CheckWordsForErrors();
 
+        Word GetRandomWord();
+
         Word GetWordByName(string name);
 
         void PopulateDictionary(List<Word> words);
 
         void ChangeWordName(Word word, string name);
+
+        bool Win();
+
+        bool Fail();
+
+        void AssignRandomWord();
+
+        int GetJokerCount();
+
+        int GetAttemptCount();
     }
 }
