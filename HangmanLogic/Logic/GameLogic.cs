@@ -26,7 +26,7 @@ namespace HangmanLogic.Logic
 
         public void StartGame()
         {
-            IWordList wordList;
+            IGameTracker wordList;
             PrintMenu();
         }
 

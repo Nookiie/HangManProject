@@ -6858,9 +6858,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanTest\\HangmanTest.csproj",
-      "projectName": "HangmanTest",
-      "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanTest\\HangmanTest.csproj",
+      "projectUniqueName": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanTest\\Test.csproj",
+      "projectName": "Test",
+      "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanTest\\Test.csproj",
       "packagesPath": "C:\\Users\\Nookie\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanTest\\obj\\",
       "projectStyle": "PackageReference",

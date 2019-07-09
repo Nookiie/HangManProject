@@ -15,6 +15,6 @@ namespace Data.Context
 
         public DbSet<Word> Words { get; set; }
 
-        public DbSet<GameTracker> WordLists { get; set; } 
+        public DbSet<GameTracker> GameTrackers { get; set; }
     }
 }
