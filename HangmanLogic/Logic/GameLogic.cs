@@ -5,12 +5,16 @@ using System.Text;
 
 namespace HangmanLogic.Logic
 {
+    public enum Difficulty
+    {
+        Easy,
+        Normal,
+        Hard,
+        Insane
+    }
+
     public class GameLogic
     {
-        // List<Word> words = new List<Word>();
-
-        // WordList word = new WordList("WordList #1", words);
-
         public void PrintMenu()
         {
             Console.WriteLine("Welcome to the Hangman Game!");
@@ -24,10 +28,21 @@ namespace HangmanLogic.Logic
 
         }
 
-        public void StartGame()
+        public void StartGame(string category, Difficulty difficulty)
         {
-            IGameTracker wordList;
             PrintMenu();
+
+            IGameTracker gameTracker;
+            List<Word> words = new List<Word>
+            {
+                new Word("Apple"),
+                new Word("Stuff"),
+                new Word("Elephant"),
+                new Word("Archipelago"),
+                new Word("Imagination")
+            };
+
+            gameTracker = new GameTracker(category, words, difficulty);
         }
 
         public void GameOver()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Text;
 using Data.Entities;
+using Data.Entities.Users;
 
 namespace Data.Context
 {
@@ -16,5 +17,7 @@ namespace Data.Context
         public DbSet<Word> Words { get; set; }
 
         public DbSet<GameTracker> GameTrackers { get; set; }
+
+        public DbSet<User> Users { get; set; }
     }
 }
