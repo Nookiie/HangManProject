@@ -6,25 +6,19 @@ namespace Data.Entities
 {
     public interface IGameTracker
     {
-        bool GuessCharacterInWord(char input);
+        bool GuessCharacterInWord(char input, Word word);
 
         bool CheckWordsForErrors();
 
         Word GetRandomWord();
 
-        Word GetWordByID(int id);
-
-        Word GetWordByName(string name);
-
         void PopulateDictionary(List<Word> words);
 
         void ChangeWordName(Word word, string name);
 
-        bool Win();
+        bool Win(Word chosenWord);
 
         bool Fail();
-
-        void AssignWord(Word word);
 
         int GetJokerCount();
 

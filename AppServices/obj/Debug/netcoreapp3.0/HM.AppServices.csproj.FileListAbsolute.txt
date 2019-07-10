@@ -1,0 +1,15 @@
+C:\Users\Nookie\source\repos\Hangman\AppServices\bin\Debug\netcoreapp3.0\HM.Data.exe
+C:\Users\Nookie\source\repos\Hangman\AppServices\bin\Debug\netcoreapp3.0\HM.AppServices.deps.json
+C:\Users\Nookie\source\repos\Hangman\AppServices\bin\Debug\netcoreapp3.0\HM.AppServices.dll
+C:\Users\Nookie\source\repos\Hangman\AppServices\bin\Debug\netcoreapp3.0\HM.AppServices.pdb
+C:\Users\Nookie\source\repos\Hangman\AppServices\bin\Debug\netcoreapp3.0\HM.Data.dll
+C:\Users\Nookie\source\repos\Hangman\AppServices\bin\Debug\netcoreapp3.0\HM.Repositories.dll
+C:\Users\Nookie\source\repos\Hangman\AppServices\bin\Debug\netcoreapp3.0\HM.Data.pdb
+C:\Users\Nookie\source\repos\Hangman\AppServices\bin\Debug\netcoreapp3.0\HM.Repositories.pdb
+C:\Users\Nookie\source\repos\Hangman\AppServices\obj\Debug\netcoreapp3.0\HM.AppServices.csprojAssemblyReference.cache
+C:\Users\Nookie\source\repos\Hangman\AppServices\obj\Debug\netcoreapp3.0\HM.AppServices.csproj.CoreCompileInputs.cache
+C:\Users\Nookie\source\repos\Hangman\AppServices\obj\Debug\netcoreapp3.0\HM.AppServices.AssemblyInfoInputs.cache
+C:\Users\Nookie\source\repos\Hangman\AppServices\obj\Debug\netcoreapp3.0\HM.AppServices.AssemblyInfo.cs
+C:\Users\Nookie\source\repos\Hangman\AppServices\obj\Debug\netcoreapp3.0\HM.AppServices.csproj.CopyComplete
+C:\Users\Nookie\source\repos\Hangman\AppServices\obj\Debug\netcoreapp3.0\HM.AppServices.dll
+C:\Users\Nookie\source\repos\Hangman\AppServices\obj\Debug\netcoreapp3.0\HM.AppServices.pdb

@@ -82,8 +82,6 @@ namespace HangmanLogic.Logic
             printWord.Name = chosenWord.Name;
 
             printWord.Name = new Regex("\\S").Replace(chosenWord.Name, "_ ");
-            gameTracker.AssignWord(chosenWord);
-
             while (true)
             {
                 Console.Clear();
@@ -91,11 +89,17 @@ namespace HangmanLogic.Logic
 
                 char input = Console.ReadKey().KeyChar;
 
-                Joker(input, gameTracker, chosenWord, printWord);
-
-                if (gameTracker.GuessCharacterInWord(input) && !printWord.Name.Contains(input))
+                if (input == '!')
                 {
-                    if (gameTracker.Win())
+                    if (gameTracker.GetJokerCount() > 0)
+                        input = Joker(input, gameTracker, chosenWord, printWord);
+                    else
+                        continue;
+                }
+
+                if (gameTracker.GuessCharacterInWord(input, chosenWord) && !printWord.Name.Contains(input))
+                {
+                    if (gameTracker.Win(chosenWord))
                     {
                         GameOver(chosenWord, gameTracker, GameCondition.Won);
                         break;
@@ -114,7 +118,7 @@ namespace HangmanLogic.Logic
                         continue;
                     }
                 }
-                else if (!gameTracker.GuessCharacterInWord(input))
+                else if (!gameTracker.GuessCharacterInWord(input, chosenWord))
                 {
                     if (gameTracker.Fail())
                     {
@@ -173,28 +177,22 @@ namespace HangmanLogic.Logic
             Console.WriteLine("Score:" + gameTracker.GetScore());
         }
 
-        public static void Joker(char input, IGameTracker gameTracker, Word chosenWord, Word printWord)
+        public static char Joker(char input, IGameTracker gameTracker, Word chosenWord, Word printWord)
         {
-            if (input == '!') // Use of Joker
+            while (true)
             {
-                if (gameTracker.GetJokerCount() == 0)
-                    return;
+                Random rnd = new Random();
+                int randomIndex = rnd.Next(0, chosenWord.Name.Length - 1);
+                input = chosenWord.Name[randomIndex];
 
-                while (true)
+                if (printWord.Name.Contains(input)) // Find me another letter if it's already on the guessed list
                 {
-                    Random rnd = new Random();
-                    int randomIndex = rnd.Next(0, chosenWord.Name.Length - 1);
-                    input = chosenWord.Name[randomIndex];
-
-                    if (printWord.Name.Contains(input)) // Find me another letter if it's already on the guessed list
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        gameTracker.UseJoker();
-                        break;
-                    }
+                    continue;
+                }
+                else
+                {
+                    gameTracker.UseJoker();
+                    return input;
                 }
             }
         }

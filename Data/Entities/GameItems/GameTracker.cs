@@ -30,7 +30,7 @@ namespace Data.Entities
             {
                 case Difficulty.Easy: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_EASY); SetMultiplier(difficulty); break;
                 case Difficulty.Normal: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_NORMAL); SetMultiplier(difficulty); break;
-                case Difficulty.Hard: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_HARD); SetMultiplier(difficulty);  break;
+                case Difficulty.Hard: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_HARD); SetMultiplier(difficulty); break;
                 case Difficulty.Insane: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); SetMultiplier(difficulty); break;
                 default: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); SetMultiplier(difficulty); break;
             }
@@ -71,8 +71,6 @@ namespace Data.Entities
 
         public List<Word> Words { get; set; }
 
-        public Word ChosenWord { get; set; }
-
         public string Category { get; set; }
 
         #region DifficultyValues
@@ -87,8 +85,8 @@ namespace Data.Entities
 
         private const int MAX_FAILS = 9;
 
-        private const int DEFAULT_SCORE_MULTIPLIER = 5; 
-        
+        private const int DEFAULT_SCORE_MULTIPLIER = 5;
+
         #endregion
 
         private int _currentFails = 0;
@@ -112,16 +110,6 @@ namespace Data.Entities
             word.Name = name;
         }
 
-        public Word GetWordByID(int id)
-        {
-            return Words.Find(x => x.ID == id);
-        }
-
-        public Word GetWordByName(string name)
-        {
-            return Words.Find(x => x.Name == name);
-        } // Move the methods somewhere else
-
         public Word GetRandomWord()
         {
             if (Words.Count == 0)
@@ -133,14 +121,9 @@ namespace Data.Entities
             return Words[randomIndex];
         }
 
-        public void AssignWord(Word word)
+        public bool GuessCharacterInWord(char input, Word word)
         {
-            ChosenWord = word;
-        }
-
-        public bool GuessCharacterInWord(char input)
-        {
-            return ChosenWord.Name.Contains(input);
+            return word.Name.Contains(input);
         }
 
         public bool Fail()
@@ -158,7 +141,7 @@ namespace Data.Entities
         {
             switch (difficulty)
             {
-                case Difficulty.Easy:_scoreMultiplier = 1; break;
+                case Difficulty.Easy: _scoreMultiplier = 1; break;
                 case Difficulty.Normal: _scoreMultiplier = 2; break;
                 case Difficulty.Hard: _scoreMultiplier = 3; break;
                 case Difficulty.Insane: _scoreMultiplier = 4; break;
@@ -188,13 +171,13 @@ namespace Data.Entities
 
         public int GetTries() => (MAX_FAILS - _currentFails);
 
-        public bool Win()
+        public bool Win(Word chosenWord)
         {
             _currentWins++;
             _streak++;
             _score += DEFAULT_SCORE_MULTIPLIER * (_scoreMultiplier + _streak);
 
-            if (_currentWins == ChosenWord.Name.Length - 1)
+            if (_currentWins == chosenWord.Name.Length - 1)
                 return true;
             else
                 return false;

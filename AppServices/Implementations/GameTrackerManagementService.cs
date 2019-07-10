@@ -48,6 +48,22 @@ namespace HM.AppServices.Implementations
             return gameTrackerDtos;
         }
 
+        public WordDTO GetRandomWordFromGameTrackerByID(int id)
+        {
+            GameTrackerDTO gameTrackerDtos = new GameTrackerDTO();
+            WordDTO wordDTO = new WordDTO();
+
+            using (UnitOfWork unitOfWork = new UnitOfWork())
+            {
+                GameTracker gameTracker = unitOfWork.GameTrackerRepository.GetByID(id);
+                Word word = gameTracker.GetRandomWord();
+
+                wordDTO.ID = word.ID;
+                wordDTO.Name = word.Name;
+            }
+            return wordDTO;
+        }
+
         public bool Save(GameTrackerDTO gameTrackerDTO)
         {
             GameTracker gameTracker = new GameTracker
@@ -96,5 +112,18 @@ namespace HM.AppServices.Implementations
                 return false;
             }
         }
+
+        /*
+        public Word GetWordByID(int id)
+        {
+            return Words.Find(x => x.ID == id);
+        }
+
+        public Word GetWordByName(string name)
+        {
+            return Words.Find(x => x.Name == name);
+        } // Move the methods somewhere else
+        */
+
     }
 }

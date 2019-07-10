@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Data\HM.Data.csproj" />
+    <ProjectReference Include="..\Repos\HM.Repositories.csproj" />
+  </ItemGroup>
+
 </Project>
