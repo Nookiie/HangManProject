@@ -9,7 +9,7 @@ namespace HM.AppServices.Implementations
 {
     public class WordManagementService
     {
-         public List<WordDTO> Get()
+        public List<WordDTO> Get()
         {
             List<WordDTO> wordsDto = new List<WordDTO>();
 

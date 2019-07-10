@@ -1,7 +1,6 @@
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
-C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\HM.Data.exe
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\HM.Test.deps.json
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\HM.Test.runtimeconfig.json
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\HM.Test.runtimeconfig.dev.json

@@ -1,4 +1,3 @@
-C:\Users\Nookie\source\repos\Hangman\HangmanLogic\bin\Debug\netcoreapp3.0\HM.Data.exe
 C:\Users\Nookie\source\repos\Hangman\HangmanLogic\bin\Debug\netcoreapp3.0\HM.Logic.exe
 C:\Users\Nookie\source\repos\Hangman\HangmanLogic\bin\Debug\netcoreapp3.0\HM.Logic.deps.json
 C:\Users\Nookie\source\repos\Hangman\HangmanLogic\bin\Debug\netcoreapp3.0\HM.Logic.runtimeconfig.json

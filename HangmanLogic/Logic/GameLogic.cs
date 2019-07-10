@@ -92,7 +92,7 @@ namespace HangmanLogic.Logic
                 if (input == '!')
                 {
                     if (gameTracker.GetJokerCount() > 0)
-                        input = Joker(input, gameTracker, chosenWord, printWord);
+                        input = Joker(gameTracker, chosenWord, printWord);
                     else
                         continue;
                 }
@@ -177,13 +177,13 @@ namespace HangmanLogic.Logic
             Console.WriteLine("Score:" + gameTracker.GetScore());
         }
 
-        public static char Joker(char input, IGameTracker gameTracker, Word chosenWord, Word printWord)
+        public static char Joker(IGameTracker gameTracker, Word chosenWord, Word printWord)
         {
             while (true)
             {
                 Random rnd = new Random();
                 int randomIndex = rnd.Next(0, chosenWord.Name.Length - 1);
-                input = chosenWord.Name[randomIndex];
+                char input = chosenWord.Name[randomIndex];
 
                 if (printWord.Name.Contains(input)) // Find me another letter if it's already on the guessed list
                 {

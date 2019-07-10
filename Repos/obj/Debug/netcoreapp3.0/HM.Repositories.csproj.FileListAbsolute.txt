@@ -1,4 +1,3 @@
-C:\Users\Nookie\source\repos\Hangman\Repos\bin\Debug\netcoreapp3.0\HM.Data.exe
 C:\Users\Nookie\source\repos\Hangman\Repos\bin\Debug\netcoreapp3.0\HM.Repositories.deps.json
 C:\Users\Nookie\source\repos\Hangman\Repos\bin\Debug\netcoreapp3.0\HM.Repositories.dll
 C:\Users\Nookie\source\repos\Hangman\Repos\bin\Debug\netcoreapp3.0\HM.Repositories.pdb

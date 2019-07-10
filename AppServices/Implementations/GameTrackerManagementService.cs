@@ -22,7 +22,6 @@ namespace HM.AppServices.Implementations
                         ID = item.ID,
                         Category = item.Category,
                         Words = item.Words,
-                        ChosenWord = item.ChosenWord
 
                     });
                 }
@@ -42,7 +41,6 @@ namespace HM.AppServices.Implementations
                     ID = gameTracker.ID,
                     Category = gameTracker.Category,
                     Words = gameTracker.Words,
-                    ChosenWord = gameTracker.ChosenWord
                 };
             }
             return gameTrackerDtos;
@@ -71,7 +69,6 @@ namespace HM.AppServices.Implementations
                 ID = gameTrackerDTO.ID,
                 Category = gameTrackerDTO.Category,
                 Words = gameTrackerDTO.Words,
-                ChosenWord = gameTrackerDTO.ChosenWord
             };
 
             try

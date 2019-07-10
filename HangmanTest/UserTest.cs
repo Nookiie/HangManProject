@@ -13,17 +13,17 @@ namespace Test
         [TestMethod]
         public static void UserExceptionTest(List<User> users)
         {
+            Assert.IsNotNull(users);
             if (users.Count == 0)
             {
                 Assert.Fail("No users found!");
             }
 
-            Assert.IsNotNull(users);
             foreach (var user in users)
             {
                 if (string.IsNullOrWhiteSpace(user.Username))
                 {
-                    throw new ArgumentException("Some users have whitespace characters");
+                    Assert.Fail("Some users have whitespace characteers");
                 }
             }
         }
@@ -35,7 +35,6 @@ namespace Test
             Assert.IsNotNull(user);
 
             users.Add(user);
-
         }
 
         [TestMethod]

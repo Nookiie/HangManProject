@@ -10,41 +10,35 @@ namespace HangmanTest
     public static class LogicTest
     {
         [TestMethod]
-        public static void CleanupTest()
-        {
-            IGameTracker gameTracker = new GameTracker();
-            try
-            {
-                gameTracker.CleanUp();
-            }
-
-            catch (ArgumentNullException e)
-            {
-                StringAssert.Contains(e.Message, "Cleanup Vlaues are not properly defined");
-                return;
-            }
-            Assert.Fail("No exception was thrown");
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public static void InputTest(char input)
         {
             if (char.IsWhiteSpace(input))
             {
-                throw new ArgumentException("Input Symbol is whitespace, please change input again");
+                throw new ArgumentException("Input Symbol has whitespaces!");
             }
 
-            if (input.GetType() != typeof(char))
+            if (char.IsUpper(input))
             {
-                throw new ArgumentException("Input is not of type char");
+                throw new ArgumentException("Input Symbol has upper-case letters");
             }
-
-            Assert.Fail("No argument exceptions found");
         }
 
         [TestMethod]
-        public static void GameTrackerTest(List<Word> words)
+        [TestCategory("Cleanup")]
+        public static void CleanupTest()
+        {
+            IGameTracker gameTracker = new GameTracker();
+            gameTracker.CleanUp();
+
+            int expectedValue = 0;
+
+            Assert.AreEqual(expectedValue, gameTracker.GetTries());
+            Assert.AreEqual(expectedValue, gameTracker.GetScore());
+            Assert.AreEqual(expectedValue, gameTracker.GetAttemptCount());
+        }
+
+        [TestMethod]
+        public static void GameTrackerListTest(List<Word> words)
         {
             if (words.Count == 0)
             {
@@ -55,13 +49,64 @@ namespace HangmanTest
             {
                 if (word.Name.Contains(" "))
                 {
-                    throw new ArgumentException("Word contains whitespace when it shouldn't");
+                    throw new ArgumentException("One or more words contain whitespaces");
+                }
+                foreach (var letter in word.Name)
+                {
+                    if (char.IsUpper(letter))
+                    {
+                        throw new ArgumentException("No word should have upper-case letters");
+                    }
                 }
             }
-
-            Assert.Fail("No argument exception found!");
         }
 
+        [TestMethod]
+        public static void GameTrackerTest(List<Word> words, Difficulty difficulty)
+        {
+            Assert.IsNotNull(words);
+            Assert.IsNotNull(difficulty);
+
+            IGameTracker gameTracker = new GameTracker("GameTrackerTest", words, difficulty);
+            Word chosenWord = gameTracker.GetRandomWord();
+
+            var expectedAttempts = 1;
+            var expectedTriesOnFail = 8;
+            var expectedScoreOnFail = 0;
+            var expectedTriesOnWin = 9;
+            var expectedScoreOnWinEasy = 10;
+            var expectedScoreOnWinNormal = 15;
+            var expectedScoreOnWinHard = 20;
+            var expectedScoreOnWinInsane = 25;
+
+            gameTracker.Fail();
+
+            Assert.AreEqual(expectedAttempts, gameTracker.GetAttemptCount());
+            Assert.AreEqual(expectedTriesOnFail, gameTracker.GetTries());
+            Assert.AreEqual(expectedScoreOnFail, gameTracker.GetScore());
+
+            gameTracker.CleanUp();
+
+            gameTracker.Win(chosenWord);
+
+            Assert.AreEqual(expectedTriesOnWin, gameTracker.GetTries());
+            Assert.AreEqual(expectedAttempts, gameTracker.GetAttemptCount());
+
+            switch (difficulty)
+            {
+                case Difficulty.Easy: Assert.AreEqual(expectedScoreOnWinEasy, gameTracker.GetScore()); break;
+                case Difficulty.Normal: Assert.AreEqual(expectedScoreOnWinNormal, gameTracker.GetScore()); break;
+                case Difficulty.Hard: Assert.AreEqual(expectedScoreOnWinHard, gameTracker.GetScore()); break;
+                case Difficulty.Insane: Assert.AreEqual(expectedScoreOnWinInsane, gameTracker.GetScore()); break;
+                default: throw new ArgumentException("Different type of difficulty assigned");
+            }
+        }
+
+        [TestMethod]
+        public static void GameTrackerTest()
+        {
+
+        }
     }
 }
 
