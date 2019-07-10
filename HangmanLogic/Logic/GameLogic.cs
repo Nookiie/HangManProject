@@ -91,28 +91,7 @@ namespace HangmanLogic.Logic
 
                 char input = Console.ReadKey().KeyChar;
 
-                if (input == '!') // Use of Joker
-                {
-                    if (gameTracker.GetJokerCount() == 0)
-                        continue;
-
-                    while (true)
-                    {
-                        Random rnd = new Random();
-                        int randomIndex = rnd.Next(0, chosenWord.Name.Length);
-                        input = chosenWord.Name[randomIndex];
-
-                        if (printWord.Name.Contains(input)) // Find me another letter if it's already on the guessed list
-                        {
-                            continue;
-                        }
-                        else
-                        {
-                            gameTracker.UseJoker();
-                            break;
-                        }
-                    }
-                }
+                Joker(input, gameTracker, chosenWord, printWord);
 
                 if (gameTracker.GuessCharacterInWord(input) && !printWord.Name.Contains(input))
                 {
@@ -192,6 +171,32 @@ namespace HangmanLogic.Logic
             Console.WriteLine("Jokers available:" + gameTracker.GetJokerCount());
             Console.WriteLine("Word:" + chosenWord.Name);
             Console.WriteLine("Score:" + gameTracker.GetScore());
+        }
+
+        public static void Joker(char input, IGameTracker gameTracker, Word chosenWord, Word printWord)
+        {
+            if (input == '!') // Use of Joker
+            {
+                if (gameTracker.GetJokerCount() == 0)
+                    return;
+
+                while (true)
+                {
+                    Random rnd = new Random();
+                    int randomIndex = rnd.Next(0, chosenWord.Name.Length - 1);
+                    input = chosenWord.Name[randomIndex];
+
+                    if (printWord.Name.Contains(input)) // Find me another letter if it's already on the guessed list
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        gameTracker.UseJoker();
+                        break;
+                    }
+                }
+            }
         }
 
         public static void CleanUp(IGameTracker gameTracker)

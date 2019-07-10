@@ -28,11 +28,11 @@ namespace Data.Entities
         {
             switch (difficulty)
             {
-                case Difficulty.Easy: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_EASY); break;
-                case Difficulty.Normal: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_NORMAL); break;
-                case Difficulty.Hard: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_HARD); break;
-                case Difficulty.Insane: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); break;
-                default: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); break;
+                case Difficulty.Easy: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_EASY); SetMultiplier(difficulty); break;
+                case Difficulty.Normal: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_NORMAL); SetMultiplier(difficulty); break;
+                case Difficulty.Hard: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_HARD); SetMultiplier(difficulty);  break;
+                case Difficulty.Insane: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); SetMultiplier(difficulty); break;
+                default: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); SetMultiplier(difficulty); break;
             }
 
             this.Words = words;
@@ -87,8 +87,8 @@ namespace Data.Entities
 
         private const int MAX_FAILS = 9;
 
-        private const int SCORE_MULTIPLIER = 5;
-
+        private const int DEFAULT_SCORE_MULTIPLIER = 5; 
+        
         #endregion
 
         private int _currentFails = 0;
@@ -96,6 +96,10 @@ namespace Data.Entities
         private int _currentWins = 0;
 
         private int _jokers = 1;
+
+        private int _streak = 0;
+
+        private int _scoreMultiplier = 1;
 
         private int _score = 0;
 
@@ -142,11 +146,24 @@ namespace Data.Entities
         public bool Fail()
         {
             _currentFails++;
+            _streak = 0;
 
             if (_currentFails >= MAX_FAILS)
                 return true;
             else
                 return false;
+        }
+
+        public void SetMultiplier(Difficulty difficulty)
+        {
+            switch (difficulty)
+            {
+                case Difficulty.Easy:_scoreMultiplier = 1; break;
+                case Difficulty.Normal: _scoreMultiplier = 2; break;
+                case Difficulty.Hard: _scoreMultiplier = 3; break;
+                case Difficulty.Insane: _scoreMultiplier = 4; break;
+            }
+
         }
 
         public bool CheckWordsForErrors()
@@ -174,7 +191,8 @@ namespace Data.Entities
         public bool Win()
         {
             _currentWins++;
-            _score += SCORE_MULTIPLIER;
+            _streak++;
+            _score += DEFAULT_SCORE_MULTIPLIER * (_scoreMultiplier + _streak);
 
             if (_currentWins == ChosenWord.Name.Length - 1)
                 return true;
@@ -183,7 +201,8 @@ namespace Data.Entities
         }
 
         public int GetScore() => _score;
-        #endregion
+
+        public int GetStreak() => _streak;
 
         public void CleanUp()
         {
@@ -191,6 +210,8 @@ namespace Data.Entities
             _currentFails = 0;
             _currentWins = 0;
             _score = 0;
+            _streak = 0;
+            _scoreMultiplier = 0;
         }
 
         public int GetAttemptCount() => (_currentFails + _currentWins);
@@ -199,5 +220,7 @@ namespace Data.Entities
         {
             _jokers--;
         }
+
+        #endregion
     }
 }

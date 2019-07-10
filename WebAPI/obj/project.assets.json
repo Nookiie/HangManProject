@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\WebAPI.csproj",
-      "projectName": "WebAPI",
-      "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj",
+      "projectName": "HM.WebAPI",
+      "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj",
       "packagesPath": "C:\\Users\\Nookie\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\obj\\",
       "projectStyle": "PackageReference",

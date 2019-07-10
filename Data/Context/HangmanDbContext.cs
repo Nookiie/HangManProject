@@ -21,7 +21,5 @@ namespace Data.Context
         public DbSet<GameTracker> GameTrackers { get; set; }
 
         #endregion
-
-        public DbSet<User> Users { get; set; }
     }
 }
