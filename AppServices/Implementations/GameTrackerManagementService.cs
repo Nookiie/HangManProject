@@ -16,7 +16,7 @@ namespace HM.AppServices.Implementations
 
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                foreach (var item in unitOfWork.GameTrackerRepository.GetAll())
+                foreach (var item in unitOfWork.GameTrackers.Get())
                 {
                     gameTrackersDto.Add(new GameTrackerDTO
                     {
@@ -36,7 +36,7 @@ namespace HM.AppServices.Implementations
 
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                GameTracker gameTracker = unitOfWork.GameTrackerRepository.GetByID(id);
+                GameTracker gameTracker = unitOfWork.GameTrackers.Get(id);
                 gameTrackerDtos = new GameTrackerDTO
                 {
                     ID = gameTracker.ID,
@@ -54,7 +54,7 @@ namespace HM.AppServices.Implementations
 
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                GameTracker gameTracker = unitOfWork.GameTrackerRepository.GetByID(id);
+                GameTracker gameTracker = unitOfWork.GameTrackers.Get(id);
                 Word word = gameTracker.GetRandomWord();
 
                 wordDTO.ID = word.ID;
@@ -77,9 +77,9 @@ namespace HM.AppServices.Implementations
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
                     if (gameTrackerDTO.ID == 0)
-                        unitOfWork.GameTrackerRepository.Insert(gameTracker);
+                        unitOfWork.GameTrackers.Insert(gameTracker);
                     else
-                        unitOfWork.GameTrackerRepository.Update(gameTracker);
+                        unitOfWork.GameTrackers.Update(gameTracker);
 
                     unitOfWork.Save();
                 }
@@ -98,8 +98,8 @@ namespace HM.AppServices.Implementations
             {
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
-                    GameTracker gameTracker = unitOfWork.GameTrackerRepository.GetByID(id);
-                    unitOfWork.GameTrackerRepository.Delete(gameTracker);
+                    GameTracker gameTracker = unitOfWork.GameTrackers.Get(id);
+                    unitOfWork.GameTrackers.Delete(gameTracker);
                     unitOfWork.Save();
                 }
 

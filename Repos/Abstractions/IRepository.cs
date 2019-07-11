@@ -6,14 +6,12 @@ using System.Text;
 
 namespace HM.Repositories.Abstractions
 {
-    public interface IRepository<T>
+    public interface IRepository<T> 
         where T:class
     {
-        IEnumerable<T> GetAll(Expression<Func<T, bool>> filter,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            string includeProperties = "");
+        IQueryable<T> Get();
 
-        T GetByID(object id);
+        T Get(object id);
 
         void Insert(T entity);
 
@@ -21,7 +19,8 @@ namespace HM.Repositories.Abstractions
 
         void Delete(T entity);
 
-        void DeleteByID(object id);
+        void Delete(object id);
 
+        IQueryable<T> Find(Expression<Func<T, bool>> where);
     }
 }

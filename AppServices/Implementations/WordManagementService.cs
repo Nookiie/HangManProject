@@ -16,7 +16,7 @@ namespace HM.AppServices.Implementations
 
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                foreach (var item in unitOfWork.WordRepository.GetAll())
+                foreach (var item in unitOfWork.Words.Get())
                 {
                     wordsDto.Add(new WordDTO
                     {
@@ -35,7 +35,7 @@ namespace HM.AppServices.Implementations
 
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                Word word = unitOfWork.WordRepository.GetByID(id);
+                Word word = unitOfWork.Words.Get(id);
                 WordDTO = new WordDTO
                 {
                     ID = WordDTO.ID,
@@ -58,9 +58,9 @@ namespace HM.AppServices.Implementations
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
                     if (WordDTO.ID == 0)
-                        unitOfWork.WordRepository.Insert(word);
+                        unitOfWork.Words.Insert(word);
                     else
-                        unitOfWork.WordRepository.Update(word);
+                        unitOfWork.Words.Update(word);
 
                     unitOfWork.Save();
                 }
@@ -79,8 +79,8 @@ namespace HM.AppServices.Implementations
             {
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
-                    Word word = unitOfWork.WordRepository.GetByID(id);
-                    unitOfWork.WordRepository.Delete(word);
+                    Word word = unitOfWork.Words.Get(id);
+                    unitOfWork.Words.Delete(word);
                     unitOfWork.Save();
                 }
 

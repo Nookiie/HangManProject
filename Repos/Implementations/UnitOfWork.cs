@@ -2,46 +2,52 @@
 using HM.Data.Context;
 using HM.Data.Entities;
 using HM.Data.Entities.GameItems;
+using HM.Repositories.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Text;
 
 namespace Repos.Implementations
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private HangmanDbContext _context = new HangmanDbContext();
-        private GenericRepository<Word> _wordRepository;
-        private GenericRepository<GameTracker> _gameTrackerRepository;
 
-        public GenericRepository<Word> WordRepository
+        private readonly HangmanDbContext context;
+        private readonly Dictionary<Type, object> repositories = new Dictionary<Type, object>();
+
+        public UnitOfWork()
+        {
+
+        }
+      
+        public IRepository<Word> Words
         {
             get
             {
-
-                if (this._wordRepository == null)
-                {
-                    this._wordRepository = new GenericRepository<Word>(_context);
-                }
-                return _wordRepository;
+                return this.GetRepository<Word>();
             }
         }
 
-        public GenericRepository<GameTracker> GameTrackerRepository
+        public IRepository<GameTracker> GameTrackers
         {
             get
             {
-                if (this._gameTrackerRepository == null)
-                {
-                    this._gameTrackerRepository = new GenericRepository<GameTracker>(_context);
-                }
-                return _gameTrackerRepository;
+                return this.GetRepository<GameTracker>();
+            }
+        }
+
+        public DbContext Context
+        {
+            get
+            {
+                return this.context;
             }
         }
 
         public void Save()
         {
-            _context.SaveChanges();
+            context.SaveChanges();
         }
 
         private bool disposed = false;
@@ -52,7 +58,7 @@ namespace Repos.Implementations
             {
                 if (disposing)
                 {
-                    _context.Dispose();
+                    context.Dispose();
                 }
             }
             this.disposed = true;
@@ -63,5 +69,24 @@ namespace Repos.Implementations
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        public int Commit()
+        {
+            return this.context.SaveChanges();
+        }
+
+        private IRepository<T> GetRepository<T>()
+            where T : class
+        {
+            if (!this.repositories.ContainsKey(typeof(T)))
+            {
+                var type = typeof(GenericRepository<T>);
+
+                this.repositories.Add(typeof(T), Activator.CreateInstance(type, this.context));
+            }
+
+            return (IRepository<T>)this.repositories[typeof(T)];
+
+        } 
     }
 }

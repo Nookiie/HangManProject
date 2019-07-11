@@ -22,36 +22,13 @@ namespace Repos.Implementations
             this.Context = context;
             this.DbSet = context.Set<TEntity>();
         }
-
-        public virtual IEnumerable<TEntity> GetAll(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "")
+       
+        public IQueryable<TEntity> Get()
         {
-            IQueryable<TEntity> query = DbSet;
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            foreach (var includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query.Include(includeProperty);
-            }
-
-            if (orderBy != null)
-            {
-                return orderBy(query).ToList();
-            }
-            else
-            {
-                return query.ToList();
-            }
+            return this.DbSet.AsQueryable();
         }
 
-        public virtual TEntity GetByID(object id)
+        public virtual TEntity Get(object id)
         {
             return DbSet.Find(id);
         }
@@ -61,7 +38,7 @@ namespace Repos.Implementations
             DbSet.Add(entity);
         }
 
-        public virtual void DeleteByID(object id)
+        public virtual void Delete(object id)
         {
             TEntity entityToDelete = DbSet.Find(id);
             Delete(entityToDelete);
@@ -80,6 +57,11 @@ namespace Repos.Implementations
         {
             DbSet.Attach(entityToUpdate);
             Context.Entry(entityToUpdate).State = EntityState.Modified;
+        }
+        
+        public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> where)
+        {
+            return this.DbSet.Where(where);
         }
     }
 }
