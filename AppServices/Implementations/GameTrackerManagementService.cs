@@ -1,5 +1,6 @@
 ﻿using Data.Entities;
 using HM.AppServices.DTOs;
+using HM.Data.Entities.GameItems;
 using Repos.Implementations;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,13 @@ namespace HM.AppServices.Implementations
 {
     public class GameTrackerManagementService
     {
-        public List<GameTrackerDTO> Get()
+        public List<GameTrackerDTO> GetAll()
         {
             List<GameTrackerDTO> gameTrackersDto = new List<GameTrackerDTO>();
 
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                foreach (var item in unitOfWork.GameTrackerRepository.Get())
+                foreach (var item in unitOfWork.GameTrackerRepository.GetAll())
                 {
                     gameTrackersDto.Add(new GameTrackerDTO
                     {
@@ -109,18 +110,5 @@ namespace HM.AppServices.Implementations
                 return false;
             }
         }
-
-        /*
-        public Word GetWordByID(int id)
-        {
-            return Words.Find(x => x.ID == id);
-        }
-
-        public Word GetWordByName(string name)
-        {
-            return Words.Find(x => x.Name == name);
-        } // Move the methods somewhere else
-        */
-
     }
 }

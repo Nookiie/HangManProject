@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HM.AppServices.DTOs
 {
-    public class BaseDTO
+    public abstract class BaseDTO
     {
         public int ID { get; set; }
     }

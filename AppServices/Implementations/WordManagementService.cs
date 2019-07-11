@@ -1,5 +1,6 @@
 ﻿using Data.Entities;
 using HM.AppServices.DTOs;
+using HM.Data.Entities.GameItems;
 using Repos.Implementations;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,13 @@ namespace HM.AppServices.Implementations
 {
     public class WordManagementService
     {
-        public List<WordDTO> Get()
+        public List<WordDTO> GetAll()
         {
             List<WordDTO> wordsDto = new List<WordDTO>();
 
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                foreach (var item in unitOfWork.WordRepository.Get())
+                foreach (var item in unitOfWork.WordRepository.GetAll())
                 {
                     wordsDto.Add(new WordDTO
                     {
