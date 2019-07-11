@@ -1,8 +1,9 @@
-using Data.Entities;
-using Data.Entities.Users;
+using HM.Data.Entities.GameItems;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using HM.Data.Entities.Difficulty;
+using HM.Data.Abstraction;
 
 namespace HangmanTest
 {
@@ -62,7 +63,7 @@ namespace HangmanTest
         }
 
         [TestMethod]
-        public static void GameTrackerTest(List<Word> words, Difficulty difficulty)
+        public static void GameTrackerTest(List<Word> words, GameDifficulty difficulty)
         {
             Assert.IsNotNull(words);
             Assert.IsNotNull(difficulty);
@@ -94,10 +95,10 @@ namespace HangmanTest
 
             switch (difficulty)
             {
-                case Difficulty.Easy: Assert.AreEqual(expectedScoreOnWinEasy, gameTracker.GetScore()); break;
-                case Difficulty.Normal: Assert.AreEqual(expectedScoreOnWinNormal, gameTracker.GetScore()); break;
-                case Difficulty.Hard: Assert.AreEqual(expectedScoreOnWinHard, gameTracker.GetScore()); break;
-                case Difficulty.Insane: Assert.AreEqual(expectedScoreOnWinInsane, gameTracker.GetScore()); break;
+                case GameDifficulty.Easy: Assert.AreEqual(expectedScoreOnWinEasy, gameTracker.GetScore()); break;
+                case GameDifficulty.Normal: Assert.AreEqual(expectedScoreOnWinNormal, gameTracker.GetScore()); break;
+                case GameDifficulty.Hard: Assert.AreEqual(expectedScoreOnWinHard, gameTracker.GetScore()); break;
+                case GameDifficulty.Insane: Assert.AreEqual(expectedScoreOnWinInsane, gameTracker.GetScore()); break;
                 default: throw new ArgumentException("Different type of difficulty assigned");
             }
         }

@@ -11,7 +11,5 @@ namespace HM.AppServices.DTOs
 
         public List<Word> Words { get; set; }
 
-        public Word ChosenWord { get; set; }
-
     }
 }

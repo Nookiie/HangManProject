@@ -1,4 +1,8 @@
 ﻿using Data.Entities;
+using HM.Data.Abstraction;
+using HM.Data.Entities.Difficulty;
+using HM.Data.Entities.GameCondition;
+using HM.Data.Entities.GameItems;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -6,12 +10,6 @@ using System.Text.RegularExpressions;
 
 namespace HangmanLogic.Logic
 {
-    public enum GameCondition
-    {
-        Lost,
-        Won
-    }
-
     public static class GameLogic
     {
         public static void PrintMenu()
@@ -20,7 +18,7 @@ namespace HangmanLogic.Logic
             Console.WriteLine("Welcome to the Hangman Game!");
             Console.WriteLine("n = New Game");
             // Console.WriteLine("D = New Dictionary");
-            // Console.WriteLine("c = Choose Difficulty");
+            // Console.WriteLine("c = Choose GameDifficulty");
             // Console.WriteLine("F = New Category");
             Console.WriteLine("Esc = Exit");
         }
@@ -39,19 +37,19 @@ namespace HangmanLogic.Logic
                     Console.WriteLine("Please input a category (name for GameTracker)");
                     string category = Console.ReadLine();
 
-                    Console.WriteLine("Please select a difficulty");
+                    Console.WriteLine("Please select a GameDifficulty");
                     Console.WriteLine("1 - Easy");
                     Console.WriteLine("2 - Normal");
                     Console.WriteLine("3 - Hard");
                     Console.WriteLine("4 - Insane");
-                    char difficultyIndex = Console.ReadKey().KeyChar;
+                    char GameDifficultyIndex = Console.ReadKey().KeyChar;
 
-                    switch (difficultyIndex)
+                    switch (GameDifficultyIndex)
                     {
-                        case '1': StartGame(category, Difficulty.Easy); break;
-                        case '2': StartGame(category, Difficulty.Normal); break;
-                        case '3': StartGame(category, Difficulty.Hard); break;
-                        case '4': StartGame(category, Difficulty.Insane); break;
+                        case '1': StartGame(category, GameDifficulty.Easy); break;
+                        case '2': StartGame(category, GameDifficulty.Normal); break;
+                        case '3': StartGame(category, GameDifficulty.Hard); break;
+                        case '4': StartGame(category, GameDifficulty.Insane); break;
                         default: Console.WriteLine("No such value"); break;
                     }
                 }
@@ -63,7 +61,7 @@ namespace HangmanLogic.Logic
             }
         }
 
-        public static void StartGame(string category, Difficulty difficulty)
+        public static void StartGame(string category, GameDifficulty GameDifficulty)
         {
             List<Word> words = new List<Word>
             {
@@ -74,7 +72,7 @@ namespace HangmanLogic.Logic
                 new Word("imagination")
             };
 
-            IGameTracker gameTracker = new GameTracker(category, words, difficulty);
+            IGameTracker gameTracker = new GameTracker(category, words, GameDifficulty);
             gameTracker.CheckWordsForErrors();
 
             Word chosenWord = gameTracker.GetRandomWord();

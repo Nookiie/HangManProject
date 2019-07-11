@@ -33,6 +33,7 @@ namespace WebAPI
             );
 
             services.AddOptions();
+
             services.AddHealthChecks()
                 .AddCheck("self", () => Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Healthy());
 

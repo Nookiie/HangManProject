@@ -1,8 +1,9 @@
-﻿using System;
+﻿using HM.Data.Abstraction;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data.Entities
+namespace HM.Data.Entities.GameItems
 {
     public class Word : BaseEntity
     {

@@ -1,8 +1,9 @@
-﻿using System;
+﻿using HM.Data.Entities.GameItems;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Data.Entities
+namespace HM.Data.Abstraction
 {
     public interface IGameTracker
     {

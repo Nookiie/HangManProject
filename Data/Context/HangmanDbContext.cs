@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Text;
-using Data.Entities;
-using Data.Entities.Users;
+using HM.Data.Entities;
+using HM.Data.Entities.GameItems;
 
-namespace Data.Context
+namespace HM.Data.Context
 {
     public class HangmanDbContext : DbContext
     {
@@ -14,12 +14,9 @@ namespace Data.Context
 
         }
 
-        #region GameEntities
-
         public DbSet<Word> Words { get; set; }
 
         public DbSet<GameTracker> GameTrackers { get; set; }
 
-        #endregion
     }
 }

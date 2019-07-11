@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using HM.Data.Abstraction;
+using HM.Data.Entities.Difficulty;
 
-namespace Data.Entities
+namespace HM.Data.Entities.GameItems
 {
-    public enum Difficulty
-    {
-        Easy,
-        Normal,
-        Hard,
-        Insane
-    }
-
     /// <summary>
     /// The Main Game Manager that coordinates and manages the wordlist
     /// </summary>
@@ -24,14 +18,14 @@ namespace Data.Entities
 
         }
 
-        public GameTracker(string name, List<Word> words, Difficulty difficulty)
+        public GameTracker(string name, List<Word> words, GameDifficulty difficulty)
         {
             switch (difficulty)
             {
-                case Difficulty.Easy: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_EASY); SetMultiplier(difficulty); break;
-                case Difficulty.Normal: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_NORMAL); SetMultiplier(difficulty); break;
-                case Difficulty.Hard: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_HARD); SetMultiplier(difficulty); break;
-                case Difficulty.Insane: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); SetMultiplier(difficulty); break;
+                case GameDifficulty.Easy: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_EASY); SetMultiplier(difficulty); break;
+                case GameDifficulty.Normal: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_NORMAL); SetMultiplier(difficulty); break;
+                case GameDifficulty.Hard: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_HARD); SetMultiplier(difficulty); break;
+                case GameDifficulty.Insane: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); SetMultiplier(difficulty); break;
                 default: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); SetMultiplier(difficulty); break;
             }
 
@@ -39,29 +33,17 @@ namespace Data.Entities
             this.Category = name;
         }
 
-        public GameTracker(List<Word> words, Difficulty difficulty)
+        public GameTracker(List<Word> words, GameDifficulty difficulty)
         {
 
-            if (difficulty == Difficulty.Easy)
+            switch (difficulty)
             {
-                words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_EASY);
+                case GameDifficulty.Easy: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_EASY); SetMultiplier(difficulty); break;
+                case GameDifficulty.Normal: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_NORMAL); SetMultiplier(difficulty); break;
+                case GameDifficulty.Hard: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_HARD); SetMultiplier(difficulty); break;
+                case GameDifficulty.Insane: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); SetMultiplier(difficulty); break;
+                default: words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE); SetMultiplier(difficulty); break;
             }
-
-            else if (difficulty == Difficulty.Normal)
-            {
-                words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_NORMAL);
-            }
-
-            else if (difficulty == Difficulty.Hard)
-            {
-                words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE_HARD);
-            }
-
-            else if (difficulty == Difficulty.Insane)
-            {
-                words.RemoveAll(x => x.Name.Length > MAX_WORD_SIZE);
-            }
-
             this.Words = words;
         }
 
@@ -126,6 +108,18 @@ namespace Data.Entities
             return word.Name.Contains(input);
         }
 
+        public bool Win(Word chosenWord)
+        {
+            _currentWins++;
+            _streak++;
+            _score += DEFAULT_SCORE_MULTIPLIER * (_scoreMultiplier + _streak);
+
+            if (_currentWins == chosenWord.Name.Length - 1)
+                return true;
+            else
+                return false;
+        }
+
         public bool Fail()
         {
             _currentFails++;
@@ -137,14 +131,14 @@ namespace Data.Entities
                 return false;
         }
 
-        public void SetMultiplier(Difficulty difficulty)
+        public void SetMultiplier(GameDifficulty difficulty)
         {
             switch (difficulty)
             {
-                case Difficulty.Easy: _scoreMultiplier = 1; break;
-                case Difficulty.Normal: _scoreMultiplier = 2; break;
-                case Difficulty.Hard: _scoreMultiplier = 3; break;
-                case Difficulty.Insane: _scoreMultiplier = 4; break;
+                case GameDifficulty.Easy: _scoreMultiplier = 1; break;
+                case GameDifficulty.Normal: _scoreMultiplier = 2; break;
+                case GameDifficulty.Hard: _scoreMultiplier = 3; break;
+                case GameDifficulty.Insane: _scoreMultiplier = 4; break;
             }
 
         }
@@ -170,18 +164,6 @@ namespace Data.Entities
         public int GetJokerCount() => _jokers;
 
         public int GetTries() => (MAX_FAILS - _currentFails);
-
-        public bool Win(Word chosenWord)
-        {
-            _currentWins++;
-            _streak++;
-            _score += DEFAULT_SCORE_MULTIPLIER * (_scoreMultiplier + _streak);
-
-            if (_currentWins == chosenWord.Name.Length - 1)
-                return true;
-            else
-                return false;
-        }
 
         public int GetScore() => _score;
 
