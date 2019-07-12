@@ -122,3 +122,7 @@ C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp3.0\HM.WebAPI.cs
 C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp3.0\HM.WebAPI.dll
 C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp3.0\HM.WebAPI.pdb
 C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp3.0\AutoMapper.dll
+C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp3.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp3.0\HM.Common.dll
+C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp3.0\HM.Common.pdb
+C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp3.0\HM.WebAPI.MvcApplicationPartsAssemblyInfo.cs

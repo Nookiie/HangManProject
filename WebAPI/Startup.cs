@@ -31,13 +31,13 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             var mappingConfig = new MapperConfiguration(mc =>
-                        {
-                            mc.AddProfile(new MappingProfile());
-                        });
-            IMapper mapper = mappingConfig.CreateMapper();
-            services.AddSingleton(mapper);
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+            // IMapper mapper = mappingConfig.CreateMapper();
+            // services.AddSingleton(mapper);
 
-            services.AddMvc();
+            // services.AddMvc();
 
             services.AddDbContext<HangmanDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

@@ -11,6 +11,7 @@ using HM.Data.Entities.GameItems;
 namespace WebAPI.Controllers
 {
     [ApiController]
+    [Route("api/[controller]/[action]")]
     public class GameTrackersController : ControllerBase
     {
         private readonly HangmanDbContext _context;

@@ -7,18 +7,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HM.Data.Context;
 using HM.Data.Entities.GameItems;
+using AutoMapper;
 
 namespace WebAPI.Controllers
 {
     [ApiController]
+    [Route("api/[controller]/[action]")]
     public class WordsController : ControllerBase
     {
         private readonly HangmanDbContext _context;
+
+        // private readonly IMapper _mapper;
 
         public WordsController(HangmanDbContext context)
         {
             _context = context;
         }
+
+        /*
+        public WordsController(IMapper mapper)
+        {
+            _mapper = mapper;
+        }
+        */
     
         // GET: api/Words
         [HttpGet]
