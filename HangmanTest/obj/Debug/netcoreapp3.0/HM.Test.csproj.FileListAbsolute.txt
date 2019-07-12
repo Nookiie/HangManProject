@@ -121,3 +121,6 @@ C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\runtime
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
+C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\HM.Logic.exe
+C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\HM.Logic.dll
+C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\HM.Logic.pdb

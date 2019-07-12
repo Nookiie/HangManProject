@@ -1,0 +1,12 @@
+C:\Users\Nookie\source\repos\Hangman\Common\bin\Debug\netcoreapp3.0\HM.Common.deps.json
+C:\Users\Nookie\source\repos\Hangman\Common\bin\Debug\netcoreapp3.0\HM.Common.dll
+C:\Users\Nookie\source\repos\Hangman\Common\bin\Debug\netcoreapp3.0\HM.Common.pdb
+C:\Users\Nookie\source\repos\Hangman\Common\bin\Debug\netcoreapp3.0\HM.Data.dll
+C:\Users\Nookie\source\repos\Hangman\Common\bin\Debug\netcoreapp3.0\HM.Data.pdb
+C:\Users\Nookie\source\repos\Hangman\Common\obj\Debug\netcoreapp3.0\HM.Common.csprojAssemblyReference.cache
+C:\Users\Nookie\source\repos\Hangman\Common\obj\Debug\netcoreapp3.0\HM.Common.csproj.CoreCompileInputs.cache
+C:\Users\Nookie\source\repos\Hangman\Common\obj\Debug\netcoreapp3.0\HM.Common.AssemblyInfoInputs.cache
+C:\Users\Nookie\source\repos\Hangman\Common\obj\Debug\netcoreapp3.0\HM.Common.AssemblyInfo.cs
+C:\Users\Nookie\source\repos\Hangman\Common\obj\Debug\netcoreapp3.0\HM.Common.csproj.CopyComplete
+C:\Users\Nookie\source\repos\Hangman\Common\obj\Debug\netcoreapp3.0\HM.Common.dll
+C:\Users\Nookie\source\repos\Hangman\Common\obj\Debug\netcoreapp3.0\HM.Common.pdb

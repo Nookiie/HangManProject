@@ -29,7 +29,6 @@ namespace HM.Data.Entities.GameItems
 
         #region Properties
 
-
         [Required]
         [MinLength(3, ErrorMessage = "Category is too short")]
         [MaxLength(40, ErrorMessage = "Category is too long")]

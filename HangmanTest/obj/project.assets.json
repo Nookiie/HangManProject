@@ -2447,6 +2447,19 @@
         "runtime": {
           "bin/placeholder/HM.Data.dll": {}
         }
+      },
+      "HM.Logic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "dependencies": {
+          "HM.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/HM.Logic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HM.Logic.dll": {}
+        }
       }
     }
   },
@@ -7993,11 +8006,17 @@
       "type": "project",
       "path": "../Data/HM.Data.csproj",
       "msbuildProject": "../Data/HM.Data.csproj"
+    },
+    "HM.Logic/1.0.0": {
+      "type": "project",
+      "path": "../HangmanLogic/HM.Logic.csproj",
+      "msbuildProject": "../HangmanLogic/HM.Logic.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
       "HM.Data >= 1.0.0",
+      "HM.Logic >= 1.0.0",
       "MSTest.TestAdapter >= 1.4.0",
       "MSTest.TestFramework >= 1.4.0",
       "Microsoft.NET.Test.Sdk >= 16.0.1",
@@ -8036,6 +8055,9 @@
           "projectReferences": {
             "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj": {
               "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj"
+            },
+            "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj": {
+              "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj"
             }
           }
         }

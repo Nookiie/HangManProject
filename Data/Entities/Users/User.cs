@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Data.Entities.Users
 {
-    public class User : BaseEntity
+    public class User : BaseEntity<Guid>
     {
         [Required]
         [MinLength(3, ErrorMessage = "Username needs to have more characters")]

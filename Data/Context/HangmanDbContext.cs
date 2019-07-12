@@ -18,5 +18,10 @@ namespace HM.Data.Context
 
         public DbSet<GameTracker> GameTrackers { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Word>().ToTable("Word");
+            modelBuilder.Entity<GameTracker>().ToTable("GameTracker");
+        }
     }
 }

@@ -9,6 +9,7 @@
       "HM.Test/1.0.0": {
         "dependencies": {
           "HM.Data": "1.0.0",
+          "HM.Logic": "1.0.0",
           "MSTest.TestAdapter": "1.4.0",
           "MSTest.TestFramework": "1.4.0",
           "Microsoft.NET.Test.Sdk": "16.0.1",
@@ -1652,6 +1653,14 @@
         "runtime": {
           "HM.Data.dll": {}
         }
+      },
+      "HM.Logic/1.0.0": {
+        "dependencies": {
+          "HM.Data": "1.0.0"
+        },
+        "runtime": {
+          "HM.Logic.dll": {}
+        }
       }
     }
   },
@@ -2628,6 +2637,11 @@
       "hashPath": "system.xml.xpath.xmldocument.4.0.1.nupkg.sha512"
     },
     "HM.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HM.Logic/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

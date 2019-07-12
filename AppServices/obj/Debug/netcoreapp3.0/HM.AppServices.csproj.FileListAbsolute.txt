@@ -12,3 +12,5 @@ C:\Users\Nookie\source\repos\Hangman\AppServices\obj\Debug\netcoreapp3.0\HM.AppS
 C:\Users\Nookie\source\repos\Hangman\AppServices\obj\Debug\netcoreapp3.0\HM.AppServices.csproj.CopyComplete
 C:\Users\Nookie\source\repos\Hangman\AppServices\obj\Debug\netcoreapp3.0\HM.AppServices.dll
 C:\Users\Nookie\source\repos\Hangman\AppServices\obj\Debug\netcoreapp3.0\HM.AppServices.pdb
+C:\Users\Nookie\source\repos\Hangman\AppServices\bin\Debug\netcoreapp3.0\HM.Common.dll
+C:\Users\Nookie\source\repos\Hangman\AppServices\bin\Debug\netcoreapp3.0\HM.Common.pdb
