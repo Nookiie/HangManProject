@@ -87,7 +87,7 @@ namespace WebAPI.Controllers
             _context.Words.Add(word);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetWord", new { id = word.ID }, word);
+            return CreatedAtAction("Get", new { id = word.ID }, word);
         }
 
         [HttpDelete("{id}")]

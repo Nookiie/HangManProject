@@ -24,7 +24,9 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GameTracker>>> Get()
         {
-            return await _context.GameTrackers.ToListAsync();
+            var gameTrackers = await _context.GameTrackers.ToListAsync();
+
+            return Ok(gameTrackers);
         }
 
         [HttpGet("{id}")]
@@ -37,7 +39,7 @@ namespace WebAPI.Controllers
                 return NotFound();
             }
 
-            return gameTracker;
+            return Ok(gameTracker);
         }
 
         [HttpPut("{id}")]
@@ -75,7 +77,7 @@ namespace WebAPI.Controllers
             _context.GameTrackers.Add(gameTracker);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGameTracker", new { id = gameTracker.ID }, gameTracker);
+            return CreatedAtAction("Get", new { id = gameTracker.ID }, gameTracker);
         }
 
         [HttpDelete("{id}")]
@@ -98,14 +100,15 @@ namespace WebAPI.Controllers
         {
             var gameTracker = await _context.GameTrackers.FindAsync(id);
 
-            if (gameTracker == null)
+            if (gameTracker == null || gameTracker.Words == null)
             {
                 return NotFound();
             }
 
             Random rnd = new Random();
             int randomIndex = rnd.Next(0, gameTracker.Words.Count);
-
+            Word word = gameTracker.Words[randomIndex];
+            
             return gameTracker.Words[randomIndex];
         }
 
