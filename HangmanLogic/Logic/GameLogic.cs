@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 namespace HangmanLogic.Logic
 {
-    public static class GameLogic
+    public static class GameLogic // Currently using GameData
     {
         public static void PrintMenu()
         {
@@ -72,7 +72,7 @@ namespace HangmanLogic.Logic
                 new Word("imagination")
             };
 
-            IGameTracker gameTracker = new GameTracker(category, words, GameDifficulty);
+            IGameData gameTracker = new GameData(category, words, GameDifficulty);
             gameTracker.CheckWordsForErrors();
 
             Word chosenWord = gameTracker.GetRandomWord();
@@ -90,7 +90,7 @@ namespace HangmanLogic.Logic
                 if (input == '!')
                 {
                     if (gameTracker.GetJokerCount() > 0)
-                        input = Joker(gameTracker, chosenWord, printWord);
+                        input = GetJoker(gameTracker, chosenWord, printWord);
                     else
                         continue;
                 }
@@ -132,7 +132,7 @@ namespace HangmanLogic.Logic
             }
         }
 
-        public static void GameOver(Word chosenWord, IGameTracker gameTracker, GameCondition gameCondition)
+        public static void GameOver(Word chosenWord, IGameData gameTracker, GameCondition gameCondition)
         {
             if (gameCondition == GameCondition.Won)
             {
@@ -154,7 +154,7 @@ namespace HangmanLogic.Logic
             }
         }
 
-        public static void PrintGameData(Word printWord, IGameTracker gameTracker)
+        public static void PrintGameData(Word printWord, IGameData gameTracker)
         {
             for (int i = 0; i < printWord.Name.Length; i++)
             {
@@ -167,7 +167,7 @@ namespace HangmanLogic.Logic
             Console.WriteLine("Input ! to use a Joker");
         }
 
-        public static void PrintStatistics(Word chosenWord, IGameTracker gameTracker)
+        public static void PrintStatistics(Word chosenWord, IGameData gameTracker)
         {
             Console.WriteLine("Attempts made:" + gameTracker.GetAttemptCount());
             Console.WriteLine("Jokers available:" + gameTracker.GetJokerCount());
@@ -175,7 +175,7 @@ namespace HangmanLogic.Logic
             Console.WriteLine("Score:" + gameTracker.GetScore());
         }
 
-        public static char Joker(IGameTracker gameTracker, Word chosenWord, Word printWord)
+        public static char GetJoker(IGameData gameTracker, Word chosenWord, Word printWord)
         {
             while (true)
             {
@@ -195,7 +195,7 @@ namespace HangmanLogic.Logic
             }
         }
 
-        public static void CleanUp(IGameTracker gameTracker)
+        public static void CleanUp(IGameData gameTracker)
         {
             gameTracker.CleanUp();
         }

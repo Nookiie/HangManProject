@@ -1,9 +1,9 @@
 ﻿using HM.Data.Context;
 using HM.Repositories.Abstractions;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -19,11 +19,11 @@ namespace Repos.Implementations
 
         public GenericRepository(HangmanDbContext context)
         {
-            this.Context = context;
+            this.Context = context ?? throw new ArgumentException("An instance of HangmanDbContext is required", "context");
             this.DbSet = context.Set<TEntity>();
         }
-       
-        public IQueryable<TEntity> Get()
+
+        public virtual IQueryable<TEntity> Get()
         {
             return this.DbSet.AsQueryable();
         }
@@ -35,30 +35,58 @@ namespace Repos.Implementations
 
         public virtual void Insert(TEntity entity)
         {
+            EntityEntry entry = this.Context.Entry(entity);
+            if (entry.State != EntityState.Detached)
+            {
+                entry.State = EntityState.Added;
+            }
+            else
+            {
+                this.DbSet.Add(entity);
+            }
+
             DbSet.Add(entity);
         }
 
         public virtual void Delete(object id)
         {
-            TEntity entityToDelete = DbSet.Find(id);
+            TEntity entityToDelete = this.Get(id);
+            if (entityToDelete != null)
+            {
+                this.Delete(entityToDelete);
+            }
+
             Delete(entityToDelete);
         }
 
         public virtual void Delete(TEntity entityToDelete)
         {
-            if (Context.Entry(entityToDelete).State == EntityState.Detached)
+            EntityEntry entry = this.Context.Entry(entityToDelete);
+
+            if (entry.State != EntityState.Deleted)
             {
-                DbSet.Attach(entityToDelete);
+                entry.State = EntityState.Deleted;
             }
-            DbSet.Remove(entityToDelete);
+            else
+            {
+                this.DbSet.Attach(entityToDelete);
+                this.DbSet.Remove(entityToDelete);
+            }
         }
 
         public virtual void Update(TEntity entityToUpdate)
         {
-            DbSet.Attach(entityToUpdate);
-            Context.Entry(entityToUpdate).State = EntityState.Modified;
+            EntityEntry entry = this.Context.Entry(entityToUpdate);
+            if (entry.State != EntityState.Detached)
+            {
+                this.DbSet.Attach(entityToUpdate);
+            }
+            else
+            {
+                entry.State = EntityState.Modified;
+            }
         }
-        
+
         public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> where)
         {
             return this.DbSet.Where(where);

@@ -5,7 +5,6 @@ using HM.Data.Entities.GameItems;
 using HM.Repositories.Abstractions;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Text;
 
 namespace Repos.Implementations
@@ -15,6 +14,11 @@ namespace Repos.Implementations
 
         private readonly HangmanDbContext context;
         private readonly Dictionary<Type, object> repositories = new Dictionary<Type, object>();
+
+        public UnitOfWork(HangmanDbContext context)
+        {
+            this.context = context;
+        }
 
         public UnitOfWork()
         {
@@ -37,7 +41,7 @@ namespace Repos.Implementations
             }
         }
 
-        public DbContext Context
+        public HangmanDbContext Context
         {
             get
             {

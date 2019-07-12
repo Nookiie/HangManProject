@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace HM.Data.Abstraction
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity<T>
     {
         public BaseEntity()
         {
 
         }
 
-        public int ID { get; set; }
+        [Key]
+        public T ID { get; set; }
     }
 }

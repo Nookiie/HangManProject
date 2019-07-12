@@ -22,15 +22,14 @@ namespace HM.AppServices.Implementations
                     {
                         ID = item.ID,
                         Category = item.Category,
-                        Words = item.Words,
-
+                        Words = item.Words
                     });
                 }
             }
             return gameTrackersDto;
         }
 
-        public GameTrackerDTO GetById(int id)
+        public GameTrackerDTO GetById(object id)
         {
             GameTrackerDTO gameTrackerDtos = new GameTrackerDTO();
 
@@ -47,7 +46,7 @@ namespace HM.AppServices.Implementations
             return gameTrackerDtos;
         }
 
-        public WordDTO GetRandomWordFromGameTrackerByID(int id)
+        public WordDTO GetRandomWordFromGameTrackerByID(object id)
         {
             GameTrackerDTO gameTrackerDtos = new GameTrackerDTO();
             WordDTO wordDTO = new WordDTO();
@@ -55,7 +54,7 @@ namespace HM.AppServices.Implementations
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
                 GameTracker gameTracker = unitOfWork.GameTrackers.Get(id);
-                Word word = gameTracker.GetRandomWord();
+                Word word = GetRandomWord(gameTracker);
 
                 wordDTO.ID = word.ID;
                 wordDTO.Name = word.Name;
@@ -76,10 +75,7 @@ namespace HM.AppServices.Implementations
             {
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
-                    if (gameTrackerDTO.ID == 0)
-                        unitOfWork.GameTrackers.Insert(gameTracker);
-                    else
-                        unitOfWork.GameTrackers.Update(gameTracker);
+                    unitOfWork.GameTrackers.Insert(gameTracker);
 
                     unitOfWork.Save();
                 }
@@ -109,6 +105,14 @@ namespace HM.AppServices.Implementations
             {
                 return false;
             }
+        }
+
+        public Word GetRandomWord(GameTracker gameTracker)
+        {
+            Random rnd = new Random();
+            var randomIndex = rnd.Next(0, gameTracker.Words.Count - 1);
+
+            return gameTracker.Words[randomIndex];
         }
     }
 }

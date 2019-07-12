@@ -1,2 +1,0 @@
-C:\Users\Nookie\source\repos\Hangman\HM.DataNew\obj\Debug\HM.Data.csprojAssemblyReference.cache
-C:\Users\Nookie\source\repos\Hangman\HM.DataNew\obj\Debug\HM.Data.csproj.CoreCompileInputs.cache

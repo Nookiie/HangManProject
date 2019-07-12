@@ -31,14 +31,8 @@ namespace WebAPI
                 options.MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.None;
             }
             );
-
+            services.AddMvc();
             services.AddOptions();
-
-            services.AddHealthChecks()
-                .AddCheck("self", () => Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult.Healthy());
-
-            services.AddHealthChecks();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddControllers();
 
         }
@@ -62,11 +56,6 @@ namespace WebAPI
                     app.UsePathBase(pathBase);
                 }
             }
-
-            app.UseHealthChecks("/liveness", new HealthCheckOptions
-            {
-                Predicate = r => r.Name.Contains("self")
-            });
             app.UseHttpsRedirection();
         }
     }

@@ -57,10 +57,7 @@ namespace HM.AppServices.Implementations
             {
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
-                    if (WordDTO.ID == 0)
-                        unitOfWork.Words.Insert(word);
-                    else
-                        unitOfWork.Words.Update(word);
+                    unitOfWork.Words.Insert(word);
 
                     unitOfWork.Save();
                 }

@@ -28,7 +28,7 @@ namespace HangmanTest
         [TestCategory("Cleanup")]
         public static void CleanupTest()
         {
-            IGameTracker gameTracker = new GameTracker();
+            IGameData gameTracker = new GameTracker();
             gameTracker.CleanUp();
 
             int expectedValue = 0;
@@ -68,7 +68,7 @@ namespace HangmanTest
             Assert.IsNotNull(words);
             Assert.IsNotNull(difficulty);
 
-            IGameTracker gameTracker = new GameTracker("GameTrackerTest", words, difficulty);
+            IGameData gameTracker = new GameTracker("GameTrackerTest", words, difficulty);
             Word chosenWord = gameTracker.GetRandomWord();
 
             var expectedAttempts = 1;
