@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HM.Data.Context;
 using HM.Data.Entities.GameItems;
 using AutoMapper;
+using HM.AppServices.Implementations;
 
 namespace WebAPI.Controllers
 {
@@ -16,6 +17,7 @@ namespace WebAPI.Controllers
     public class WordsController : ControllerBase
     {
         private readonly HangmanDbContext _context;
+        // private readonly WordManagementService _service;
 
         // private readonly IMapper _mapper;
 
@@ -30,15 +32,13 @@ namespace WebAPI.Controllers
             _mapper = mapper;
         }
         */
-    
-        // GET: api/Words
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Word>>> Get()
         {
             return await _context.Words.ToListAsync();
         }
 
-        // GET: api/Words/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Word>> Get(int id)
         {
@@ -52,9 +52,8 @@ namespace WebAPI.Controllers
             return word;
         }
 
-        // PUT: api/Words/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, Word word)
+        public async Task<IActionResult> Update(int id, Word word)
         {
             if (id != word.ID)
             {
@@ -82,9 +81,8 @@ namespace WebAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Words
         [HttpPost]
-        public async Task<ActionResult<Word>> Post(Word word)
+        public async Task<ActionResult<Word>> Create(Word word)
         {
             _context.Words.Add(word);
             await _context.SaveChangesAsync();
@@ -92,7 +90,6 @@ namespace WebAPI.Controllers
             return CreatedAtAction("GetWord", new { id = word.ID }, word);
         }
 
-        // DELETE: api/Words/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Word>> Delete(int id)
         {
@@ -113,7 +110,7 @@ namespace WebAPI.Controllers
         {
             List<Word> words = await _context.Words.ToListAsync();
             Random rnd = new Random();
-            int randomIndex = rnd.Next(0, words.Count - 1);
+            int randomIndex = rnd.Next(0, words.Count);
 
             return words[randomIndex];
         }

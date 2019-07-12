@@ -126,3 +126,7 @@ C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp3.0\AutoMapper.E
 C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp3.0\HM.Common.dll
 C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp3.0\HM.Common.pdb
 C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp3.0\HM.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp3.0\HM.AppServices.dll
+C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp3.0\HM.Repositories.dll
+C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp3.0\HM.AppServices.pdb
+C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp3.0\HM.Repositories.pdb

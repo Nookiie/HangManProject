@@ -21,14 +21,12 @@ namespace WebAPI.Controllers
             _context = context;
         }
 
-        // GET: api/GameTrackers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<GameTracker>>> Get()
         {
             return await _context.GameTrackers.ToListAsync();
         }
 
-        // GET: api/GameTrackers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<GameTracker>> Get(int id)
         {
@@ -42,9 +40,8 @@ namespace WebAPI.Controllers
             return gameTracker;
         }
 
-        // PUT: api/GameTrackers/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, GameTracker gameTracker)
+        public async Task<IActionResult> Update(int id, GameTracker gameTracker)
         {
             if (id != gameTracker.ID)
             {
@@ -72,9 +69,8 @@ namespace WebAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/GameTrackers
         [HttpPost]
-        public async Task<ActionResult<GameTracker>> Post(GameTracker gameTracker)
+        public async Task<ActionResult<GameTracker>> Create(GameTracker gameTracker)
         {
             _context.GameTrackers.Add(gameTracker);
             await _context.SaveChangesAsync();
@@ -82,7 +78,6 @@ namespace WebAPI.Controllers
             return CreatedAtAction("GetGameTracker", new { id = gameTracker.ID }, gameTracker);
         }
 
-        // DELETE: api/GameTrackers/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<GameTracker>> Delete(int id)
         {
@@ -96,6 +91,22 @@ namespace WebAPI.Controllers
             await _context.SaveChangesAsync();
 
             return gameTracker;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Word>> GetRandomWord(int id)
+        {
+            var gameTracker = await _context.GameTrackers.FindAsync(id);
+
+            if (gameTracker == null)
+            {
+                return NotFound();
+            }
+
+            Random rnd = new Random();
+            int randomIndex = rnd.Next(0, gameTracker.Words.Count);
+
+            return gameTracker.Words[randomIndex];
         }
 
         private bool GameTrackerExists(int id)

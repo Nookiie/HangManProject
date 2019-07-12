@@ -30,8 +30,8 @@ namespace HM.Data.Entities.GameItems
         #region Properties
 
         [Required]
-        [MinLength(3, ErrorMessage = "Category is too short")]
-        [MaxLength(40, ErrorMessage = "Category is too long")]
+        [MinLength(3, ErrorMessage = "Category Name is too short")]
+        [MaxLength(40, ErrorMessage = "Category Name is too long")]
         public string Category { get; set; }
 
         public List<Word> Words { get; set; }

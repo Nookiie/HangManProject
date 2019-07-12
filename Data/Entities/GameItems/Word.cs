@@ -19,8 +19,8 @@ namespace HM.Data.Entities.GameItems
         }
 
         [Required]
-        [MinLength(3, ErrorMessage = "Word is too short")]
-        [MaxLength(20, ErrorMessage = "Word is too long")]
+        [MinLength(3, ErrorMessage = "Word Name is too short")]
+        [MaxLength(20, ErrorMessage = "Word Name is too long")]
         public string Name { get; set; }
     }
 }
