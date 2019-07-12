@@ -1,4 +1,0 @@
-C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\net452\HM.Data.csprojAssemblyReference.cache
-C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\net452\HM.Data.csproj.CoreCompileInputs.cache
-C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\net452\HM.Data.AssemblyInfoInputs.cache
-C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\net452\HM.Data.AssemblyInfo.cs

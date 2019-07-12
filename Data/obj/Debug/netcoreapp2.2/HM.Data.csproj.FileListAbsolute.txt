@@ -1,0 +1,11 @@
+C:\Users\Nookie\source\repos\Hangman\Data\bin\Debug\netcoreapp2.2\HM.Data.deps.json
+C:\Users\Nookie\source\repos\Hangman\Data\bin\Debug\netcoreapp2.2\HM.Data.runtimeconfig.json
+C:\Users\Nookie\source\repos\Hangman\Data\bin\Debug\netcoreapp2.2\HM.Data.runtimeconfig.dev.json
+C:\Users\Nookie\source\repos\Hangman\Data\bin\Debug\netcoreapp2.2\HM.Data.dll
+C:\Users\Nookie\source\repos\Hangman\Data\bin\Debug\netcoreapp2.2\HM.Data.pdb
+C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp2.2\HM.Data.csprojAssemblyReference.cache
+C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp2.2\HM.Data.csproj.CoreCompileInputs.cache
+C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp2.2\HM.Data.AssemblyInfoInputs.cache
+C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp2.2\HM.Data.AssemblyInfo.cs
+C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp2.2\HM.Data.dll
+C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp2.2\HM.Data.pdb

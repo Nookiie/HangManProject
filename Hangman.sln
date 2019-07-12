@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.Repositories", "Repos\HM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.Common", "Common\HM.Common.csproj", "{615EE6E6-8C72-48B4-A9A7-FD02D10E6777}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{969F80DB-D809-4A87-9903-5097382735DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.WebAPI", "WebAPI\HM.WebAPI.csproj", "{969F80DB-D809-4A87-9903-5097382735DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

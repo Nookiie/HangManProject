@@ -1,0 +1,8 @@
+C:\Users\Nookie\source\repos\Hangman\WebAPI\bin\Debug\netcoreapp2.2\HM.Data.dll
+C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp2.2\WebAPI.csprojAssemblyReference.cache
+C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp2.2\WebAPI.csproj.CoreCompileInputs.cache
+C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp2.2\WebAPI.AssemblyInfoInputs.cache
+C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp2.2\WebAPI.AssemblyInfo.cs
+C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp2.2\WebAPI.RazorAssemblyInfo.cache
+C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp2.2\WebAPI.RazorAssemblyInfo.cs
+C:\Users\Nookie\source\repos\Hangman\WebAPI\obj\Debug\netcoreapp2.2\WebAPI.RazorTargetAssemblyInfo.cache

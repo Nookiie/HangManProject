@@ -6,6 +6,6 @@ C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp3.0\HM.Data.Assemb
 C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp3.0\HM.Data.AssemblyInfo.cs
 C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp3.0\HM.Data.dll
 C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp3.0\HM.Data.pdb
-C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp3.0\HM.Data.csprojAssemblyReference.cache
 C:\Users\Nookie\source\repos\Hangman\Data\bin\Debug\netcoreapp3.0\HM.Data.runtimeconfig.json
 C:\Users\Nookie\source\repos\Hangman\Data\bin\Debug\netcoreapp3.0\HM.Data.runtimeconfig.dev.json
+C:\Users\Nookie\source\repos\Hangman\Data\obj\Debug\netcoreapp3.0\HM.Data.csprojAssemblyReference.cache

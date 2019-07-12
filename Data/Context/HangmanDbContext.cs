@@ -20,8 +20,8 @@ namespace HM.Data.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Word>().ToTable("Word");
-            modelBuilder.Entity<GameTracker>().ToTable("GameTracker");
+            modelBuilder.Entity<Word>().ToTable("Words");
+            modelBuilder.Entity<GameTracker>().ToTable("GameTrackers");
         }
     }
 }
