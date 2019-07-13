@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.Common", "Common\HM.Comm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.WebAPI", "WebAPI\HM.WebAPI.csproj", "{969F80DB-D809-4A87-9903-5097382735DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HM.Blazor", "HM.Blazor\HM.Blazor.csproj", "{91AB0DA6-9CF9-48C4-B67D-46EE85EA4BAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.Blazor", "HM.Blazor\HM.Blazor.csproj", "{A2D6B2B4-0B73-44B4-94C1-912574B9B7D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{969F80DB-D809-4A87-9903-5097382735DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{969F80DB-D809-4A87-9903-5097382735DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{969F80DB-D809-4A87-9903-5097382735DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{91AB0DA6-9CF9-48C4-B67D-46EE85EA4BAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91AB0DA6-9CF9-48C4-B67D-46EE85EA4BAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91AB0DA6-9CF9-48C4-B67D-46EE85EA4BAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91AB0DA6-9CF9-48C4-B67D-46EE85EA4BAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2D6B2B4-0B73-44B4-94C1-912574B9B7D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2D6B2B4-0B73-44B4-94C1-912574B9B7D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2D6B2B4-0B73-44B4-94C1-912574B9B7D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2D6B2B4-0B73-44B4-94C1-912574B9B7D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

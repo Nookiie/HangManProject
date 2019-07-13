@@ -1,4 +1,5 @@
 ﻿using HM.Data.Abstraction;
+using HM.Data.Entities.Users.Role;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -22,5 +23,14 @@ namespace Data.Entities.Users
         [MinLength(5, ErrorMessage = "Email needs to have more characters")]
         [MaxLength(50, ErrorMessage = "Email has reached max characters")]
         public string Email { get; set; }
+
+        public Role Role { get; set; }
+
+        public int Score { get; set; } 
+
+        public int HighestStreak { get; set; }
+
+        public string Token { get; set; }
+
     }
 }

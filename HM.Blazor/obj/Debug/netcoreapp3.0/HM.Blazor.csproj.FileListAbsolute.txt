@@ -174,4 +174,7 @@ C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDecl
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Words\_Imports.razor.g.cs
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\_Imports.razor.g.cs
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\_Imports.razor.g.cs
-C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Words\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\Game.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\Statistics.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Game.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Statistics.razor.g.cs

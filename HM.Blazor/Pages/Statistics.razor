@@ -1,0 +1,27 @@
+@page "/statistics"
+
+<h1>Welcome to the Hangman Game Statistics Tab!</h1>
+
+<p>Highest Score: @highScore</p>
+<p>Highest Streak: @highStreak</p>
+<p>User that has the highest score: @userName</p>
+
+<tr class="table">
+    <td>
+        @userName // Username:
+    </td>
+    <td>
+        @highScore Highest Score
+    </td>
+    <td>
+        @highStreak HighestStreak:
+    </td>
+</tr>
+
+@code {
+
+    int highScore = 0;
+    int highStreak = 0;
+    string userName = "Nobody";
+
+}
