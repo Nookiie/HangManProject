@@ -14,6 +14,11 @@ namespace HM.Data.Context
 
         }
 
+        public HangmanDbContext()
+        {
+
+        }
+
         public DbSet<Word> Words { get; set; }
 
         public DbSet<GameTracker> GameTrackers { get; set; }
