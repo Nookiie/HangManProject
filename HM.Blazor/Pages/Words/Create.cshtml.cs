@@ -13,6 +13,7 @@ namespace HM.Blazor.Pages.Words
     public class CreateModel : PageModel
     {
         private readonly HM.Data.Context.HangmanDbContext _context;
+        private readonly Uri url = new Uri("https://localhost:44340/api/words/get");
 
         public CreateModel(HM.Data.Context.HangmanDbContext context)
         {

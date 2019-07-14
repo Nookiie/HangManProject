@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using HM.Blazor.Data;
 using HM.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using WebAPI.Controllers;
 
 namespace HM.Blazor
 {
@@ -29,6 +30,8 @@ namespace HM.Blazor
         {
             services.AddDbContext<HangmanDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddConnections();
 
             services.AddRazorPages();
             services.AddServerSideBlazor();

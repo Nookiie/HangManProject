@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HM.Data.Context;
 using HM.Data.Entities.GameItems;
+using HM.Repositories.Abstractions;
 
 namespace WebAPI.Controllers
 {
@@ -14,107 +15,44 @@ namespace WebAPI.Controllers
     [Route("api/[controller]/[action]")]
     public class GameTrackersController : ControllerBase
     {
-        private readonly HangmanDbContext _context;
+        private readonly IUnitOfWork unitOfWork; 
 
-        public GameTrackersController(HangmanDbContext context)
+        public GameTrackersController(IUnitOfWork repo)
         {
-            _context = context;
+            unitOfWork = repo;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GameTracker>>> Get()
+        public IQueryable<GameTracker> Get()
         {
-            var gameTrackers = await _context.GameTrackers.ToListAsync();
-
-            return Ok(gameTrackers);
+            return unitOfWork.GameTrackers.Get();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<GameTracker>> Get(int id)
+        public ActionResult<GameTracker> Get(object id)
         {
-            var gameTracker = await _context.GameTrackers.FindAsync(id);
-
-            if (gameTracker == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(gameTracker);
+            return unitOfWork.GameTrackers.Get(id);
         }
 
+        /*
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, GameTracker gameTracker)
+        public void Update(object id, GameTracker gameTrackerNew)
         {
-            if (id != gameTracker.ID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(gameTracker).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GameTrackerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            GameTracker gameTracker = _gameTrackerRepo.Get(id);
+            _gameTrackerRepo.Update(id, gameTracker);
         }
+        */
 
         [HttpPost]
-        public async Task<ActionResult<GameTracker>> Create(GameTracker gameTracker)
+        public void Create(GameTracker gameTracker)
         {
-            _context.GameTrackers.Add(gameTracker);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("Get", new { id = gameTracker.ID }, gameTracker);
+             unitOfWork.GameTrackers.Insert(gameTracker);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<GameTracker>> Delete(int id)
+        public void Delete(object id)
         {
-            var gameTracker = await _context.GameTrackers.FindAsync(id);
-            if (gameTracker == null)
-            {
-                return NotFound();
-            }
-
-            _context.GameTrackers.Remove(gameTracker);
-            await _context.SaveChangesAsync();
-
-            return gameTracker;
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Word>> GetRandomWord(int id)
-        {
-            var gameTracker = await _context.GameTrackers.FindAsync(id);
-
-            if (gameTracker == null || gameTracker.Words == null)
-            {
-                return NotFound();
-            }
-
-            Random rnd = new Random();
-            int randomIndex = rnd.Next(0, gameTracker.Words.Count);
-            Word word = gameTracker.Words[randomIndex];
-            
-            return gameTracker.Words[randomIndex];
-        }
-
-        private bool GameTrackerExists(int id)
-        {
-            return _context.GameTrackers.Any(e => e.ID == id);
+            unitOfWork.GameTrackers.Delete(id);
         }
     }
 }

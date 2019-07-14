@@ -14,15 +14,27 @@
 <h1>Welcome to the HangmanGame</h1>
 
 @{
-
+    if(gameStarted == true)
+    {
+        
+        foreach(var letter in "elephant")
+        {
+            <span>_</span>
+        }
+    }
 }
-<button class="btn btn-primary" @onclick="">Start Game</button>
+<button class="btn btn-primary" @onclick="">New Game</button>
 <button class="btn btn-primary" @onclick="">Guess Word</button>
+
 
 <input name="MainCharInput" type="text" />
 
 @code {
+    bool gameStarted = false;
+
     int wordCount = 0;
+
+    GameData gameData = new GameData();
 
     public static void StartGame(string category, GameDifficulty GameDifficulty)
     {
@@ -93,5 +105,6 @@
 
         }
     }
+
 }
 

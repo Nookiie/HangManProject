@@ -74,7 +74,7 @@ namespace Repos.Implementations
             }
         }
 
-        public virtual void Update(TEntity entityToUpdate)
+        public virtual void Update(object id, TEntity entityToUpdate)
         {
             EntityEntry entry = this.Context.Entry(entityToUpdate);
             if (entry.State != EntityState.Detached)

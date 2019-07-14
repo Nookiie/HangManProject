@@ -15,7 +15,7 @@ namespace HM.Repositories.Abstractions
 
         void Insert(T entity);
 
-        void Update(T entity);
+        void Update(object id, T entity);
 
         void Delete(T entity);
 

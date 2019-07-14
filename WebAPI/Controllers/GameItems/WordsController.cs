@@ -9,6 +9,7 @@ using HM.Data.Context;
 using HM.Data.Entities.GameItems;
 using AutoMapper;
 using HM.AppServices.Implementations;
+using HM.Repositories.Abstractions;
 
 namespace WebAPI.Controllers
 {
@@ -16,14 +17,14 @@ namespace WebAPI.Controllers
     [Route("api/[controller]/[action]")]
     public class WordsController : ControllerBase
     {
-        private readonly HangmanDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
         // private readonly WordManagementService _service;
 
         // private readonly IMapper _mapper;
 
-        public WordsController(HangmanDbContext context)
+        public WordsController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
         /*
@@ -34,24 +35,18 @@ namespace WebAPI.Controllers
         */
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Word>>> Get()
+        public IQueryable<Word> Get()
         {
-            return await _context.Words.ToListAsync();
+             return _unitOfWork.Words.Get();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Word>> Get(int id)
+        public ActionResult<Word> Get(int id)
         {
-            var word = await _context.Words.FindAsync(id);
-
-            if (word == null)
-            {
-                return NotFound();
-            }
-
-            return word;
+            return _unitOfWork.Words.Get(id);
         }
 
+        /*
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, Word word)
         {
@@ -80,44 +75,28 @@ namespace WebAPI.Controllers
 
             return NoContent();
         }
+        */
 
         [HttpPost]
-        public async Task<ActionResult<Word>> Create(Word word)
+        public void Create(Word word)
         {
-            _context.Words.Add(word);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("Get", new { id = word.ID }, word);
+            _unitOfWork.Words.Insert(word);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Word>> Delete(int id)
+        public void Delete(int id)
         {
-            var word = await _context.Words.FindAsync(id);
-            if (word == null)
-            {
-                return NotFound();
-            }
-
-            _context.Words.Remove(word);
-            await _context.SaveChangesAsync();
-
-            return word;
+            _unitOfWork.Words.Delete(id);
         }
 
         [HttpGet]
-        public async Task<ActionResult<Word>> GetRandom()
+        public Word GetRandom()
         {
-            List<Word> words = await _context.Words.ToListAsync();
+            List<Word> words = _unitOfWork.Words.Get().ToList();
             Random rnd = new Random();
             int randomIndex = rnd.Next(0, words.Count);
 
             return words[randomIndex];
-        }
-
-        private bool WordExists(int id)
-        {
-            return _context.Words.Any(e => e.ID == id);
         }
     }
 }
