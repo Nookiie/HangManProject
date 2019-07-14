@@ -11,32 +11,71 @@
 @using HM.Data.Abstraction;
 @using System.Text.RegularExpressions;
 
-<h1>Welcome to the HangmanGame</h1>
+<h1>Welcome to the Hangman Game</h1>
 
 @{
-    if(gameStarted == true)
+    if (gameInProgress)
     {
-        
-        foreach(var letter in "elephant")
+        foreach (var letter in printWordDisplay.Name)
         {
-            <span>_</span>
+            <span>@letter</span>
         }
+
+        <p>Words guessed:@wordCount</p>
+        <p>Number of tries:@tries</p>
+        <p>Jokers available:@jokers</p>
+        <p>Input:@inputDisplayFirstLetter</p>
+        <input name="MainCharInput" @bind="@inputDisplay" type="text" />
+        <button class="btn btn-primary" @onclick="@GuessLetter">Guess</button>
+    }
+    else if (!gameInProgress && gameWon)
+    {
+        <p>You won!</p>
+
+        <button name="startBtn" class="btn btn-primary" @onclick="@StartGame">New Game</button>
+    }
+
+    else if (!gameInProgress && gameLost)
+    {
+        <p>You lost!</p>
+
+        <button name="startBtn" class="btn btn-primary" @onclick="@StartGame">New Game</button>
+    }
+    else
+    {
+        <button name="startBtn" class="btn btn-primary" @onclick="@StartGame">New Game</button>
     }
 }
-<button class="btn btn-primary" @onclick="">New Game</button>
-<button class="btn btn-primary" @onclick="">Guess Word</button>
-
-
-<input name="MainCharInput" type="text" />
-
 @code {
-    bool gameStarted = false;
+    Word printWordDisplay;
+
+    Word chosenWordDisplay;
+
+    string inputDisplay;
+
+    char inputDisplayFirstLetter;
+
+    bool gameInProgress = false;
+
+    bool gameFinished = true;
+
+    bool gameWon = false;
+
+    bool gameLost = false;
 
     int wordCount = 0;
 
+    int tries = 0;
+
+    int attempts = 0;
+
+    int jokers = 1;
+
+    private const int MAX_FAILS = 9;
+
     GameData gameData = new GameData();
 
-    public static void StartGame(string category, GameDifficulty GameDifficulty)
+    void StartGame()
     {
         List<Word> words = new List<Word>
     {
@@ -47,7 +86,8 @@
                 new Word("imagination")
             };
 
-        IGameData gameData = new GameData(category, words, GameDifficulty);
+        string category = "Animals";
+        IGameData gameData = new GameData(category, words, GameDifficulty.Hard);
         gameData.CheckWordsForErrors();
 
         Word chosenWord = gameData.GetRandomWord();
@@ -55,55 +95,129 @@
         printWord.Name = chosenWord.Name;
 
         printWord.Name = new Regex("\\S").Replace(chosenWord.Name, "_ ");
-        while (true)
+        printWordDisplay = printWord;
+        chosenWordDisplay = chosenWord;
+        StartGameFlag(); // Sets up that the game has just started
+
+
+        /*
+        if (inputDisplayFirstLetter == '!')
         {
-            // GameLogic.PrintGameData(printWord, gameData);
-
-            char input = Console.ReadKey().KeyChar;
-
-            if (input == '!')
-            {
-                if (gameData.GetJokerCount() > 0)
-                    input = GameLogic.GetJoker(gameData, chosenWord, printWord);
-                else
-                    continue;
-            }
-
-            if (gameData.GuessCharacterInWord(input, chosenWord) && !printWord.Name.Contains(input))
-            {
-                if (gameData.Win(chosenWord))
-                {
-                    GameLogic.GameOver(chosenWord, gameData, GameCondition.Won);
-                    break;
-                }
-                else
-                {
-                    for (int i = 0; i < chosenWord.Name.Length; i++)
-                    {
-                        if (chosenWord.Name[i] == input)
-                        {
-                            StringBuilder sb = new StringBuilder(printWord.Name);
-                            sb[i] = input;
-                            printWord.Name = sb.ToString();
-                        }
-                    }
-                    continue;
-                }
-            }
-            else if (!gameData.GuessCharacterInWord(input, chosenWord))
-            {
-                if (gameData.Fail())
-                {
-                    GameLogic.GameOver(chosenWord, gameData, GameCondition.Lost);
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-
+            if (gameData.GetJokerCount() > 0)
+                inputDisplayFirstLetter = GameLogic.GetJoker(gameData, chosenWord, printWord);
+            else
+                continue;
         }
+        */
+
+        /*
+        if (gameData.GuessCharacterInWord(input, chosenWord) && !printWord.Name.Contains(input))
+        {
+            if (gameData.Win(chosenWord))
+            {
+                GameLogic.GameOver(chosenWord, gameData, GameCondition.Won);
+                break;
+            }
+            else
+            {
+                for (int i = 0; i < chosenWord.Name.Length; i++)
+                {
+                    if (chosenWord.Name[i] == input)
+                    {
+                        StringBuilder sb = new StringBuilder(printWord.Name);
+                        sb[i] = input;
+                        printWord.Name = sb.ToString();
+                    }
+                }
+                continue;
+            }
+        }
+        else if (!gameData.GuessCharacterInWord(input, chosenWord))
+        {
+            if (gameData.Fail())
+            {
+                GameLogic.GameOver(chosenWord, gameData, GameCondition.Lost);
+                break;
+            }
+            else
+            {
+                continue;
+            }
+        }
+        */
+    }
+
+    void StartGameFlag()
+    {
+        gameInProgress = true;
+    }
+
+    void GetInput()
+    {
+        if (string.IsNullOrWhiteSpace(inputDisplay))
+            return;
+
+        inputDisplayFirstLetter = inputDisplay[0];
+    }
+
+    void GuessLetter()
+    {
+        GetInput();
+        bool isGuessed = false;
+        for (int i = 0; i < chosenWordDisplay.Name.Length; i++)
+        {
+            if (inputDisplayFirstLetter == chosenWordDisplay.Name[i])
+            {
+                StringBuilder sb = new StringBuilder(printWordDisplay.Name);
+                sb[i] = inputDisplayFirstLetter;
+                printWordDisplay.Name = sb.ToString();
+
+                isGuessed = true;
+                wordCount++;
+            }
+        }
+
+        if (!isGuessed)
+        {
+            tries++;
+        }
+
+        if (wordCount == chosenWordDisplay.Name.Length)
+        {
+            EndGame(GameCondition.Won);
+        }
+
+        if (tries == MAX_FAILS)
+        {
+            EndGame(GameCondition.Lost);
+        }
+    }
+
+    void EndGame(GameCondition gameCondition)
+    {
+        gameInProgress = false;
+        gameFinished = true;
+
+        if (gameCondition == GameCondition.Won)
+        {
+            gameWon = true;
+            gameLost = false;
+        }
+        else
+        {
+            gameLost = true;
+            gameWon = false;
+        }
+
+        CleanUp();
+    }
+
+    void CleanUp()
+    {
+        chosenWordDisplay = null;
+        printWordDisplay = null;
+        wordCount = 0;
+        tries = 0;
     }
 
 }
