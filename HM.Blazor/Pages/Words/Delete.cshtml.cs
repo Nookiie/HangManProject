@@ -7,12 +7,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using HM.Data.Context;
 using HM.Data.Entities.GameItems;
+using System.Net.Http.Headers;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace HM.Blazor.Pages.Words
 {
     public class DeleteModel : PageModel
     {
         private readonly HM.Data.Context.HangmanDbContext _context;
+        private readonly Uri url = new Uri("https://localhost:44340/api/words/");
 
         public DeleteModel(HM.Data.Context.HangmanDbContext context)
         {
@@ -29,13 +33,30 @@ namespace HM.Blazor.Pages.Words
                 return NotFound();
             }
 
-            Word = await _context.Words.FirstOrDefaultAsync(m => m.ID == id);
-
-            if (Word == null)
+            using (var client = new HttpClient())
             {
-                return NotFound();
+                client.BaseAddress = url;
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                // Add the Authorization header with the AccessToken.
+                // client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+
+                // make the request
+                HttpResponseMessage response = await client.GetAsync("get/" + id);
+
+                // parse the response and return the data.
+                string jsonString = await response.Content.ReadAsStringAsync();
+                var responseData = JsonConvert.DeserializeObject<Word>(jsonString);
+                Word = responseData;
+
+                if (Word == null)
+                {
+                    NotFound();
+                }
+
+                return Page();
             }
-            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
@@ -45,15 +66,20 @@ namespace HM.Blazor.Pages.Words
                 return NotFound();
             }
 
-            Word = await _context.Words.FindAsync(id);
-
-            if (Word != null)
+            using (var client = new HttpClient())
             {
-                _context.Words.Remove(Word);
-                await _context.SaveChangesAsync();
+                client.BaseAddress = url;
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                // Add the Authorization header with the AccessToken.
+                // client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+
+                // make the request
+                HttpResponseMessage response = await client.DeleteAsync("delete/" + id);
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToAction("Index");
         }
     }
 }

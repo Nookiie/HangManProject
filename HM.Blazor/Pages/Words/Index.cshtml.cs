@@ -45,7 +45,6 @@ namespace HM.Blazor.Pages.Words
                 Words = responseData;
                 return Page();
             }
-            Words = await _context.Words.ToListAsync();
         }
     }
 }

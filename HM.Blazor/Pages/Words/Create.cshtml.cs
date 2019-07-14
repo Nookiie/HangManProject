@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using HM.Data.Context;
 using HM.Data.Entities.GameItems;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace HM.Blazor.Pages.Words
 {
@@ -20,25 +23,52 @@ namespace HM.Blazor.Pages.Words
             _context = context;
         }
 
+        [BindProperty]
+        public Word Word { get; set; }
+
         public IActionResult OnGet()
         {
             return Page();
         }
 
-        [BindProperty]
-        public Word Word { get; set; }
-
-        public async Task<IActionResult> OnPostAsync()
+        
+        public async Task<IActionResult> OnPostAsync(Word word)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Words.Add(Word);
-            await _context.SaveChangesAsync();
+            if(word == null)
+            {
+                return NotFound();
+            }
 
-            return RedirectToPage("./Index");
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = url;
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                // Add the Authorization header with the AccessToken.
+                // client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+
+                var content = JsonConvert.SerializeObject(word);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                // make the request
+                HttpResponseMessage response = await client.PostAsync("create", byteContent);
+
+                // parse the response and return the data.
+                //string jsonString = await response.Content.ReadAsStringAsync();
+                //var responseData = JsonConvert.DeserializeObject<GenreVM>(jsonString);
+                //return View(responseData);
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

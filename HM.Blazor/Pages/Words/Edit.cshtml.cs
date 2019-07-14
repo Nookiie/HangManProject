@@ -8,12 +8,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HM.Data.Context;
 using HM.Data.Entities.GameItems;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace HM.Blazor.Pages.Words
 {
     public class EditModel : PageModel
     {
         private readonly HM.Data.Context.HangmanDbContext _context;
+        private readonly Uri url = new Uri("https://localhost:44340/api/words/");
 
         public EditModel(HM.Data.Context.HangmanDbContext context)
         {
@@ -21,50 +25,54 @@ namespace HM.Blazor.Pages.Words
         }
 
         [BindProperty]
-        public Word Word { get; set; }
+        public Word Words { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
+            using (var client = new HttpClient())
             {
-                return NotFound();
-            }
+                client.BaseAddress = url;
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            Word = await _context.Words.FirstOrDefaultAsync(m => m.ID == id);
+                // Add the Authorization header with the AccessToken.
+                // client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
 
-            if (Word == null)
-            {
-                return NotFound();
-            }
-            return Page();
-        }
+                // make the request
+                HttpResponseMessage response = await client.GetAsync("get/" + id);
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
+                // parse the response and return the data.
+                string jsonString = await response.Content.ReadAsStringAsync();
+                var responseData = JsonConvert.DeserializeObject<Word>(jsonString);
+                Words = responseData;
                 return Page();
             }
+        }
 
-            _context.Attach(Word).State = EntityState.Modified;
-
-            try
+        public async Task<IActionResult> OnPostAsync(Word word)
+        {
+            using (var client = new HttpClient())
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!WordExists(Word.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                client.BaseAddress = url;
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            return RedirectToPage("./Index");
+                // Add the Authorization header with the AccessToken.
+                // client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
+
+                var content = JsonConvert.SerializeObject(word);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(content);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                // make the request
+                HttpResponseMessage response = await client.PostAsync("update", byteContent);
+
+                string jsonString = await response.Content.ReadAsStringAsync();
+                var responseData = JsonConvert.DeserializeObject<Word>(jsonString);
+                Words = responseData;
+                return RedirectToAction("./index");
+            }
         }
 
         private bool WordExists(int id)
