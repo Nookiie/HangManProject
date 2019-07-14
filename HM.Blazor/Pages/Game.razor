@@ -10,6 +10,10 @@
 @using HM.Data.Entities.GameCondition;
 @using HM.Data.Abstraction;
 @using System.Text.RegularExpressions;
+@using HM.Repositories.Abstractions;
+@using Repos.Implementations;
+@using WebAPI.Controllers
+@using HM.Data.Context;
 
 <h1>Welcome to the Hangman Game</h1>
 
@@ -23,10 +27,12 @@
 
         <p>Words guessed:@wordCount</p>
         <p>Number of tries:@tries</p>
+        <p>Score:@score</p>
         <p>Jokers available:@jokers</p>
         <p>Input:@inputDisplayFirstLetter</p>
         <input name="MainCharInput" @bind="@inputDisplay" type="text" />
         <button class="btn btn-primary" @onclick="@GuessLetter">Guess</button>
+        <button class="btn btn-primary" @onclick="@Joker">Use Joker</button>
     }
     else if (!gameInProgress && gameWon)
     {
@@ -47,6 +53,9 @@
     }
 }
 @code {
+
+    #region Variables
+
     Word printWordDisplay;
 
     Word chosenWordDisplay;
@@ -69,22 +78,44 @@
 
     int attempts = 0;
 
-    int jokers = 1;
+    int jokers = MAX_JOKERS;
+
+    int score = 0;
+
+    #endregion
+
+    #region DifficultyValues
 
     private const int MAX_FAILS = 9;
+
+    private const int DEFAULT_SCORE_MULTIPLIER = 5;
+
+    private const int SCORE_MULTIPLIER_EASY = 5;
+
+    private const int SCORE_MULTIPLIER_NORMAL = 5;
+
+    private const int SCORE_MULTIPLIER_HARD = 5;
+
+    private const int SCORE_MULTIPLIER_INSANE = 5;
+
+    private const int MAX_JOKERS = 1;
+
+    #endregion
+
+    #region Methods
 
     GameData gameData = new GameData();
 
     void StartGame()
     {
         List<Word> words = new List<Word>
-    {
+{
                 new Word("apple"),
                 new Word("stuff"),
                 new Word("elephant"),
                 new Word("archipelago"),
                 new Word("imagination")
-            };
+        };
 
         string category = "Animals";
         IGameData gameData = new GameData(category, words, GameDifficulty.Hard);
@@ -164,6 +195,12 @@
     {
         GetInput();
         bool isGuessed = false;
+
+        if (inputDisplayFirstLetter == '!')
+        {
+            Joker();
+        }
+
         for (int i = 0; i < chosenWordDisplay.Name.Length; i++)
         {
             if (inputDisplayFirstLetter == chosenWordDisplay.Name[i])
@@ -218,7 +255,46 @@
         printWordDisplay = null;
         wordCount = 0;
         tries = 0;
+        score = 0;
+        jokers = MAX_JOKERS;
     }
 
+    void Joker()
+    {
+        if (jokers > 0)
+        {
+            do
+            {
+                inputDisplayFirstLetter = GetRandomLetterFromWord(chosenWordDisplay);
+            }
+            while (Regex.Matches(inputDisplayFirstLetter.ToString(), chosenWordDisplay.Name).Count() > 1);
+
+            jokers--;
+
+            GuessLetter();
+        }
+
+        else
+        {
+            return;
+        }
+    }
+
+    char GetRandomLetterFromWord(Word word)
+    {
+        Random rnd = new Random();
+        int randomIndex = rnd.Next(0, word.Name.Length - 1);
+        return word.Name[randomIndex];
+    }
+
+    List<Word> GetWordsFromDatabase()
+    {
+        using (IUnitOfWork unitOfWork = new UnitOfWork())
+        {
+            return unitOfWork.Words.Get().ToList();
+        }
+    }
+
+    #endregion
 }
 
