@@ -2,6 +2,7 @@
 using HM.Data.Entities.Users.Role;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
@@ -19,18 +20,19 @@ namespace Data.Entities.Users
         [MaxLength(30, ErrorMessage = "Password has reached max characters")]
         public string Password { get; set; }
 
-        [Required]
         [MinLength(5, ErrorMessage = "Email needs to have more characters")]
         [MaxLength(50, ErrorMessage = "Email has reached max characters")]
         public string Email { get; set; }
 
+        [DefaultValue(Role.User)]
         public Role Role { get; set; }
 
-        public int Score { get; set; } 
+        [DefaultValue(0)]
+        public int Score { get; set; }
 
+        [DefaultValue(0)]   
         public int HighestStreak { get; set; }
 
         public string Token { get; set; }
-
     }
 }

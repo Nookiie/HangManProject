@@ -3477,6 +3477,19 @@
           "bin/placeholder/HM.Data.dll": {}
         }
       },
+      "HM.Logic/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "dependencies": {
+          "HM.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/HM.Logic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HM.Logic.dll": {}
+        }
+      },
       "HM.Repositories/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.0",
@@ -9787,6 +9800,11 @@
       "path": "../Data/HM.Data.csproj",
       "msbuildProject": "../Data/HM.Data.csproj"
     },
+    "HM.Logic/1.0.0": {
+      "type": "project",
+      "path": "../HangmanLogic/HM.Logic.csproj",
+      "msbuildProject": "../HangmanLogic/HM.Logic.csproj"
+    },
     "HM.Repositories/1.0.0": {
       "type": "project",
       "path": "../Repos/HM.Repositories.csproj",
@@ -9800,6 +9818,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
+      "HM.Logic >= 1.0.0",
       "HM.WebAPI >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 3.0.0-preview6.19304.10",
       "Microsoft.NETCore.App >= 3.0.0-preview6-27804-01"
@@ -9835,6 +9854,9 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
+            "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj": {
+              "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj"
+            },
             "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj": {
               "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj"
             }

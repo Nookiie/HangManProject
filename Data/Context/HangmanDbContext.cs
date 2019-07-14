@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Data.Entities.Users;
 using HM.Data.Entities;
 using HM.Data.Entities.GameItems;
 using Microsoft.EntityFrameworkCore;
@@ -14,19 +15,17 @@ namespace HM.Data.Context
 
         }
 
-        public HangmanDbContext()
-        {
-
-        }
-
         public DbSet<Word> Words { get; set; }
 
         public DbSet<GameTracker> GameTrackers { get; set; }
+
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Word>().ToTable("Words");
             modelBuilder.Entity<GameTracker>().ToTable("GameTrackers");
+            modelBuilder.Entity<User>().ToTable("Users");
         }
     }
 }

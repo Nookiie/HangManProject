@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HangmanLogic\HM.Logic.csproj" />
     <ProjectReference Include="..\WebAPI\HM.WebAPI.csproj" />
   </ItemGroup>
 

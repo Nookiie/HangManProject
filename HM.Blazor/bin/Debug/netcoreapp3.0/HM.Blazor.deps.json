@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v3.0": {
       "HM.Blazor/1.0.0": {
         "dependencies": {
+          "HM.Logic": "1.0.0",
           "HM.WebAPI": "1.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "3.0.0-preview6.19304.10",
           "Microsoft.NETCore.App": "3.0.0-preview6-27804-01",
@@ -2622,6 +2623,17 @@
         },
         "compile": {
           "HM.Data.dll": {}
+        }
+      },
+      "HM.Logic/1.0.0": {
+        "dependencies": {
+          "HM.Data": "1.0.0"
+        },
+        "runtime": {
+          "HM.Logic.dll": {}
+        },
+        "compile": {
+          "HM.Logic.dll": {}
         }
       },
       "HM.Repositories/1.0.0": {
@@ -5911,6 +5923,11 @@
       "sha512": ""
     },
     "HM.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HM.Logic/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

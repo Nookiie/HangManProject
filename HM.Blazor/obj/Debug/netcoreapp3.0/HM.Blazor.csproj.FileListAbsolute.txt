@@ -178,3 +178,6 @@ C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDecl
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\Statistics.razor.g.cs
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Game.razor.g.cs
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Statistics.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\bin\Debug\netcoreapp3.0\HM.Logic.exe
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\bin\Debug\netcoreapp3.0\HM.Logic.dll
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\bin\Debug\netcoreapp3.0\HM.Logic.pdb

@@ -14,18 +14,18 @@ namespace HangmanLogic.Logic
     {
         public static void PrintMenu()
         {
-            Console.Clear();
-            Console.WriteLine("Welcome to the Hangman Game!");
-            Console.WriteLine("n = New Game");
+            // Console.Clear();
+            // Console.WriteLine("Welcome to the Hangman Game!");
+            // Console.WriteLine("n = New Game");
             // Console.WriteLine("D = New Dictionary");
             // Console.WriteLine("c = Choose GameDifficulty");
             // Console.WriteLine("F = New Category");
-            Console.WriteLine("Esc = Exit");
+            // Console.WriteLine("Esc = Exit");
         }
 
         public static void Initialize()
         {
-            Console.Clear();
+            // Console.Clear();
             while (true)
             {
                 PrintMenu();
@@ -33,15 +33,15 @@ namespace HangmanLogic.Logic
 
                 if (input == 'n')
                 {
-                    Console.Clear();
-                    Console.WriteLine("Please input a category (name for GameTracker)");
+                    // Console.Clear();
+                    // Console.WriteLine("Please input a category (name for GameTracker)");
                     string category = Console.ReadLine();
 
-                    Console.WriteLine("Please select a GameDifficulty");
-                    Console.WriteLine("1 - Easy");
-                    Console.WriteLine("2 - Normal");
-                    Console.WriteLine("3 - Hard");
-                    Console.WriteLine("4 - Insane");
+                    // Console.WriteLine("Please select a GameDifficulty");
+                    // Console.WriteLine("1 - Easy");
+                    // Console.WriteLine("2 - Normal");
+                    // Console.WriteLine("3 - Hard");
+                    // Console.WriteLine("4 - Insane");
                     char GameDifficultyIndex = Console.ReadKey().KeyChar;
 
                     switch (GameDifficultyIndex)
@@ -72,10 +72,10 @@ namespace HangmanLogic.Logic
                 new Word("imagination")
             };
 
-            IGameData gameTracker = new GameData(category, words, GameDifficulty);
-            gameTracker.CheckWordsForErrors();
+            IGameData gameData = new GameData(category, words, GameDifficulty);
+            gameData.CheckWordsForErrors();
 
-            Word chosenWord = gameTracker.GetRandomWord();
+            Word chosenWord = gameData.GetRandomWord();
             Word printWord = new Word();
             printWord.Name = chosenWord.Name;
 
@@ -83,23 +83,23 @@ namespace HangmanLogic.Logic
             while (true)
             {
                 Console.Clear();
-                PrintGameData(printWord, gameTracker);
+                PrintGameData(printWord, gameData);
 
                 char input = Console.ReadKey().KeyChar;
 
                 if (input == '!')
                 {
-                    if (gameTracker.GetJokerCount() > 0)
-                        input = GetJoker(gameTracker, chosenWord, printWord);
+                    if (gameData.GetJokerCount() > 0)
+                        input = GetJoker(gameData, chosenWord, printWord);
                     else
                         continue;
                 }
 
-                if (gameTracker.GuessCharacterInWord(input, chosenWord) && !printWord.Name.Contains(input))
+                if (gameData.GuessCharacterInWord(input, chosenWord) && !printWord.Name.Contains(input))
                 {
-                    if (gameTracker.Win(chosenWord))
+                    if (gameData.Win(chosenWord))
                     {
-                        GameOver(chosenWord, gameTracker, GameCondition.Won);
+                        GameOver(chosenWord, gameData, GameCondition.Won);
                         break;
                     }
                     else
@@ -116,11 +116,11 @@ namespace HangmanLogic.Logic
                         continue;
                     }
                 }
-                else if (!gameTracker.GuessCharacterInWord(input, chosenWord))
+                else if (!gameData.GuessCharacterInWord(input, chosenWord))
                 {
-                    if (gameTracker.Fail())
+                    if (gameData.Fail())
                     {
-                        GameOver(chosenWord, gameTracker, GameCondition.Lost);
+                        GameOver(chosenWord, gameData, GameCondition.Lost);
                         break;
                     }
                     else

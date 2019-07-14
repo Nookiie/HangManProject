@@ -41,6 +41,10 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "Microsoft.AspNetCore.Blazor.Templates": {
+              "target": "Package",
+              "version": "[3.0.0-preview6.19307.2, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.0.0-preview6.19304.10, )"

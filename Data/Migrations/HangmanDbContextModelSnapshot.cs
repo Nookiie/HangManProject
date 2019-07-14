@@ -19,6 +19,35 @@ namespace HM.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Data.Entities.Users.User", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("HighestStreak");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.Property<int>("Role");
+
+                    b.Property<int>("Score");
+
+                    b.Property<string>("Token");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("HM.Data.Entities.GameItems.GameTracker", b =>
                 {
                     b.Property<int>("ID")
