@@ -10,9 +10,7 @@ namespace Components
 {
     public class GameManager : ComponentBase
     {
-        [Inject]
-        public GameLogic GameLogic;
-
         public Category Category { get; set; }
+
     }
 }

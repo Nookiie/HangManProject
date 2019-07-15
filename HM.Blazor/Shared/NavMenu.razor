@@ -2,12 +2,14 @@
 @inherits LoginManager
 
 
-<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">HM.Blazor.Client</a>
-    <button class="navbar-toggler" @onclick="@ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
+    <div class="top-row pl-4 navbar navbar-dark">
+        <a class="navbar-brand" href="">HM.Blazor.Client</a>
+        <span>Hello, @(Username ?? "Anonymous")</span>
+        <button class="navbar-toggler" @onclick="@ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+            <span class="oi oi-home" aria-hidden="true"></span>
+        </button>
+    </div>
 
 <div class="@NavMenuCssClass" @onclick="@ToggleNavMenu">
     <ul class="nav flex-column">
@@ -15,14 +17,6 @@
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
-
-            @if (isLoggedIn)
-            {
-                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                    <span class="oi oi-home" aria-hidden="true"></span> Hello, @Username
-                </NavLink>
-            }
-
         </li>
         @if (!isLoggedIn)
         {
@@ -34,6 +28,11 @@
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="Accounts/register">
                     <span class="oi oi-list-rich" aria-hidden="true"></span> Register
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="game">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Play
                 </NavLink>
             </li>
         }
