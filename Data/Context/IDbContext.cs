@@ -10,6 +10,6 @@ namespace HM.Data.Context
     public interface IDbContext<T>
         where T:BaseEntity<int>
     {
-
+        
     }
 }

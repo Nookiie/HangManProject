@@ -23,6 +23,8 @@ namespace Components
 
         public string Email { get; set; }
 
+        public User User { get; set; }
+
         public void MapUser(User user)
         {
             Username = user.Username;
@@ -30,16 +32,19 @@ namespace Components
             Email = user.Email;
         }
 
-        public void SaveDataForm()
+        public async void SaveDataForm()
         {
+            Username = User.Username;
+            Password = User.Password;
+            Email = User.Email;
 
+            await RegisterUser();
         }
 
         public async Task RegisterUser()
         {
             using (var client = new HttpClient())
             {   
-                User user = new User();
                 client.BaseAddress = url;
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -52,7 +57,7 @@ namespace Components
                 string jsonString = await response.Content.ReadAsStringAsync();
                 var responseData = JsonConvert.DeserializeObject<List<User>>(jsonString);
 
-                MapUser(user);
+                MapUser(User);
             }
         }
     }

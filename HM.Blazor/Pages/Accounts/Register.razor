@@ -17,16 +17,31 @@
         </div>
 
         <div class="form-group">
-            <label for="password">Email</label>
-            <input type="password" id="password" class="form-control" @bind="@Email" />
+            <label for="email">Email</label>
+            <input type="text" id="email" class="form-control" @bind="@Email" />
         </div>
 
         <div class="form-group">
-            <button class="btn btn-primary" @onClick="@RegisterUser">Register</button>
+            <button class="btn btn-primary" @onClick="@Test">Register</button>
         </div>
     </div>
 </div>
 
 @code {
+
+//async void RegisterUser()
+//{
+//    UserManager userManager = new UserManager();
+
+//    userManager.Username = Username;
+//    userManager.Password = Password;
+//    userManager.Email = Email;
+//    await userManager.RegisterUser();
+//}
+
+void Test()
+{
+    Console.WriteLine("Hey");
+}
 
 }

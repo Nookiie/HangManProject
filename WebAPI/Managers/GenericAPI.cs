@@ -1,32 +1,27 @@
-﻿using System;
+﻿using HM.Data.Abstraction;
+using HM.Repositories.Abstractions;
+using HM.Repositories.Implementations;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using HM.Data.Context;
-using HM.Data.Entities.GameItems;
-using AutoMapper;
-using HM.AppServices.Implementations;
-using HM.Repositories.Abstractions;
 
-namespace WebAPI.Controllers
+namespace HM.GenericAPI.Managers
 {
-    [ApiController]
-    [Route("api/[controller]/[action]")]
-    public class WordsController : ControllerBase
+    public class GenericAPI<T> where T : BaseEntity<int>
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly Uri url = new Uri("https://localhost:44340/api/" + typeof(T).ToString() + "/get");
+        private readonly GenericUnit<T> _unitOfWork;
         // private readonly WordManagementService _service;
 
         // private readonly IMapper _mapper;
 
-        public WordsController(IUnitOfWork unitOfWork)
+        public GenericAPI(GenericUnit<T> unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
-        
+
         /*
         public WordsController(IMapper mapper)
         {
@@ -35,15 +30,15 @@ namespace WebAPI.Controllers
         */
 
         [HttpGet]
-        public IQueryable<Word> Get()
+        public IQueryable<T> Get()
         {
-             return _unitOfWork.Words.Get();
+            return _unitOfWork.Entity.Get();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Word> Get(int id)
+        public ActionResult<T> Get(int id)
         {
-            return _unitOfWork.Words.Get(id);
+            return _unitOfWork.Entity.Get(id);
         }
 
         /*
@@ -78,26 +73,27 @@ namespace WebAPI.Controllers
         */
 
         [HttpPost]
-        public void Create(Word word)
+        public void Create(T entity)
         {
-            _unitOfWork.Words.Insert(word);
+            _unitOfWork.Entity.Insert(entity);
         }
 
 
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _unitOfWork.Words.Delete(id);
+            _unitOfWork.Entity.Delete(id);
         }
 
         [HttpGet]
-        public Word GetRandom()
+        public T GetRandom()
         {
-            List<Word> words = _unitOfWork.Words.Get().ToList();
+            List<T> words = _unitOfWork.Entity.Get().ToList();
             Random rnd = new Random();
             int randomIndex = rnd.Next(0, words.Count);
 
             return words[randomIndex];
         }
+
     }
 }

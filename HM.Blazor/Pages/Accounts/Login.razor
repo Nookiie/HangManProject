@@ -23,5 +23,14 @@
 </div>
 
 @code {
+bool isAdmin = false;
 
+void LogUser()
+{
+    LoginManager loginManager = new LoginManager();
+    loginManager.Username = Username;
+    loginManager.Password = Password;
+    loginManager.Email = Email;
+    // loginManager.LogUser();
+}
 }

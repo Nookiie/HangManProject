@@ -45,6 +45,7 @@ namespace Repos.Implementations
             {
                 this.DbSet.Add(entity);
             }
+
             Context.SaveChanges();
         }
 
@@ -57,6 +58,8 @@ namespace Repos.Implementations
             }
 
             Delete(entityToDelete);
+            Context.SaveChanges();
+
         }
 
         public virtual void Delete(TEntity entityToDelete)
@@ -72,6 +75,8 @@ namespace Repos.Implementations
                 this.DbSet.Attach(entityToDelete);
                 this.DbSet.Remove(entityToDelete);
             }
+            Context.SaveChanges();
+
         }
 
         public virtual void Update(object id, TEntity entityToUpdate)
@@ -85,6 +90,8 @@ namespace Repos.Implementations
             {
                 entry.State = EntityState.Modified;
             }
+            Context.SaveChanges();
+
         }
 
         public virtual IQueryable<TEntity> Find(Expression<Func<TEntity, bool>> where)
