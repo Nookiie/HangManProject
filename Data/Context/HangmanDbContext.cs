@@ -17,14 +17,14 @@ namespace HM.Data.Context
 
         public DbSet<Word> Words { get; set; }
 
-        public DbSet<GameTracker> GameTrackers { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Word>().ToTable("Words");
-            modelBuilder.Entity<GameTracker>().ToTable("GameTrackers");
+            modelBuilder.Entity<Category>().ToTable("Categories");
             modelBuilder.Entity<User>().ToTable("Users");
         }
     }

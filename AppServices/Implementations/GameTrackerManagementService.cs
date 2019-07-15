@@ -16,13 +16,12 @@ namespace HM.AppServices.Implementations
 
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                foreach (var item in unitOfWork.GameTrackers.Get())
+                foreach (var item in unitOfWork.Categories.Get())
                 {
                     gameTrackersDto.Add(new GameTrackerDTO
                     {
                         ID = item.ID,
-                        Category = item.Category,
-                        Words = item.Words
+                        Name = item.Name,
                     });
                 }
             }
@@ -35,47 +34,28 @@ namespace HM.AppServices.Implementations
 
             using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                GameTracker gameTracker = unitOfWork.GameTrackers.Get(id);
+                Category gameTracker = unitOfWork.Categories.Get(id);
                 gameTrackerDtos = new GameTrackerDTO
                 {
                     ID = gameTracker.ID,
-                    Category = gameTracker.Category,
-                    Words = gameTracker.Words,
+                    Name = gameTracker.Name,
                 };
             }
             return gameTrackerDtos;
         }
-
-        public WordDTO GetRandomWordFromGameTrackerByID(object id)
-        {
-            GameTrackerDTO gameTrackerDtos = new GameTrackerDTO();
-            WordDTO wordDTO = new WordDTO();
-
-            using (UnitOfWork unitOfWork = new UnitOfWork())
-            {
-                GameTracker gameTracker = unitOfWork.GameTrackers.Get(id);
-                Word word = GetRandomWord(gameTracker);
-
-                wordDTO.ID = word.ID;
-                wordDTO.Name = word.Name;
-            }
-            return wordDTO;
-        }
-
         public bool Save(GameTrackerDTO gameTrackerDTO)
         {
-            GameTracker gameTracker = new GameTracker
+            Category gameTracker = new Category
             {
                 ID = gameTrackerDTO.ID,
-                Category = gameTrackerDTO.Category,
-                Words = gameTrackerDTO.Words,
+                Name = gameTrackerDTO.Name,
             };
 
             try
             {
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
-                    unitOfWork.GameTrackers.Insert(gameTracker);
+                    unitOfWork.Categories.Insert(gameTracker);
 
                     unitOfWork.Save();
                 }
@@ -94,8 +74,8 @@ namespace HM.AppServices.Implementations
             {
                 using (UnitOfWork unitOfWork = new UnitOfWork())
                 {
-                    GameTracker gameTracker = unitOfWork.GameTrackers.Get(id);
-                    unitOfWork.GameTrackers.Delete(gameTracker);
+                    Category gameTracker = unitOfWork.Categories.Get(id);
+                    unitOfWork.Categories.Delete(gameTracker);
                     unitOfWork.Save();
                 }
 
@@ -105,14 +85,6 @@ namespace HM.AppServices.Implementations
             {
                 return false;
             }
-        }
-
-        public Word GetRandomWord(GameTracker gameTracker)
-        {
-            Random rnd = new Random();
-            var randomIndex = rnd.Next(0, gameTracker.Words.Count - 1);
-
-            return gameTracker.Words[randomIndex];
         }
     }
 }

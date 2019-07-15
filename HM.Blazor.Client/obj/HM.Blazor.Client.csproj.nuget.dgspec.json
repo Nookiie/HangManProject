@@ -209,6 +209,64 @@
         }
       }
     },
+    "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj",
+        "projectName": "HM.Logic",
+        "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj",
+        "packagesPath": "C:\\Users\\Nookie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Nookie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj": {
+                "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          }
+        }
+      }
+    },
     "C:\\Users\\Nookie\\source\\repos\\Hangman\\HM.Blazor.Client\\HM.Blazor.Client.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -235,8 +293,8 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj": {
-                "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj"
+              "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj": {
+                "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj"
               },
               "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj": {
                 "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj"

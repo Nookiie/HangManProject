@@ -13,7 +13,7 @@ namespace HM.WebAPI.Mapper
         public MappingProfile()
         {
             CreateMap<Word, WordDTO>();
-            CreateMap<GameTracker, GameTrackerDTO>();
+            CreateMap<Category, GameTrackerDTO>();
         }
     }
 }

@@ -19,11 +19,11 @@ namespace HM.Blazor.Pages.GameTrackers
             _context = context;
         }
 
-        public IList<GameTracker> GameTracker { get;set; }
+        public IList<Category> Category { get; set; }
 
         public async Task OnGetAsync()
         {
-            GameTracker = await _context.GameTrackers.ToListAsync();
+            Category = await _context.Categories.ToListAsync();
         }
     }
 }

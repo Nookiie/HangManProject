@@ -21,7 +21,7 @@ namespace HM.Blazor.Pages.GameTrackers
         }
 
         [BindProperty]
-        public GameTracker GameTracker { get; set; }
+        public Category Category { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,9 +30,9 @@ namespace HM.Blazor.Pages.GameTrackers
                 return NotFound();
             }
 
-            GameTracker = await _context.GameTrackers.FirstOrDefaultAsync(m => m.ID == id);
+            Category = await _context.Categories.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (GameTracker == null)
+            if (Category == null)
             {
                 return NotFound();
             }
@@ -46,7 +46,7 @@ namespace HM.Blazor.Pages.GameTrackers
                 return Page();
             }
 
-            _context.Attach(GameTracker).State = EntityState.Modified;
+            _context.Attach(Category).State = EntityState.Modified;
 
             try
             {
@@ -54,7 +54,7 @@ namespace HM.Blazor.Pages.GameTrackers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GameTrackerExists(GameTracker.ID))
+                if (!GameTrackerExists(Category.ID))
                 {
                     return NotFound();
                 }
@@ -69,7 +69,7 @@ namespace HM.Blazor.Pages.GameTrackers
 
         private bool GameTrackerExists(int id)
         {
-            return _context.GameTrackers.Any(e => e.ID == id);
+            return _context.Categories.Any(e => e.ID == id);
         }
     }
 }

@@ -8,8 +8,6 @@ namespace HM.AppServices.DTOs
 {
     public class GameTrackerDTO : BaseDTO<int>
     {
-        public string Category { get; set; }
-
-        public List<Word> Words { get; set; }
+        public string Name { get; set; }
     }
 }

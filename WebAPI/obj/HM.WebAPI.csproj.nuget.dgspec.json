@@ -326,10 +326,6 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
-            "Microsoft.AspNetCore.Blazor.Templates": {
-              "target": "Package",
-              "version": "[3.0.0-preview6.19307.2, )"
-            },
             "Microsoft.AspNetCore.Mvc": {
               "target": "Package",
               "version": "[2.2.0, )"

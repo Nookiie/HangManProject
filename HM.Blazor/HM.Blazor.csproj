@@ -17,4 +17,8 @@
     <ProjectReference Include="..\WebAPI\HM.WebAPI.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Users\" />
+  </ItemGroup>
+
 </Project>

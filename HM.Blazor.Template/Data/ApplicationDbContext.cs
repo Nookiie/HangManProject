@@ -11,7 +11,6 @@ namespace HM.Blazor.Template.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-
-        }   
+        }
     }
 }

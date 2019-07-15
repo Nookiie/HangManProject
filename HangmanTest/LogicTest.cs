@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using HM.Data.Entities.Difficulty;
 using HM.Data.Abstraction;
+using HangmanLogic.Logic;
+using HM.Data.Entities.GameCondition;
 
 namespace HangmanTest
 {
@@ -11,7 +13,7 @@ namespace HangmanTest
     public static class LogicTest
     {
         [TestMethod]
-        public static void InputTest(char input)
+        public static void InputGuessTest(char input)
         {
             if (char.IsWhiteSpace(input))
             {
@@ -21,6 +23,25 @@ namespace HangmanTest
             if (char.IsUpper(input))
             {
                 throw new ArgumentException("Input Symbol has upper-case letters");
+            }
+        }
+
+        [TestMethod]
+        public static void InputGameConditionTest(GameCondition gameCondition)
+        {
+            if (gameCondition != GameCondition.Won || gameCondition != GameCondition.Lost)
+            {
+                throw new ArgumentException("GameCondition must have only values Won or Lost");
+            }
+        }
+
+        [TestMethod]
+        public static void InputGameDifficultyTest(GameDifficulty gameDifficulty)
+        {
+            if (gameDifficulty != GameDifficulty.Easy || gameDifficulty != GameDifficulty.Normal
+               || gameDifficulty != GameDifficulty.Hard || gameDifficulty != GameDifficulty.Insane)
+            {
+                throw new ArgumentException("Game Difficulty must have only values: Easy, Normal, Hard, Insane");
             }
         }
 
@@ -63,35 +84,16 @@ namespace HangmanTest
         }
 
         [TestMethod]
-        public static void GameTrackerTest(List<Word> words, GameDifficulty difficulty)
+        public static void DifficultyScoreTest(GameDifficulty difficulty)
         {
-            Assert.IsNotNull(words);
-            Assert.IsNotNull(difficulty);
+            IGameData gameTracker = new GameData();
 
-            IGameData gameTracker = new GameData("GameTrackerTest", words, difficulty);
-            Word chosenWord = gameTracker.GetRandomWord();
-
-            var expectedAttempts = 1;
-            var expectedTriesOnFail = 8;
-            var expectedScoreOnFail = 0;
-            var expectedTriesOnWin = 9;
             var expectedScoreOnWinEasy = 10;
             var expectedScoreOnWinNormal = 15;
             var expectedScoreOnWinHard = 20;
             var expectedScoreOnWinInsane = 25;
 
-            gameTracker.Fail();
-
-            Assert.AreEqual(expectedAttempts, gameTracker.GetAttemptCount());
-            Assert.AreEqual(expectedTriesOnFail, gameTracker.GetTries());
-            Assert.AreEqual(expectedScoreOnFail, gameTracker.GetScore());
-
-            gameTracker.CleanUp();
-
-            gameTracker.Win(chosenWord);
-
-            Assert.AreEqual(expectedTriesOnWin, gameTracker.GetTries());
-            Assert.AreEqual(expectedAttempts, gameTracker.GetAttemptCount());
+            Assert.IsNotNull(difficulty);
 
             switch (difficulty)
             {
@@ -104,7 +106,91 @@ namespace HangmanTest
         }
 
         [TestMethod]
-        public static void GameTrackerTest()
+        public static void GameTrackerFailTest()
+        {
+            IGameData gameTracker = new GameData();
+
+            var expectedAttempts = 1;
+            var expectedTriesOnFail = 8;
+            var expectedScoreOnFail = 0;
+
+            gameTracker.Fail();
+
+            Assert.AreEqual(expectedAttempts, gameTracker.GetAttemptCount());
+            Assert.AreEqual(expectedTriesOnFail, gameTracker.GetTries());
+            Assert.AreEqual(expectedScoreOnFail, gameTracker.GetScore());
+        }
+
+        [TestMethod]
+        public static void GameTrackerWinTest()
+        {
+            IGameData gameTracker = new GameData();
+            Word chosenWord = new Word();
+
+            var expectedAttempts = 1;
+            var expectedTriesOnWin = 9;
+
+            gameTracker.Win(chosenWord);
+
+            Assert.AreEqual(expectedAttempts, gameTracker.GetAttemptCount());
+            Assert.AreEqual(expectedTriesOnWin, gameTracker.GetTries());
+        }
+
+        [TestMethod]
+        public static void GameOverWinEffectOnTriesTest(Word word, GameDifficulty difficulty)
+        {
+            IGameData gameTracker = new GameData();
+            var expectedTriesOnWin = 9;
+
+            gameTracker.Win(word);
+
+            Assert.AreEqual(expectedTriesOnWin, gameTracker.GetTries());
+        }
+
+        [TestMethod]
+        public static void GetRandomLetterTest()
+        {
+            List<Word> words = new List<Word>
+            {
+                new Word("elephant"),
+            };
+            GameData gameData = new GameData();
+
+            gameData.Words = words;
+
+            Word chosenWord = gameData.GetRandomWord();
+            Word printWord = chosenWord;
+            char input = GameLogic.GetJoker(gameData, chosenWord, printWord);
+
+            if (!chosenWord.Name.Contains(input))
+            {
+                Assert.Fail("Letter is not part of the chosen word");
+            }
+        }
+
+        [TestMethod]
+        public static void GetRandomLetterMinPriorityTest()
+        {
+            List<Word> words = new List<Word>
+            {
+                new Word("elephant"),
+            };
+
+            var notExpectedLetter = 'e';
+
+            GameData gameData = new GameData();
+
+            gameData.Words = words;
+
+            Word chosenWord = gameData.GetRandomWord();
+            Word printWord = chosenWord;
+            char input = GameLogic.GetJoker(gameData, chosenWord, printWord);
+
+            Assert.AreNotEqual(notExpectedLetter, input);
+        }
+
+        [TestMethod]
+        public static void GameOverConditionTest(GameCondition gameCondition)
         {
 
         }

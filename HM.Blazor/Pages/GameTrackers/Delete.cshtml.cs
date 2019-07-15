@@ -20,7 +20,7 @@ namespace HM.Blazor.Pages.GameTrackers
         }
 
         [BindProperty]
-        public GameTracker GameTracker { get; set; }
+        public Category Category { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace HM.Blazor.Pages.GameTrackers
                 return NotFound();
             }
 
-            GameTracker = await _context.GameTrackers.FirstOrDefaultAsync(m => m.ID == id);
+            Category = await _context.Categories.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (GameTracker == null)
+            if (Category == null)
             {
                 return NotFound();
             }
@@ -45,11 +45,11 @@ namespace HM.Blazor.Pages.GameTrackers
                 return NotFound();
             }
 
-            GameTracker = await _context.GameTrackers.FindAsync(id);
+            Category = await _context.Categories.FindAsync(id);
 
-            if (GameTracker != null)
+            if (Category != null)
             {
-                _context.GameTrackers.Remove(GameTracker);
+                _context.Categories.Remove(Category);
                 await _context.SaveChangesAsync();
             }
 

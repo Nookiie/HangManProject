@@ -11,7 +11,7 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-HM.Blazor.Template-1555DDF2-8696-483B-81CD-E07F8F8D3B41")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-HM.Blazor.Template-31ADD25B-DC6B-4CE6-B28F-D9B71EF51374")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("HM.Blazor.Template")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

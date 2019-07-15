@@ -19,7 +19,7 @@ namespace HM.Blazor.Pages.GameTrackers
             _context = context;
         }
 
-        public GameTracker GameTracker { get; set; }
+        public Category GameTracker { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,7 +28,7 @@ namespace HM.Blazor.Pages.GameTrackers
                 return NotFound();
             }
 
-            GameTracker = await _context.GameTrackers.FirstOrDefaultAsync(m => m.ID == id);
+            GameTracker = await _context.Categories.FirstOrDefaultAsync(m => m.ID == id);
 
             if (GameTracker == null)
             {

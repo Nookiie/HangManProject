@@ -271,14 +271,14 @@
           "lib/netstandard2.0/System.Threading.Tasks.Extensions.dll": {}
         }
       },
-      "HM.Data/1.0.0": {
+      "HM.Logic/1.0.0": {
         "type": "project",
         "framework": "Unsupported,Version=v0.0",
         "compile": {
-          "bin/placeholder/HM.Data.dll": {}
+          "bin/placeholder/HM.Logic.dll": {}
         },
         "runtime": {
-          "bin/placeholder/HM.Data.dll": {}
+          "bin/placeholder/HM.Logic.dll": {}
         }
       },
       "HM.WebAPI/1.0.0": {
@@ -1295,10 +1295,10 @@
         "version.txt"
       ]
     },
-    "HM.Data/1.0.0": {
+    "HM.Logic/1.0.0": {
       "type": "project",
-      "path": "../Data/HM.Data.csproj",
-      "msbuildProject": "../Data/HM.Data.csproj"
+      "path": "../HangmanLogic/HM.Logic.csproj",
+      "msbuildProject": "../HangmanLogic/HM.Logic.csproj"
     },
     "HM.WebAPI/1.0.0": {
       "type": "project",
@@ -1308,7 +1308,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "HM.Data >= 1.0.0",
+      "HM.Logic >= 1.0.0",
       "HM.WebAPI >= 1.0.0",
       "Microsoft.AspNetCore.Blazor >= 3.0.0-preview6.19307.2",
       "Microsoft.AspNetCore.Blazor.Build >= 3.0.0-preview6.19307.2",
@@ -1346,8 +1346,8 @@
       "frameworks": {
         "netstandard2.0": {
           "projectReferences": {
-            "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj": {
-              "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj"
+            "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj": {
+              "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj"
             },
             "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj": {
               "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj"
@@ -1402,8 +1402,8 @@
     {
       "code": "NU1201",
       "level": "Error",
-      "message": "Project HM.Data is not compatible with netstandard2.0 (.NETStandard,Version=v2.0). Project HM.Data supports: netcoreapp3.0 (.NETCoreApp,Version=v3.0)",
-      "libraryId": "HM.Data",
+      "message": "Project HM.Logic is not compatible with netstandard2.0 (.NETStandard,Version=v2.0). Project HM.Logic supports: netcoreapp3.0 (.NETCoreApp,Version=v3.0)",
+      "libraryId": "HM.Logic",
       "targetGraphs": [
         ".NETStandard,Version=v2.0"
       ]

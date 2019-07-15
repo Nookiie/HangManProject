@@ -33,11 +33,11 @@ namespace Repos.Implementations
             }
         }
 
-        public IRepository<GameTracker> GameTrackers
+        public IRepository<Category> Categories
         {
             get
             {
-                return this.GetRepository<GameTracker>();
+                return this.GetRepository<Category>();
             }
         }
 

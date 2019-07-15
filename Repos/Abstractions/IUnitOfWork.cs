@@ -12,6 +12,6 @@ namespace HM.Repositories.Abstractions
 
         IRepository<Word> Words { get; }
 
-        IRepository<GameTracker> GameTrackers { get; }
+        IRepository<Category> Categories { get; }
     }
 }

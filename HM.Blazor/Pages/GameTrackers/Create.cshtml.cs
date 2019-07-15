@@ -25,7 +25,7 @@ namespace HM.Blazor.Pages.GameTrackers
         }
 
         [BindProperty]
-        public GameTracker GameTracker { get; set; }
+        public Category Category { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -34,7 +34,7 @@ namespace HM.Blazor.Pages.GameTrackers
                 return Page();
             }
 
-            _context.GameTrackers.Add(GameTracker);
+            _context.Categories.Add(Category);
             await _context.SaveChangesAsync();
             
             return RedirectToPage("./Index");
