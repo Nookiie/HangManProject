@@ -21,4 +21,13 @@
     <Folder Include="Pages\Users\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Pages\Accounts\Login.razor">
+      <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
+    </Content>
+    <Content Update="Pages\Accounts\Register.razor">
+      <Generator>MSBuild:RazorGenerateComponentDeclarationDesignTime</Generator>
+    </Content>
+  </ItemGroup>
+
 </Project>

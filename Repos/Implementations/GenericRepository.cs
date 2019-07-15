@@ -36,15 +36,7 @@ namespace Repos.Implementations
         public virtual void Insert(TEntity entity)
         {
             EntityEntry entry = this.Context.Entry(entity);
-            if (entry.State != EntityState.Detached)
-            {
-                entry.State = EntityState.Added;
-            }
-            else
-            {
-                this.DbSet.Add(entity);
-            }
-
+            
             DbSet.Add(entity);
         }
 

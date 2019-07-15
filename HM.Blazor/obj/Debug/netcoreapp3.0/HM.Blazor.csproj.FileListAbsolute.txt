@@ -181,3 +181,11 @@ C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pag
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\bin\Debug\netcoreapp3.0\HM.Logic.exe
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\bin\Debug\netcoreapp3.0\HM.Logic.dll
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\bin\Debug\netcoreapp3.0\HM.Logic.pdb
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\Accounts\Login.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\Accounts\Register.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Accounts\Login.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Accounts\Register.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\Categories\Index.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\Words\Index.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Categories\Index.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Words\Index.razor.g.cs

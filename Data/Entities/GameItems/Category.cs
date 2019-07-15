@@ -34,6 +34,5 @@ namespace HM.Data.Entities.GameItems
         public string Name { get; set; }
 
         #endregion
-
     }
 }

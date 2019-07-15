@@ -9774,7 +9774,6 @@
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 6.1.1",
       "HM.AppServices >= 1.0.0",
       "HM.Common >= 1.0.0",
-      "HM.Data >= 1.0.0",
       "Microsoft.AspNetCore >= 2.2.0",
       "Microsoft.AspNetCore.Mvc >= 2.2.0",
       "Microsoft.AspNetCore.StaticFiles >= 2.2.0",
@@ -9822,9 +9821,6 @@
             },
             "C:\\Users\\Nookie\\source\\repos\\Hangman\\Common\\HM.Common.csproj": {
               "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Common\\HM.Common.csproj"
-            },
-            "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj": {
-              "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj"
             }
           }
         }

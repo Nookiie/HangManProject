@@ -27,7 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\AppServices\HM.AppServices.csproj" />
     <ProjectReference Include="..\Common\HM.Common.csproj" />
-    <ProjectReference Include="..\Data\HM.Data.csproj" />
   </ItemGroup>
 
 </Project>
