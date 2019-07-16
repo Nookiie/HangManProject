@@ -1,4 +1,4 @@
-@using Components;
+@using ComponentsV2;
 @page "/accounts/login"
 @inherits LoginManager
 
@@ -17,7 +17,7 @@
         </div>
 
         <div class="form-group">
-            <button class="btn btn-primary" @onClick="@LogUser">Log in</button>
+            <button class="btn btn-primary" @onclick="@LogUser">Log in</button>
         </div>
     </div>
 </div>
@@ -25,12 +25,13 @@
 @code {
 bool isAdmin = false;
 
-void LogUser()
+async void LogUser()
 {
     LoginManager loginManager = new LoginManager();
     loginManager.Username = Username;
     loginManager.Password = Password;
     loginManager.Email = Email;
-    // loginManager.LogUser();
+
+    await loginManager.LogUser();
 }
 }

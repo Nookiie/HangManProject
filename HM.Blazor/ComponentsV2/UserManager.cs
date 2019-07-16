@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace Components
+namespace ComponentsV2
 {
     public class UserManager : ComponentBase
     {
@@ -55,7 +55,7 @@ namespace Components
                 HttpResponseMessage response = await client.GetAsync("create");
 
                 string jsonString = await response.Content.ReadAsStringAsync();
-                var responseData = JsonConvert.DeserializeObject<List<User>>(jsonString);
+                var responseData = JsonConvert.DeserializeObject<User>(jsonString);
 
                 MapUser(User);
             }

@@ -1,9 +1,9 @@
-﻿@using Components;
+﻿@using ComponentsV2;
 
 @page "/"
 @inherits LoginManager
 
 <h1>Hello and welcome to the Hangman Website</h1>
 
-<span>Your current session is marked with username: @(Username ?? "Anonymous")</span>
+<span>Your current session is marked with username: @(CurrentSession.Username ?? "Anonymous")</span>
 

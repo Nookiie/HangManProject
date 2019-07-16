@@ -1,4 +1,4 @@
-@using Components;
+@using ComponentsV2;
 @page "/accounts/register"
 @inherits UserManager
 
@@ -22,26 +22,22 @@
         </div>
 
         <div class="form-group">
-            <button class="btn btn-primary" @onClick="@Test">Register</button>
+            <button class="btn btn-primary" @onclick="@RegisterUser">Register</button>
         </div>
     </div>
 </div>
 
 @code {
 
-//async void RegisterUser()
-//{
-//    UserManager userManager = new UserManager();
-
-//    userManager.Username = Username;
-//    userManager.Password = Password;
-//    userManager.Email = Email;
-//    await userManager.RegisterUser();
-//}
-
-void Test()
+async void RegisterUser()
 {
-    Console.WriteLine("Hey");
+    UserManager userManager = new UserManager();
+
+    userManager.Username = Username;
+    userManager.Password = Password;
+    userManager.Email = Email;
+
+    await userManager.RegisterUser();
 }
 
 }

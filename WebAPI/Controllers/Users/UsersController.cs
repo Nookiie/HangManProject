@@ -40,6 +40,19 @@ namespace HM.WebAPI.Controllers.Users
             return user;
         }
 
+        [HttpGet("{username}")]
+        public async Task<ActionResult<User>> Get(string username)
+        {
+            var user = await _context.Users.Where(x => x.Username == username).FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
+        }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(Guid id, User user)
         {

@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace Components
+namespace ComponentsV2
 {
     public class LoginManager : ComponentBase
     {
@@ -23,14 +23,16 @@ namespace Components
 
         public string Token { get; set; }
 
+        public User CurrentSession { get; set; }
+
         public void MapToSession(User user)
         {
-            Username = user.Username;
-            Password = user.Password;
-            Email = user.Email;
+            CurrentSession.Username = user.Username;
+            CurrentSession.Password = user.Password;
+            CurrentSession.Email = user.Email;
         }
 
-        public async Task LogUser(object id)
+        public async Task LogUser()
         {
             using (var client = new HttpClient())
             {
@@ -38,7 +40,7 @@ namespace Components
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("get/" + id);
+                HttpResponseMessage response = await client.GetAsync("get/" + Username);
 
                 string jsonString = await response.Content.ReadAsStringAsync();
                 var responseData = JsonConvert.DeserializeObject<User>(jsonString);
