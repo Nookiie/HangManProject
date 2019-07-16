@@ -1,0 +1,27 @@
+@page "/logout"
+@using HM.Blazor.Session;
+@inherits SessionManager
+<h3>Logout</h3>
+
+<h2>Are you sure you want to log out?</h2>
+
+<div class="row">
+
+    <NavLink class="nav-link" href="Accounts/logout">
+        <button class="btn-primary" @onclick="@Logout">Yes</button>   
+    </NavLink>
+    
+    <NavLink class="nav-link" href="index">
+        <button class="btn-primary">No</button>
+    </NavLink>
+</div>
+
+@code {
+
+    SessionManager session = new SessionManager();
+
+    void Logout()
+    {
+        session.CurrentSession = null;
+    }
+}
