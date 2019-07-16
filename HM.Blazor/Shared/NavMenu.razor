@@ -1,6 +1,6 @@
-@using ComponentsV2;
+@using HM.Blazor.Session
 @using HM.Data.Entities.Users.Role;
-@inherits LoginManager
+@inherits SessionManager
 
 <div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">HM.Blazor.Client</a>
@@ -86,7 +86,7 @@
 </div>
 
 @code {
-LoginManager loginManager = new LoginManager();
+SessionManager sessionManager = new SessionManager();
 
 bool collapseNavMenu = true;
 
@@ -99,7 +99,7 @@ void ToggleNavMenu()
 
 bool CheckIsAdmin()
 {
-    if (loginManager.CurrentSession.ID != null && loginManager.CurrentSession.Role == Role.Admin)
+    if (sessionManager.CurrentSession.ID != Guid.Empty && sessionManager.CurrentSession.Role == Role.Admin)
     {
         return true;
     }
@@ -111,7 +111,7 @@ bool CheckIsAdmin()
 
 bool CheckIsLoggedIn()
 {
-    if (loginManager.CurrentSession.ID != Guid.Empty)
+    if (sessionManager.CurrentSession.ID != Guid.Empty)
     {
         return true;
     }

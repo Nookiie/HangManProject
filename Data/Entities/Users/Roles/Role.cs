@@ -16,8 +16,8 @@ namespace HM.Data.Entities.Users.Role
         {
             switch (role)
             {
-                case Role.User: return "User";
-                case Role.Admin: return "Admin";
+                case Role.User: return "user";
+                case Role.Admin: return "admin";
                 default: throw new ArgumentException("Unknown user role type: " + role.ToString());
             }
         }

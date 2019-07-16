@@ -1,4 +1,5 @@
 ﻿using Data.Entities.Users;
+using HM.Blazor.Session;
 using HM.Data.Entities.GameItems;
 using Microsoft.AspNetCore.Components;
 using Newtonsoft.Json;
@@ -16,6 +17,8 @@ namespace ComponentsV2
     {
         private readonly Uri url = new Uri("https://localhost:44340/api/users/");
 
+        SessionManager _session = new SessionManager();
+
         public string Username { get; set; }
 
         public string Password { get; set; }
@@ -23,15 +26,6 @@ namespace ComponentsV2
         public string Email { get; set; }
 
         public string Token { get; set; }
-
-        public User CurrentSession { get; set; } = new User();
-
-        public void MapToSession(User user)
-        {
-            CurrentSession.Username = user.Username;
-            CurrentSession.Password = user.Password;
-            CurrentSession.Email = user.Email;
-        }
 
         public async Task LogUser()
         {
@@ -52,7 +46,7 @@ namespace ComponentsV2
                 }
 
                 User user = responseData;
-                MapToSession(user);
+                _session.MapToSession(user);
 
             }
         }

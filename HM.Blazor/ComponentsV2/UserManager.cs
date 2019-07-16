@@ -1,4 +1,5 @@
 ﻿using Data.Entities.Users;
+using HM.Blazor.Session;
 using HM.Data.Entities.GameItems;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
@@ -17,34 +18,18 @@ namespace ComponentsV2
     {
         private readonly Uri url = new Uri("https://localhost:44340/api/users/");
 
+        SessionManager _session = new SessionManager();
+
         public string Username { get; set; }
 
         public string Password { get; set; }
 
         public string Email { get; set; }
 
-        public User User { get; set; } = new User();
-
-        public void MapUser(User user)
-        {
-            Username = user.Username;
-            Password = user.Password;
-            Email = user.Email;
-        }
-
-        public async void SaveDataForm()
-        {
-            Username = User.Username;
-            Password = User.Password;
-            Email = User.Email;
-
-            await RegisterUser();
-        }
-
         public async Task RegisterUser()
         {
             using (var client = new HttpClient())
-            {   
+            {
                 client.BaseAddress = url;
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -56,8 +41,16 @@ namespace ComponentsV2
 
                 string jsonString = await response.Content.ReadAsStringAsync();
                 var responseData = JsonConvert.DeserializeObject<User>(jsonString);
+                User user = responseData;
 
-                MapUser(User);
+                if (user == null)
+                {
+                    return;
+                }
+                else
+                {
+                    _session.MapToSession(user);
+                }
             }
         }
     }
