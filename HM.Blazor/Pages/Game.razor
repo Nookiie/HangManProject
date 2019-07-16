@@ -130,53 +130,6 @@
         printWordDisplay = printWord;
         chosenWordDisplay = chosenWord;
         StartGameFlag(); // Sets up that the game has just started
-
-
-        /*
-        if (inputDisplayFirstLetter == '!')
-        {
-            if (gameData.GetJokerCount() > 0)
-                inputDisplayFirstLetter = GameLogic.GetJoker(gameData, chosenWord, printWord);
-            else
-                continue;
-        }
-        */
-
-        /*
-        if (gameData.GuessCharacterInWord(input, chosenWord) && !printWord.Name.Contains(input))
-        {
-            if (gameData.Win(chosenWord))
-            {
-                GameLogic.GameOver(chosenWord, gameData, GameCondition.Won);
-                break;
-            }
-            else
-            {
-                for (int i = 0; i < chosenWord.Name.Length; i++)
-                {
-                    if (chosenWord.Name[i] == input)
-                    {
-                        StringBuilder sb = new StringBuilder(printWord.Name);
-                        sb[i] = input;
-                        printWord.Name = sb.ToString();
-                    }
-                }
-                continue;
-            }
-        }
-        else if (!gameData.GuessCharacterInWord(input, chosenWord))
-        {
-            if (gameData.Fail())
-            {
-                GameLogic.GameOver(chosenWord, gameData, GameCondition.Lost);
-                break;
-            }
-            else
-            {
-                continue;
-            }
-        }
-        */
     }
 
     void StartGameFlag()

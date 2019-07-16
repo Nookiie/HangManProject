@@ -1,15 +1,15 @@
 @using ComponentsV2;
+@using HM.Data.Entities.Users.Role;
 @inherits LoginManager
 
-
-    <div class="top-row pl-4 navbar navbar-dark">
-        <a class="navbar-brand" href="">HM.Blazor.Client</a>
-        <span>Hello, @(CurrentSession.Username ?? "Anonymous")</span>
-        <button class="navbar-toggler" @onclick="@ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-            <span class="oi oi-home" aria-hidden="true"></span>
-        </button>
-    </div>
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">HM.Blazor.Client</a>
+    <span>Hello, @(CurrentSession.Username ?? "Anonymous")</span>
+    <button class="navbar-toggler" @onclick="@ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+        <span class="oi oi-home" aria-hidden="true"></span>
+    </button>
+</div>
 
 <div class="@NavMenuCssClass" @onclick="@ToggleNavMenu">
     <ul class="nav flex-column">
@@ -18,7 +18,7 @@
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </li>
-        @if (!isLoggedIn)
+        @if (!CheckIsLoggedIn())
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="Accounts/login">
@@ -36,7 +36,7 @@
                 </NavLink>
             </li>
         }
-        @if (isLoggedIn && !isAdmin)
+        @if (CheckIsLoggedIn())
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="Accounts/logout">
@@ -54,7 +54,7 @@
                 </NavLink>
             </li>
         }
-        @if (isLoggedIn && isAdmin)
+        @if (CheckIsAdmin())
         {
             <li class="nav-item px-3">
                 <NavLink class="nav-link" href="Accounts/logout">
@@ -86,26 +86,39 @@
 </div>
 
 @code {
-    bool isLoggedIn = false;
+LoginManager loginManager = new LoginManager();
 
-    bool isAdmin = false;
+bool collapseNavMenu = true;
 
-    bool collapseNavMenu = true;
+string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+void ToggleNavMenu()
+{
+    collapseNavMenu = !collapseNavMenu;
+}
 
-    void ToggleNavMenu()
+bool CheckIsAdmin()
+{
+    if (loginManager.CurrentSession.ID != null && loginManager.CurrentSession.Role == Role.Admin)
     {
-        collapseNavMenu = !collapseNavMenu;
+        return true;
     }
-
-    void ToggleIsAdmin()
+    else
     {
-        isAdmin = !isAdmin;
+        return false;
     }
+}
 
-    void ToggleIsLoggedIn()
+bool CheckIsLoggedIn()
+{
+    if (loginManager.CurrentSession.ID != null)
     {
-        isLoggedIn = !isLoggedIn;
+        return true;
     }
+    else
+    {
+        return false;
+    }
+}
+
 }
