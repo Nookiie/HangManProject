@@ -32,7 +32,7 @@ namespace Data.Entities.Users
 
         [DefaultValue(0)]   
         public int HighestStreak { get; set; }
-
+        
         public string Token { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace HM.WebAPI.Controllers.Users
         }
 
         [HttpGet("{username}")]
-        public async Task<ActionResult<User>> Get(string username)
+        public async Task<ActionResult<User>> GetByUsername(string username)
         {
             var user = await _context.Users.Where(x => x.Username == username).FirstOrDefaultAsync();
 

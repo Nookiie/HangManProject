@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace ComponentsV2
 {
@@ -23,7 +24,7 @@ namespace ComponentsV2
 
         public string Token { get; set; }
 
-        public User CurrentSession { get; set; }
+        public User CurrentSession { get; set; } = new User();
 
         public void MapToSession(User user)
         {
@@ -44,9 +45,15 @@ namespace ComponentsV2
 
                 string jsonString = await response.Content.ReadAsStringAsync();
                 var responseData = JsonConvert.DeserializeObject<User>(jsonString);
-                User user = responseData;
 
+                if (responseData.GetType() != typeof(User))
+                {
+                    return;
+                }
+
+                User user = responseData;
                 MapToSession(user);
+
             }
         }
     }

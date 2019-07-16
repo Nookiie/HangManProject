@@ -23,7 +23,7 @@ namespace ComponentsV2
 
         public string Email { get; set; }
 
-        public User User { get; set; }
+        public User User { get; set; } = new User();
 
         public void MapUser(User user)
         {

@@ -111,7 +111,7 @@ bool CheckIsAdmin()
 
 bool CheckIsLoggedIn()
 {
-    if (loginManager.CurrentSession.ID != null)
+    if (loginManager.CurrentSession.ID != Guid.Empty)
     {
         return true;
     }
