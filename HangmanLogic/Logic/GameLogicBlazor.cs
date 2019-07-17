@@ -26,8 +26,6 @@ namespace HM.Logic.Logic
 
         public GameDifficulty gameDifficulty;
 
-        public List<Category> Categories;
-
         public Category gameCategory;
 
         public string inputDisplay;
@@ -82,8 +80,6 @@ namespace HM.Logic.Logic
                 new Category("Stuff")
             };
 
-            Categories = categories;
-
             List<Word> words = new List<Word> // Example words to be used in case of DB failure
             {
                 new Word("flamingo", categories[0]),
@@ -94,7 +90,6 @@ namespace HM.Logic.Logic
                 new Word("imagination", categories[1]),
                 new Word("somerandomhardword", categories[1])
             };
-
             words = GetDifficultySliderWords(words, gameDifficulty);
             // words = GetCategoryWords(words, gameCategory);
 
@@ -257,7 +252,7 @@ namespace HM.Logic.Logic
             return words[randomIndex];
         }
 
-        public async Task<List<Word>> GetWordsFromDB()
+        private async Task<List<Word>> GetWordsFromDB()
         {
             Uri url = new Uri("https://localhost:44340/api/words");
             using (var client = new HttpClient())
@@ -281,7 +276,7 @@ namespace HM.Logic.Logic
             }
         }
 
-        public async Task<List<Category>> GetCategoriesFromDB()
+        private async Task<List<Category>> GetCategoriesFromDB()
         {
             Uri url = new Uri("https://localhost:44340/api/categories");
             using (var client = new HttpClient())

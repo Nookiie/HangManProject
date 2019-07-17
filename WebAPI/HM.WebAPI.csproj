@@ -29,4 +29,8 @@
     <ProjectReference Include="..\Common\HM.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Managers\" />
+  </ItemGroup>
+
 </Project>

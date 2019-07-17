@@ -11,6 +11,5 @@ namespace ComponentsV2
     public class GameManager : ComponentBase
     {
         public Category Category { get; set; }
-
     }
 }

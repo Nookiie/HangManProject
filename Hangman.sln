@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29021.104
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.Logic", "HangmanLogic\HM.Logic.csproj", "{C89464F0-2BC1-4D4B-803B-06E817138986}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.Test", "HangmanTest\HM.Test.csproj", "{331490B7-0A7D-4B5B-9666-5327EA25551F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.Data", "Data\HM.Data.csproj", "{FD717780-77CF-4E00-95AE-CA29607AC7AA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.AppServices", "AppServices\HM.AppServices.csproj", "{F973C80C-9805-42F7-8B6B-522B8413A632}"
@@ -19,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.WebAPI", "WebAPI\HM.WebA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HM.Blazor", "HM.Blazor\HM.Blazor.csproj", "{A2D6B2B4-0B73-44B4-94C1-912574B9B7D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HM.Tests", "HM.Tests\HM.Tests.csproj", "{E5ECB2FB-6C5D-4EC8-B526-BD01E5355B71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +29,6 @@ Global
 		{C89464F0-2BC1-4D4B-803B-06E817138986}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C89464F0-2BC1-4D4B-803B-06E817138986}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C89464F0-2BC1-4D4B-803B-06E817138986}.Release|Any CPU.Build.0 = Release|Any CPU
-		{331490B7-0A7D-4B5B-9666-5327EA25551F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{331490B7-0A7D-4B5B-9666-5327EA25551F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{331490B7-0A7D-4B5B-9666-5327EA25551F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{331490B7-0A7D-4B5B-9666-5327EA25551F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FD717780-77CF-4E00-95AE-CA29607AC7AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FD717780-77CF-4E00-95AE-CA29607AC7AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD717780-77CF-4E00-95AE-CA29607AC7AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +53,10 @@ Global
 		{A2D6B2B4-0B73-44B4-94C1-912574B9B7D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2D6B2B4-0B73-44B4-94C1-912574B9B7D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2D6B2B4-0B73-44B4-94C1-912574B9B7D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5ECB2FB-6C5D-4EC8-B526-BD01E5355B71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5ECB2FB-6C5D-4EC8-B526-BD01E5355B71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5ECB2FB-6C5D-4EC8-B526-BD01E5355B71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5ECB2FB-6C5D-4EC8-B526-BD01E5355B71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
