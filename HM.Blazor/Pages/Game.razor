@@ -53,19 +53,18 @@
                     <select class="form-control" id="difficultySel" @onchange="@AssignDifficulty">
                         @foreach (var difficulty in difficulties)
                         {
-                            <option id="difficultyDropDown" selected="@selectedDifficulty">@difficulty</option>
-                            counter++;
+                            <option id="difficultyDropDown" selected="@selectedDifficulty" value="@selectedDifficulty">@difficulty</option>
                         }
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="sel1">Category:</label>
-                    <select class="form-control" id="categorySel">
+                    <select class="form-control" id="categorySel" @onchange="@AssignCategory">
 
-                        @foreach (var item in categories)
+                        @foreach (var item in categories.Select(x => x.Name))
                         {
-                            <option id="categoryDropDown" selected="@selectedCategory">@item</option>
+                            <option id="categoryDropDown" selected="@selectedCategory" value="@selectedCategory">@item</option>
                         }
                     </select>
                 </div>
@@ -83,11 +82,11 @@
 
     int counter = 0;
 
-    List<string> categories = new List<string>
-{
-        "Animal",
-        "Locations",
-        "Programming"
+    List<Category> categories = new List<Category>
+    {
+        new Category("Animals"),
+        new Category("Locations"),
+        new Category("Programming")
     };
 
     List<string> difficulties = new List<string>
@@ -100,9 +99,9 @@
 
     void AssignDifficulty(UIChangeEventArgs e)
     {
-        var selectedString = e.Value.ToString();
+        selectedDifficulty = e.Value.ToString();
 
-        switch (selectedString)
+        switch (selectedDifficulty)
         {
             case "Easy": gameLogic.gameDifficulty = GameDifficulty.Easy; break;
             case "Normal": gameLogic.gameDifficulty = GameDifficulty.Normal; break;
@@ -110,6 +109,12 @@
             case "Insane": gameLogic.gameDifficulty = GameDifficulty.Insane; break;
             default: break;
         }
+    }
+
+    void AssignCategory(UIChangeEventArgs e)
+    {
+        selectedCategory = e.Value.ToString();
+        gameLogic.gameCategory = categories.Where(x => x.Name == selectedCategory).FirstOrDefault();
     }
 }
 

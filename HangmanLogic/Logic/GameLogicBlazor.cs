@@ -26,6 +26,10 @@ namespace HM.Logic.Logic
 
         public GameDifficulty gameDifficulty;
 
+        public List<Category> Categories;
+
+        public Category gameCategory;
+
         public string inputDisplay;
 
         public char inputDisplayFirstLetter;
@@ -72,17 +76,31 @@ namespace HM.Logic.Logic
 
         public void StartGame()
         {
+           List<Category> categories = new List<Category>()
+            {
+                new Category("Animals"),
+                new Category("Stuff"),
+            };
+            Categories = categories;
+
             List<Word> words = new List<Word> // Example words to be used in case of DB failure
             {
-                new Word("apple"),
-                new Word("stuff"),
-                new Word("elephant"),
-                new Word("archipelago"),
-                new Word("imagination"),
-                new Word("barrel"),
+                new Word("flamingo", categories[0]),
+                new Word("apple", categories[1]), 
+                new Word("stuff", categories[1]),
+                new Word("elephant", categories[0]),
+                new Word("archipelago", categories[1]),
+                new Word("imagination", categories[1]),
+                new Word("somerandomhardword", categories[1])
             };
 
             words = GetDifficultySliderWords(words, gameDifficulty);
+            words = GetCategoryWords(words, gameCategory);
+
+            if (words.Count == 0)
+            {
+                throw new ArgumentException("The current wordList does not have any words matching the criteria");
+            }
 
             Word chosenWord = GetRandomWord(words);
             Word printWord = new Word();
@@ -211,8 +229,6 @@ namespace HM.Logic.Logic
             return word.Name[randomIndex];
         }
 
-       
-
         private List<Word> GetDifficultySliderWords(List<Word> words, GameDifficulty gameDifficulty)
         {
             switch (gameDifficulty)
@@ -226,13 +242,14 @@ namespace HM.Logic.Logic
             return words;
         }
 
-        private List<Word> GetCategoryWords(List<Word> words, string category)
+        private List<Word> GetCategoryWords(List<Word> words, Category category)
         {
-            return words.Where(x => x.Category.Name == category).ToList();
+            return words.Where(x => x.Category == category).ToList();
         }
 
         private Word GetRandomWord(List<Word> words)
         {
+           
             Random rnd = new Random();
             var randomIndex = rnd.Next(0, words.Count - 1);
 

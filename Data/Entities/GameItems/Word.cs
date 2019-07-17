@@ -18,6 +18,12 @@ namespace HM.Data.Entities.GameItems
             this.Name = name;
         }
 
+        public Word(string name, Category category)
+        {
+            this.Name = name;
+            this.Category = category;
+        }
+
         [Required]
         [MinLength(3, ErrorMessage = "Word Name is too short")]
         [MaxLength(20, ErrorMessage = "Word Name is too long")]
