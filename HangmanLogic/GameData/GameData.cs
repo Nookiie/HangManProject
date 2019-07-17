@@ -10,7 +10,7 @@ namespace HM.Data.Entities.GameItems
     /// <summary>
     /// The Main Game Manager that coordinates and manages the wordlist
     /// </summary>
-    public class GameData : IGameData
+    public class GameData : IGameData // Used for Console only
     {
         #region Constructor
 
@@ -111,11 +111,11 @@ namespace HM.Data.Entities.GameItems
 
         public bool Win(Word chosenWord)
         {
-            _currentWins++;
-            _streak++;
-            _score += DEFAULT_SCORE_MULTIPLIER * (_scoreMultiplier + _streak);
+            currentWins++;
+            streak++;
+            score += DEFAULT_SCORE_MULTIPLIER * (scoreMultiplier + streak);
 
-            if (_currentWins == chosenWord.Name.Length - 1)
+            if (currentWins == chosenWord.Name.Length - 1)
                 return true;
             else
                 return false;
@@ -123,10 +123,10 @@ namespace HM.Data.Entities.GameItems
 
         public bool Fail()
         {
-            _currentFails++;
-            _streak = 0;
+            currentFails++;
+            streak = 0;
 
-            if (_currentFails >= MAX_FAILS)
+            if (currentFails >= MAX_FAILS)
                 return true;
             else
                 return false;
@@ -136,10 +136,10 @@ namespace HM.Data.Entities.GameItems
         {
             switch (difficulty)
             {
-                case GameDifficulty.Easy: _scoreMultiplier = 1; break;
-                case GameDifficulty.Normal: _scoreMultiplier = 2; break;
-                case GameDifficulty.Hard: _scoreMultiplier = 3; break;
-                case GameDifficulty.Insane: _scoreMultiplier = 4; break;
+                case GameDifficulty.Easy: scoreMultiplier = 1; break;
+                case GameDifficulty.Normal: scoreMultiplier = 2; break;
+                case GameDifficulty.Hard: scoreMultiplier = 3; break;
+                case GameDifficulty.Insane: scoreMultiplier = 4; break;
             }
 
         }
@@ -162,29 +162,29 @@ namespace HM.Data.Entities.GameItems
             }
         }
 
-        public int GetJokerCount() => _jokers;
+        public int GetJokerCount() => jokers;
 
-        public int GetTries() => (MAX_FAILS - _currentFails);
+        public int GetTries() => (MAX_FAILS - currentFails);
 
-        public int GetScore() => _score;
+        public int GetScore() => score;
 
-        public int GetStreak() => _streak;
+        public int GetStreak() => streak;
 
         public void CleanUp()
         {
-            _jokers = 1;
-            _currentFails = 0;
-            _currentWins = 0;
-            _score = 0;
-            _streak = 0;
-            _scoreMultiplier = 0;
+            jokers = 1;
+            currentFails = 0;
+            currentWins = 0;
+            score = 0;
+            streak = 0;
+            scoreMultiplier = 0;
         }
 
-        public int GetAttemptCount() => (_currentFails + _currentWins);
+        public int GetAttemptCount() => (currentFails + currentWins);
 
         public void UseJoker()
         {
-            _jokers--;
+            jokers--;
         }
 
         #endregion
