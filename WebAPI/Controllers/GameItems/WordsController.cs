@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
         public IQueryable<Word> Get()
         {
              return _unitOfWork.Words.Get();
-        }
+        }   
 
         [HttpGet("{id}")]
         public ActionResult<Word> Get(int id)

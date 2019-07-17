@@ -1,6 +1,7 @@
 @page "/game"
 @using HM.Data.Entities.GameItems;
 @using HM.Logic.Logic;
+@using HM.Data.Entities.Difficulty;
 @{
     if (gameLogic.gameInProgress)
     {
@@ -43,16 +44,40 @@
     {
         <div class="row">
             <div class="col-md-4 col-lg-6 ">
-                <option>
-                </option>
+                <div class="form-group">
+                    <label for="sel1">Difficulty:</label>
+                    <select class="form-control" id="categorySel">
+                        <option>@GameDifficulty.Easy.ToString()</option>
+                        <option>@GameDifficulty.Normal.ToString()</option>
+                        <option>@GameDifficulty.Hard.ToString()</option>
+                        <option>@GameDifficulty.Insane.ToString()</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="sel1">Difficulty:</label>
+                    <select class="form-control" id="categorySel">
+
+                        @foreach (var item in categories)
+                        {
+                            <option>@item</option>
+                        }
+                    </select>
+                </div>
             </div>
         </div>
         <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.StartGame">New Game</button>
     }
 }
 @code {
-    GameData gameData = new GameData();
-
     GameLogicBlazor gameLogic = new GameLogicBlazor();
+
+    List<string> categories = new List<string>
+    {
+        "Animal",
+        "Object",
+        "Programming"
+    };
+
 }
 
