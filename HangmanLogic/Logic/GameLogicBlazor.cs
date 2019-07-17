@@ -24,6 +24,8 @@ namespace HM.Logic.Logic
 
         public Word chosenWordDisplay;
 
+        public GameDifficulty gameDifficulty;
+
         public string inputDisplay;
 
         public char inputDisplayFirstLetter;
@@ -70,7 +72,7 @@ namespace HM.Logic.Logic
 
         public void StartGame()
         {
-            List<Word> words = new List<Word>
+            List<Word> words = new List<Word> // Example words to be used in case of DB failure
             {
                 new Word("apple"),
                 new Word("stuff"),
@@ -79,6 +81,8 @@ namespace HM.Logic.Logic
                 new Word("imagination"),
                 new Word("barrel"),
             };
+
+            GetDifficultySliderWords(words, gameDifficulty);
 
             string category = "Animals";
             IGameData gameData = new GameData(category, words, GameDifficulty.Hard);
@@ -91,7 +95,7 @@ namespace HM.Logic.Logic
             printWord.Name = new Regex("\\S").Replace(chosenWord.Name, "_ ");
             printWordDisplay = printWord;
             chosenWordDisplay = chosenWord;
-            StartGameFlag(); // Sets up that the game has just started
+            StartGameFlag(); // Sets up the game flag 
         }
 
         public void StartGameFlag()
@@ -216,7 +220,6 @@ namespace HM.Logic.Logic
             Uri url = new Uri("https://localhost:44340/api/words");
             using (var client = new HttpClient())
             {
-
                 client.BaseAddress = url;
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -227,16 +230,16 @@ namespace HM.Logic.Logic
                 var responseData = JsonConvert.DeserializeObject<List<Word>>(jsonString);
                 List<Word> words = responseData;
 
-                if(words == null)
+                if (words == null)
                 {
-                    return null; 
+                    return null;
                 }
 
                 return words;
             }
         }
 
-        public async Task <List<Category>> GetCategoriesFromDB()
+        public async Task<List<Category>> GetCategoriesFromDB()
         {
             Uri url = new Uri("https://localhost:44340/api/categories");
             using (var client = new HttpClient())
@@ -258,6 +261,19 @@ namespace HM.Logic.Logic
 
                 return categories;
             }
+        }
+
+        private List<Word> GetDifficultySliderWords(List<Word> words, GameDifficulty gameDifficulty)
+        {
+            switch (gameDifficulty)
+            {
+                case GameDifficulty.Easy: words.RemoveAll(x => x.Name.Length < 0 && x.Name.Length > 5); break;
+                case GameDifficulty.Normal: words.RemoveAll(x => x.Name.Length < 5 && x.Name.Length > 10); break;
+                case GameDifficulty.Hard: words.RemoveAll(x => x.Name.Length < 10 && x.Name.Length > 15); break;
+                case GameDifficulty.Insane: words.RemoveAll(x => x.Name.Length < 15 && x.Name.Length > 20); break;
+                default: break;
+            }
+            return words;
         }
         #endregion
     }

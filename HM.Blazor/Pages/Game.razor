@@ -50,16 +50,16 @@
             <div class="col-md-4 col-lg-6 ">
                 <div class="form-group">
                     <label for="sel1">Difficulty:</label>
-                    <select class="form-control" id="categorySel">
+                    <select class="form-control" id="difficultySel">
                         @foreach (var difficulty in difficulies)
                         {
-                            <option id="difficultyDropDown" selected="@selectedDifficulty">@difficulty</option>
+                            <option id="difficultyDropDown" selected="@gameLogic.gameDifficulty">@difficulty</option>
                         }
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="sel1">Difficulty:</label>
+                    <label for="sel1">Category:</label>
                     <select class="form-control" id="categorySel">
 
                         @foreach (var item in categories)
@@ -88,7 +88,7 @@
     };
 
     List<string> difficulies = new List<string>
-{
+    {
         GameDifficulty.Easy.ToString(),
         GameDifficulty.Normal.ToString(),
         GameDifficulty.Hard.ToString(),
