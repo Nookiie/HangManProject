@@ -17,7 +17,7 @@ namespace ComponentsV2
     {
         private readonly Uri url = new Uri("https://localhost:44340/api/users/");
 
-        SessionManager _session = new SessionManager();
+        SessionManager session = new SessionManager();
 
         public string Username { get; set; }
 
@@ -46,7 +46,7 @@ namespace ComponentsV2
                 }
 
                 User user = responseData;
-                _session.MapToSession(user);
+                session.MapToSession(user);
 
             }
         }

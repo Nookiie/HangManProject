@@ -18,7 +18,7 @@ namespace ComponentsV2
     {
         private readonly Uri url = new Uri("https://localhost:44340/api/users/");
 
-        SessionManager _session = new SessionManager();
+        SessionManager session = new SessionManager();
 
         public string Username { get; set; }
 
@@ -34,9 +34,6 @@ namespace ComponentsV2
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                // Add the Authorization header with the AccessToken.
-                // client.DefaultRequestHeaders.Add("Authorization", "Bearer " + accessToken);
-
                 HttpResponseMessage response = await client.GetAsync("create");
 
                 string jsonString = await response.Content.ReadAsStringAsync();
@@ -49,7 +46,7 @@ namespace ComponentsV2
                 }
                 else
                 {
-                    _session.MapToSession(user);
+                    session.MapToSession(user);
                 }
             }
         }
