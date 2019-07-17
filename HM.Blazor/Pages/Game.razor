@@ -50,10 +50,11 @@
             <div class="col-md-4 col-lg-6 ">
                 <div class="form-group">
                     <label for="sel1">Difficulty:</label>
-                    <select class="form-control" id="difficultySel">
-                        @foreach (var difficulty in difficulies)
+                    <select class="form-control" id="difficultySel" @onchange="@AssignDifficulty">
+                        @foreach (var difficulty in difficulties)
                         {
-                            <option id="difficultyDropDown" selected="@gameLogic.gameDifficulty">@difficulty</option>
+                            <option id="difficultyDropDown" selected="@selectedDifficulty">@difficulty</option>
+                            counter++;
                         }
                     </select>
                 </div>
@@ -80,19 +81,35 @@
 
     string selectedDifficulty;
 
+    int counter = 0;
+
     List<string> categories = new List<string>
-    {
+{
         "Animal",
         "Locations",
         "Programming"
     };
 
-    List<string> difficulies = new List<string>
-    {
+    List<string> difficulties = new List<string>
+{
         GameDifficulty.Easy.ToString(),
         GameDifficulty.Normal.ToString(),
         GameDifficulty.Hard.ToString(),
         GameDifficulty.Insane.ToString()
     };
+
+    void AssignDifficulty(UIChangeEventArgs e)
+    {
+        var selectedString = e.Value.ToString();
+
+        switch (selectedString)
+        {
+            case "Easy": gameLogic.gameDifficulty = GameDifficulty.Easy; break;
+            case "Normal": gameLogic.gameDifficulty = GameDifficulty.Normal; break;
+            case "Hard": gameLogic.gameDifficulty = GameDifficulty.Hard; break;
+            case "Insane": gameLogic.gameDifficulty = GameDifficulty.Insane; break;
+            default: break;
+        }
+    }
 }
 

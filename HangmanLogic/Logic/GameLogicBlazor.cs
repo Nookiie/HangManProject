@@ -82,13 +82,9 @@ namespace HM.Logic.Logic
                 new Word("barrel"),
             };
 
-            GetDifficultySliderWords(words, gameDifficulty);
+            words = GetDifficultySliderWords(words, gameDifficulty);
 
-            string category = "Animals";
-            IGameData gameData = new GameData(category, words, GameDifficulty.Hard);
-            gameData.CheckWordsForErrors();
-
-            Word chosenWord = gameData.GetRandomWord();
+            Word chosenWord = GetRandomWord(words);
             Word printWord = new Word();
             printWord.Name = chosenWord.Name;
 
@@ -215,6 +211,34 @@ namespace HM.Logic.Logic
             return word.Name[randomIndex];
         }
 
+       
+
+        private List<Word> GetDifficultySliderWords(List<Word> words, GameDifficulty gameDifficulty)
+        {
+            switch (gameDifficulty)
+            {
+                case GameDifficulty.Easy: words.RemoveAll(x => x.Name.Length > 5); break;
+                case GameDifficulty.Normal: words.RemoveAll(x => x.Name.Length < 5 || x.Name.Length > 10); break;
+                case GameDifficulty.Hard: words.RemoveAll(x => x.Name.Length < 10 || x.Name.Length > 15); break;
+                case GameDifficulty.Insane: words.RemoveAll(x => x.Name.Length < 15 || x.Name.Length > 20); break;
+                default: break;
+            }
+            return words;
+        }
+
+        private List<Word> GetCategoryWords(List<Word> words, string category)
+        {
+            return words.Where(x => x.Category.Name == category).ToList();
+        }
+
+        private Word GetRandomWord(List<Word> words)
+        {
+            Random rnd = new Random();
+            var randomIndex = rnd.Next(0, words.Count - 1);
+
+            return words[randomIndex];
+        }
+
         public async Task<List<Word>> GetWordsFromDB()
         {
             Uri url = new Uri("https://localhost:44340/api/words");
@@ -261,19 +285,6 @@ namespace HM.Logic.Logic
 
                 return categories;
             }
-        }
-
-        private List<Word> GetDifficultySliderWords(List<Word> words, GameDifficulty gameDifficulty)
-        {
-            switch (gameDifficulty)
-            {
-                case GameDifficulty.Easy: words.RemoveAll(x => x.Name.Length < 0 && x.Name.Length > 5); break;
-                case GameDifficulty.Normal: words.RemoveAll(x => x.Name.Length < 5 && x.Name.Length > 10); break;
-                case GameDifficulty.Hard: words.RemoveAll(x => x.Name.Length < 10 && x.Name.Length > 15); break;
-                case GameDifficulty.Insane: words.RemoveAll(x => x.Name.Length < 15 && x.Name.Length > 20); break;
-                default: break;
-            }
-            return words;
         }
         #endregion
     }
