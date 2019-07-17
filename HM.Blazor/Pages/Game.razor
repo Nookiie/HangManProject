@@ -15,7 +15,11 @@
             <div class="col-md-6 col-lg-4">
                 <input name="MainCharInput" @bind="@gameLogic.inputDisplay" type="text" />
                 <button class="btn btn-primary" @onclick="@gameLogic.GuessLetter">Guess</button>
-                <button class="btn btn-primary" @onclick="@gameLogic.Joker">Use Joker</button>
+                
+                @if (gameLogic.jokers != 0)
+                {
+                    <button class="btn btn-primary" @onclick="@gameLogic.Joker">Use Joker</button>
+                }
             </div>
             <div id="gameData" class="col-md-6 col-lg-4" style="font-family:Georgia">
                 <p>Words guessed:@gameLogic.wordCount</p>
@@ -29,14 +33,14 @@
 
     else if (!gameLogic.gameInProgress && gameLogic.gameWon)
     {
-        <p>You won!</p>
+        <h1>You won!</h1>
 
         <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.StartGame">New Game</button>
     }
 
     else if (!gameLogic.gameInProgress && gameLogic.gameLost)
     {
-        <p>You lost!</p>
+        <h1>You lost!</h1>
 
         <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.StartGame">New Game</button>
     }
@@ -47,10 +51,10 @@
                 <div class="form-group">
                     <label for="sel1">Difficulty:</label>
                     <select class="form-control" id="categorySel">
-                        <option>@GameDifficulty.Easy.ToString()</option>
-                        <option>@GameDifficulty.Normal.ToString()</option>
-                        <option>@GameDifficulty.Hard.ToString()</option>
-                        <option>@GameDifficulty.Insane.ToString()</option>
+                        <option>@GameDifficulty.Easy</option>
+                        <option>@GameDifficulty.Normal</option>
+                        <option>@GameDifficulty.Hard</option>
+                        <option>@GameDifficulty.Insane</option>
                     </select>
                 </div>
 
