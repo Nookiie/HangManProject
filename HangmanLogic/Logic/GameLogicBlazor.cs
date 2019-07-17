@@ -76,17 +76,18 @@ namespace HM.Logic.Logic
 
         public void StartGame()
         {
-           List<Category> categories = new List<Category>()
+            List<Category> categories = new List<Category>()
             {
                 new Category("Animals"),
-                new Category("Stuff"),
+                new Category("Stuff")
             };
+
             Categories = categories;
 
             List<Word> words = new List<Word> // Example words to be used in case of DB failure
             {
                 new Word("flamingo", categories[0]),
-                new Word("apple", categories[1]), 
+                new Word("apple", categories[1]),
                 new Word("stuff", categories[1]),
                 new Word("elephant", categories[0]),
                 new Word("archipelago", categories[1]),
@@ -95,7 +96,7 @@ namespace HM.Logic.Logic
             };
 
             words = GetDifficultySliderWords(words, gameDifficulty);
-            words = GetCategoryWords(words, gameCategory);
+            // words = GetCategoryWords(words, gameCategory);
 
             if (words.Count == 0)
             {
@@ -249,7 +250,7 @@ namespace HM.Logic.Logic
 
         private Word GetRandomWord(List<Word> words)
         {
-           
+
             Random rnd = new Random();
             var randomIndex = rnd.Next(0, words.Count - 1);
 

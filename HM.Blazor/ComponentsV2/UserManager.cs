@@ -39,7 +39,7 @@ namespace ComponentsV2
                 string jsonString = await response.Content.ReadAsStringAsync();
                 var responseData = JsonConvert.DeserializeObject<User>(jsonString);
                 User user = responseData;
-
+                
                 if (user == null)
                 {
                     return;
