@@ -7,7 +7,7 @@
     <div class="col-lg-4">
         @foreach (var letter in gameLogic.printWordDisplay.Name)
         {
-            <h1 style="display:inline; font-size:large">@letter</h1>
+            <h1 style="display:inline;">@letter</h1>
         }
     </div>
         <div class="row" style="display:block;">
@@ -51,11 +51,8 @@
     }
 }
 @code {
+    GameData gameData = new GameData();
 
-    [Inject]
-    private GameData gameData { get; set; }
-
-    [Inject]
-    private GameLogicBlazor gameLogic { get; set; }
+    GameLogicBlazor gameLogic = new GameLogicBlazor();
 }
 
