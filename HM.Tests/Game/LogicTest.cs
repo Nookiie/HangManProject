@@ -125,15 +125,36 @@ namespace HangmanTest
             gameLogic.chosenWordDisplay = new Word("elephant");
             gameLogic.printWordDisplay = new Word("_ _ _ _ _ _ _ _");
 
-            var unexpectedLetter = 'e';
             var unexpectedPrintWord = new Word("e _ e _ _ _ _ _");
 
-            gameLogic.Joker();
-            Assert.AreNotEqual(unexpectedPrintWord.Name, gameLogic.printWordDisplay.Name);
+            foreach (var letter in gameLogic.chosenWordDisplay.Name)
+            {
+                gameLogic.Joker();
+                Assert.AreNotEqual(unexpectedPrintWord.Name, gameLogic.printWordDisplay.Name);
+            }
         }
         #endregion
 
         #region Blazor
+
+        [Theory]
+        public static void GameLogicBlazorCleanupTest()
+        {
+            GameLogicBlazor gameLogic = new GameLogicBlazor();
+            gameLogic.attempts = 12;
+            gameLogic.chosenWordDisplay = new Word("example");
+            gameLogic.printWordDisplay = new Word("example");
+            gameLogic.tries = 4;
+            gameLogic.score = 45;
+            gameLogic.wordCount = 12;
+
+            gameLogic.CleanUp();
+
+            Assert.AreEqual(0, gameLogic.attempts);
+            Assert.AreEqual(0, gameLogic.tries);
+            Assert.AreEqual(0, gameLogic.score);
+            Assert.AreEqual(1, gameLogic.jokers);
+        }
 
         [Theory]
         public static void GameLogicBlazorStartFlagTest()

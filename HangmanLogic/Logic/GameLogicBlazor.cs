@@ -183,6 +183,7 @@ namespace HM.Logic.Logic
         {
             chosenWordDisplay = null;
             printWordDisplay = null;
+            attempts = 0;
             wordCount = 0;
             tries = 0;
             score = 0;
