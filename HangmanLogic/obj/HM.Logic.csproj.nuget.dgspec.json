@@ -4,6 +4,128 @@
     "C:\\Users\\Nookie\\source\\repos\\Hangman\\HangmanLogic\\HM.Logic.csproj": {}
   },
   "projects": {
+    "C:\\Users\\Nookie\\source\\repos\\Hangman\\AppServices\\HM.AppServices.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Nookie\\source\\repos\\Hangman\\AppServices\\HM.AppServices.csproj",
+        "projectName": "HM.AppServices",
+        "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\AppServices\\HM.AppServices.csproj",
+        "packagesPath": "C:\\Users\\Nookie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\AppServices\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Nookie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\Users\\Nookie\\source\\repos\\Hangman\\Common\\HM.Common.csproj": {
+                "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Common\\HM.Common.csproj"
+              },
+              "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj": {
+                "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj"
+              },
+              "C:\\Users\\Nookie\\source\\repos\\Hangman\\Repos\\HM.Repositories.csproj": {
+                "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Repos\\HM.Repositories.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          }
+        }
+      }
+    },
+    "C:\\Users\\Nookie\\source\\repos\\Hangman\\Common\\HM.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Common\\HM.Common.csproj",
+        "projectName": "HM.Common",
+        "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Common\\HM.Common.csproj",
+        "packagesPath": "C:\\Users\\Nookie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Nookie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj": {
+                "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          }
+        }
+      }
+    },
     "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -118,6 +240,9 @@
               },
               "C:\\Users\\Nookie\\source\\repos\\Hangman\\Repos\\HM.Repositories.csproj": {
                 "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Repos\\HM.Repositories.csproj"
+              },
+              "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj": {
+                "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj"
               }
             }
           }
@@ -141,6 +266,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
@@ -199,6 +327,127 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          }
+        }
+      }
+    },
+    "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj",
+        "projectName": "HM.WebAPI",
+        "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj",
+        "packagesPath": "C:\\Users\\Nookie\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Nookie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\Users\\Nookie\\source\\repos\\Hangman\\AppServices\\HM.AppServices.csproj": {
+                "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\AppServices\\HM.AppServices.csproj"
+              },
+              "C:\\Users\\Nookie\\source\\repos\\Hangman\\Common\\HM.Common.csproj": {
+                "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Common\\HM.Common.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.1.1, )"
+            },
+            "Microsoft.AspNetCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.StaticFiles": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0-preview6.19304.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.0.0-preview6.19304.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0-preview6.19304.10, )"
+            },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[3.0.0-preview6.19304.6, )"
+            },
+            "Microsoft.NETCore.App": {
+              "include": "None",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0-preview6-27804-01, )",
+              "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.BrowserLink": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.0.0-preview6-19319-03, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

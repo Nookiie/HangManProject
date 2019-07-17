@@ -2,12 +2,17 @@
 using HM.Data.Entities.Difficulty;
 using HM.Data.Entities.GameCondition;
 using HM.Data.Entities.GameItems;
+using Newtonsoft.Json;
 using Repos.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using WebAPI.Controllers;
 
 namespace HM.Logic.Logic
 {
@@ -71,7 +76,8 @@ namespace HM.Logic.Logic
                 new Word("stuff"),
                 new Word("elephant"),
                 new Word("archipelago"),
-                new Word("imagination")
+                new Word("imagination"),
+                new Word("barrel"),
             };
 
             string category = "Animals";
@@ -203,6 +209,55 @@ namespace HM.Logic.Logic
             Random rnd = new Random();
             int randomIndex = rnd.Next(0, word.Name.Length - 1);
             return word.Name[randomIndex];
+        }
+
+        public async Task<List<Word>> GetWordsFromDB()
+        {
+            Uri url = new Uri("https://localhost:44340/api/words");
+            using (var client = new HttpClient())
+            {
+
+                client.BaseAddress = url;
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync("get");
+
+                string jsonString = await response.Content.ReadAsStringAsync();
+                var responseData = JsonConvert.DeserializeObject<List<Word>>(jsonString);
+                List<Word> words = responseData;
+
+                if(words == null)
+                {
+                    return null; 
+                }
+
+                return words;
+            }
+        }
+
+        public async Task <List<Category>> GetCategoriesFromDB()
+        {
+            Uri url = new Uri("https://localhost:44340/api/categories");
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = url;
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync("get");
+
+                string jsonString = await response.Content.ReadAsStringAsync();
+                var responseData = JsonConvert.DeserializeObject<List<Category>>(jsonString);
+                List<Category> categories = responseData;
+
+                if (categories == null)
+                {
+                    return null;
+                }
+
+                return categories;
+            }
         }
         #endregion
     }

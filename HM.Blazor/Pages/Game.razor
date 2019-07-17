@@ -5,17 +5,17 @@
 @{
     if (gameLogic.gameInProgress)
     {
-    <div class="col-lg-4">
-        @foreach (var letter in gameLogic.printWordDisplay.Name)
-        {
-            <h1 style="display:inline;">@letter</h1>
-        }
-    </div>
+        <div class="col-lg-4">
+            @foreach (var letter in gameLogic.printWordDisplay.Name)
+            {
+                <h1 style="display:inline;">@letter</h1>
+            }
+        </div>
         <div class="row" style="display:block;">
             <div class="col-md-6 col-lg-4">
                 <input name="MainCharInput" @bind="@gameLogic.inputDisplay" type="text" />
                 <button class="btn btn-primary" @onclick="@gameLogic.GuessLetter">Guess</button>
-                
+
                 @if (gameLogic.jokers != 0)
                 {
                     <button class="btn btn-primary" @onclick="@gameLogic.Joker">Use Joker</button>
@@ -33,14 +33,14 @@
 
     else if (!gameLogic.gameInProgress && gameLogic.gameWon)
     {
-        <h1>You won!</h1>
+        <h1 style="font-family:Georgia;">You won!</h1>
 
         <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.StartGame">New Game</button>
     }
 
     else if (!gameLogic.gameInProgress && gameLogic.gameLost)
     {
-        <h1>You lost!</h1>
+        <h1 style="font-family:Georgia;">You lost!</h1>
 
         <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.StartGame">New Game</button>
     }
@@ -51,10 +51,10 @@
                 <div class="form-group">
                     <label for="sel1">Difficulty:</label>
                     <select class="form-control" id="categorySel">
-                        <option>@GameDifficulty.Easy</option>
-                        <option>@GameDifficulty.Normal</option>
-                        <option>@GameDifficulty.Hard</option>
-                        <option>@GameDifficulty.Insane</option>
+                        @foreach (var difficulty in difficulies)
+                        {
+                            <option id="difficultyDropDown" selected="@selectedDifficulty">@difficulty</option>
+                        }
                     </select>
                 </div>
 
@@ -64,7 +64,7 @@
 
                         @foreach (var item in categories)
                         {
-                            <option>@item</option>
+                            <option id="categoryDropDown" selected="@selectedCategory">@item</option>
                         }
                     </select>
                 </div>
@@ -76,12 +76,23 @@
 @code {
     GameLogicBlazor gameLogic = new GameLogicBlazor();
 
+    string selectedCategory;
+
+    string selectedDifficulty;
+
     List<string> categories = new List<string>
     {
         "Animal",
-        "Object",
+        "Locations",
         "Programming"
     };
 
+    List<string> difficulies = new List<string>
+{
+        GameDifficulty.Easy.ToString(),
+        GameDifficulty.Normal.ToString(),
+        GameDifficulty.Hard.ToString(),
+        GameDifficulty.Insane.ToString()
+    };
 }
 

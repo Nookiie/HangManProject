@@ -240,6 +240,9 @@
               },
               "C:\\Users\\Nookie\\source\\repos\\Hangman\\Repos\\HM.Repositories.csproj": {
                 "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Repos\\HM.Repositories.csproj"
+              },
+              "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj": {
+                "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\WebAPI\\HM.WebAPI.csproj"
               }
             }
           }
@@ -263,6 +266,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }

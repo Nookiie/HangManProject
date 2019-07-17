@@ -8,6 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Data\HM.Data.csproj" />
     <ProjectReference Include="..\Repos\HM.Repositories.csproj" />
+    <ProjectReference Include="..\WebAPI\HM.WebAPI.csproj" />
   </ItemGroup>
 
 </Project>
