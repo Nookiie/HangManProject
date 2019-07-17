@@ -2627,7 +2627,8 @@
       },
       "HM.Logic/1.0.0": {
         "dependencies": {
-          "HM.Data": "1.0.0"
+          "HM.Data": "1.0.0",
+          "HM.Repositories": "1.0.0"
         },
         "runtime": {
           "HM.Logic.dll": {}

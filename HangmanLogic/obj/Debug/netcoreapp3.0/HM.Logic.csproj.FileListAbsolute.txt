@@ -45,3 +45,5 @@ C:\Users\Nookie\source\repos\Hangman\HangmanLogic\bin\Debug\netcoreapp3.0\Micros
 C:\Users\Nookie\source\repos\Hangman\HangmanLogic\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Options.dll
 C:\Users\Nookie\source\repos\Hangman\HangmanLogic\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Primitives.dll
 C:\Users\Nookie\source\repos\Hangman\HangmanLogic\bin\Debug\netcoreapp3.0\System.Security.Permissions.dll
+C:\Users\Nookie\source\repos\Hangman\HangmanLogic\bin\Debug\netcoreapp3.0\HM.Repositories.dll
+C:\Users\Nookie\source\repos\Hangman\HangmanLogic\bin\Debug\netcoreapp3.0\HM.Repositories.pdb

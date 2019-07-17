@@ -17,26 +17,26 @@
         </div>
 
         <div class="form-group">
-            <button class="btn btn-primary" @onclick="@LogUser">Log in</button>
+            <button class="btn btn-primary" @onclick="@LogUserBlazor">Log in</button>
         </div>
     </div>
 </div>
 
 @code {
-bool isAdmin = false;
+    bool isAdmin = false;
 
-async void LogUser()
-{
-    LoginManager loginManager = new LoginManager();
-    loginManager.Username = Username;
-    loginManager.Password = Password;
-    loginManager.Email = Email;
-    await loginManager.LogUser();
-}
+    async void LogUserBlazor()
+    {
+        LoginManager loginManager = new LoginManager();
+        loginManager.Username = Username;
+        loginManager.Password = Password;
+        loginManager.Email = Email;
+        await loginManager.LogUser();
+    }
 
-void ToggleAdminValue()
-{
-    isAdmin = !isAdmin;
-}
+    void ToggleAdminValue()
+    {
+        isAdmin = !isAdmin;
+    }
 
 }

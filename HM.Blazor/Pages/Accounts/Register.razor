@@ -22,22 +22,22 @@
         </div>
 
         <div class="form-group">
-            <button class="btn btn-primary" @onclick="@RegisterUser">Register</button>
+            <button class="btn btn-primary" @onclick="@RegisterUserBlazor">Register</button>
         </div>
     </div>
 </div>
 
 @code {
 
-async void RegisterUser()
-{
-    UserManager userManager = new UserManager();
+    async void RegisterUserBlazor()
+    {
+        UserManager userManager = new UserManager();
 
-    userManager.Username = Username;
-    userManager.Password = Password;
-    userManager.Email = Email;
+        userManager.Username = Username;
+        userManager.Password = Password;
+        userManager.Email = Email;
 
-    await userManager.RegisterUser();
-}
+        await userManager.RegisterUser();
+    }
 
 }

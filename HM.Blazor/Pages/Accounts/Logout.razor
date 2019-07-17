@@ -8,9 +8,9 @@
 <div class="row">
 
     <NavLink class="nav-link" href="Accounts/logout">
-        <button class="btn-primary" @onclick="@Logout">Yes</button>   
+        <button class="btn-primary" @onclick="@LogoutBlazor">Yes</button>
     </NavLink>
-    
+
     <NavLink class="nav-link" href="index">
         <button class="btn-primary">No</button>
     </NavLink>
@@ -20,7 +20,7 @@
 
     SessionManager session = new SessionManager();
 
-    void Logout()
+    void LogoutBlazor()
     {
         session.CurrentSession = null;
     }

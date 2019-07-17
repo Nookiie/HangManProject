@@ -8,7 +8,8 @@
     ".NETCoreApp,Version=v3.0": {
       "HM.Logic/1.0.0": {
         "dependencies": {
-          "HM.Data": "1.0.0"
+          "HM.Data": "1.0.0",
+          "HM.Repositories": "1.0.0"
         },
         "runtime": {
           "HM.Logic.dll": {}
@@ -579,6 +580,14 @@
         "runtime": {
           "HM.Data.dll": {}
         }
+      },
+      "HM.Repositories/1.0.0": {
+        "dependencies": {
+          "HM.Data": "1.0.0"
+        },
+        "runtime": {
+          "HM.Repositories.dll": {}
+        }
       }
     }
   },
@@ -1009,6 +1018,11 @@
       "hashPath": "system.threading.tasks.extensions.4.5.2.nupkg.sha512"
     },
     "HM.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HM.Repositories/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

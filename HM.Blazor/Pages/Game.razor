@@ -1,250 +1,61 @@
 @page "/game"
-@using System;
-@using System.Collections.Generic;
-@using System.Linq;
-@using System.Text;
 @using HM.Data.Entities.GameItems;
-@using HM.Data.Entities.Difficulty;
-@using HM.Data.Entities.GameCondition;
-@using HM.Data.Abstraction;
-@using System.Text.RegularExpressions;
-@using HM.Repositories.Abstractions;
-@using Repos.Implementations;
-
-<h1>Welcome to the Hangman Game</h1>
-
+@using HM.Logic.Logic;
 @{
-    if (gameInProgress)
+    if (gameLogic.gameInProgress)
     {
-        foreach (var letter in printWordDisplay.Name)
+    <div class="col-lg-4">
+        @foreach (var letter in gameLogic.printWordDisplay.Name)
         {
-            <span>@letter</span>
+            <h1 style="display:inline; font-size:large">@letter</h1>
         }
-
-        <p>Words guessed:@wordCount</p>
-        <p>Number of tries:@tries</p>
-        <p>Score:@score</p>
-        <p>Jokers available:@jokers</p>
-        <p>Input:@inputDisplayFirstLetter</p>
-        <input name="MainCharInput" @bind="@inputDisplay" type="text" />
-        <button class="btn btn-primary" @onclick="@GuessLetter">Guess</button>
-        <button class="btn btn-primary" @onclick="@Joker">Use Joker</button>
+    </div>
+        <div class="row" style="display:block;">
+            <div class="col-md-6 col-lg-4">
+                <input name="MainCharInput" @bind="@gameLogic.inputDisplay" type="text" />
+                <button class="btn btn-primary" @onclick="@gameLogic.GuessLetter">Guess</button>
+                <button class="btn btn-primary" @onclick="@gameLogic.Joker">Use Joker</button>
+            </div>
+            <div id="gameData" class="col-md-6 col-lg-4" style="font-family:Georgia">
+                <p>Words guessed:@gameLogic.wordCount</p>
+                <p>Number of tries:@gameLogic.tries</p>
+                <p>Score:@gameLogic.score</p>
+                <p>Jokers available:@gameLogic.jokers</p>
+                <p>Input:@gameLogic.inputDisplayFirstLetter</p>
+            </div>
+        </div>
     }
 
-    else if (!gameInProgress && gameWon)
+    else if (!gameLogic.gameInProgress && gameLogic.gameWon)
     {
         <p>You won!</p>
 
-        <button name="startBtn" class="btn btn-primary" @onclick="@StartGame">New Game</button>
+        <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.StartGame">New Game</button>
     }
 
-    else if (!gameInProgress && gameLost)
+    else if (!gameLogic.gameInProgress && gameLogic.gameLost)
     {
         <p>You lost!</p>
 
-        <button name="startBtn" class="btn btn-primary" @onclick="@StartGame">New Game</button>
+        <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.StartGame">New Game</button>
     }
     else
     {
-        <button name="startBtn" class="btn btn-primary" @onclick="@StartGame">New Game</button>
+        <div class="row">
+            <div class="col-md-4 col-lg-6 ">
+                <option>
+                </option>
+            </div>
+        </div>
+        <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.StartGame">New Game</button>
     }
 }
 @code {
 
-    #region Variables
+    [Inject]
+    private GameData gameData { get; set; }
 
-    Word printWordDisplay;
-
-    Word chosenWordDisplay;
-
-    string inputDisplay;
-
-    char inputDisplayFirstLetter;
-
-    bool gameInProgress = false;
-
-    bool gameFinished = true;
-
-    bool gameWon = false;
-
-    bool gameLost = false;
-
-    int wordCount = 0;
-
-    int tries = 0;
-
-    int attempts = 0;
-
-    int jokers = MAX_JOKERS;
-
-    int score = 0;
-
-    #endregion
-
-    #region DifficultyValues
-
-    private const int MAX_FAILS = 9;
-
-    private const int DEFAULT_SCORE_MULTIPLIER = 5;
-
-    private const int SCORE_MULTIPLIER_EASY = 5;
-
-    private const int SCORE_MULTIPLIER_NORMAL = 5;
-
-    private const int SCORE_MULTIPLIER_HARD = 5;
-
-    private const int SCORE_MULTIPLIER_INSANE = 5;
-
-    private const int MAX_JOKERS = 1;
-
-    #endregion
-
-    #region Methods
-
-    GameData gameData = new GameData();
-
-    void StartGame()
-    {
-        List<Word> words = new List<Word>
-{
-                new Word("apple"),
-                new Word("stuff"),
-                new Word("elephant"),
-                new Word("archipelago"),
-                new Word("imagination")
-        };
-
-        string category = "Animals";
-        IGameData gameData = new GameData(category, words, GameDifficulty.Hard);
-        gameData.CheckWordsForErrors();
-
-        Word chosenWord = gameData.GetRandomWord();
-        Word printWord = new Word();
-        printWord.Name = chosenWord.Name;
-
-        printWord.Name = new Regex("\\S").Replace(chosenWord.Name, "_ ");
-        printWordDisplay = printWord;
-        chosenWordDisplay = chosenWord;
-        StartGameFlag(); // Sets up that the game has just started
-    }
-
-    void StartGameFlag()
-    {
-        gameInProgress = true;
-    }
-
-    void GetInput()
-    {
-        if (string.IsNullOrWhiteSpace(inputDisplay))
-            return;
-
-        inputDisplayFirstLetter = inputDisplay[0];
-    }
-
-    void GuessLetter()
-    {
-        GetInput();
-        bool isGuessed = false;
-
-        if (inputDisplayFirstLetter == '!')
-        {
-            Joker();
-        }
-
-        for (int i = 0; i < chosenWordDisplay.Name.Length; i++)
-        {
-            if (inputDisplayFirstLetter == chosenWordDisplay.Name[i])
-            {
-                StringBuilder sb = new StringBuilder(printWordDisplay.Name);
-                sb[i] = inputDisplayFirstLetter;
-                printWordDisplay.Name = sb.ToString();
-
-                isGuessed = true;
-                wordCount++;
-            }
-        }
-
-        if (!isGuessed)
-        {
-            tries++;
-        }
-
-        if (wordCount == chosenWordDisplay.Name.Length)
-        {
-            EndGame(GameCondition.Won);
-        }
-
-        if (tries == MAX_FAILS)
-        {
-            EndGame(GameCondition.Lost);
-        }
-    }
-
-    void EndGame(GameCondition gameCondition)
-    {
-        gameInProgress = false;
-        gameFinished = true;
-
-        if (gameCondition == GameCondition.Won)
-        {
-            gameWon = true;
-            gameLost = false;
-        }
-        else
-        {
-            gameLost = true;
-            gameWon = false;
-        }
-
-        CleanUp();
-    }
-
-    void CleanUp()
-    {
-        chosenWordDisplay = null;
-        printWordDisplay = null;
-        wordCount = 0;
-        tries = 0;
-        score = 0;
-        jokers = MAX_JOKERS;
-    }
-
-    void Joker()
-    {
-        if (jokers > 0)
-        {
-            do
-            {
-                inputDisplayFirstLetter = GetRandomLetterFromWord(chosenWordDisplay);
-            }
-            while (Regex.Matches(inputDisplayFirstLetter.ToString(), chosenWordDisplay.Name).Count() > 1);
-
-            jokers--;
-
-            GuessLetter();
-        }
-
-        else
-        {
-            return;
-        }
-    }
-
-    char GetRandomLetterFromWord(Word word)
-    {
-        Random rnd = new Random();
-        int randomIndex = rnd.Next(0, word.Name.Length - 1);
-        return word.Name[randomIndex];
-    }
-
-    List<Word> GetWordsFromDatabase()
-    {
-        using (IUnitOfWork unitOfWork = new UnitOfWork())
-        {
-            return unitOfWork.Words.Get().ToList();
-        }
-    }
-
-    #endregion
+    [Inject]
+    private GameLogicBlazor gameLogic { get; set; }
 }
 

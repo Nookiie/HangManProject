@@ -9,7 +9,7 @@ namespace HM.Blazor.Session
 {
     public class SessionManager : ComponentBase
     {
-        public User CurrentSession { get; set; }
+        public User CurrentSession { get; set; } = new User();
 
         public void MapToSession(User user)
         {

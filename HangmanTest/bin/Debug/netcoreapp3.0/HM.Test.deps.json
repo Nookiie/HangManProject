@@ -1725,10 +1725,19 @@
       },
       "HM.Logic/1.0.0": {
         "dependencies": {
-          "HM.Data": "1.0.0"
+          "HM.Data": "1.0.0",
+          "HM.Repositories": "1.0.0"
         },
         "runtime": {
           "HM.Logic.dll": {}
+        }
+      },
+      "HM.Repositories/1.0.0": {
+        "dependencies": {
+          "HM.Data": "1.0.0"
+        },
+        "runtime": {
+          "HM.Repositories.dll": {}
         }
       }
     }
@@ -2732,6 +2741,11 @@
       "sha512": ""
     },
     "HM.Logic/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HM.Repositories/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

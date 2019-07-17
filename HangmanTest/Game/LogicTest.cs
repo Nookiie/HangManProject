@@ -14,33 +14,9 @@ namespace HangmanTest
     {
         [TestMethod]
         [TestCategory("Argument")]
-        [DataRow('a')]
-        [DataRow('s')]
-        [DataRow('f')]
-        [DataRow('1')]
-        [DataRow('A')]
-        public static void InputGuessTest(char input)
+        public static void GameConditionArgumentTest()
         {
-            if (char.IsWhiteSpace(input))
-            {
-                throw new ArgumentException("Input Symbol is whitespace: " + input.ToString());
-            }
-
-            if (char.IsUpper(input))
-            {
-                throw new ArgumentException("Input Symbol is upper-case: " + input.ToString());
-            }
-
-            if (char.IsNumber(input) || char.IsDigit(input))
-            {
-                throw new ArgumentException("Input symbol is a number: " + input.ToString());
-            }
-        }
-
-        [TestMethod]
-        [TestCategory("Argument")]
-        public static void GameConditionArgumentTest(GameCondition gameCondition)
-        {
+            GameCondition gameCondition = new GameCondition();
             switch (gameCondition)
             {
                 case GameCondition.Lost: return;
@@ -51,8 +27,9 @@ namespace HangmanTest
 
         [TestMethod]
         [TestCategory("Argument")]
-        public static void GameDifficultyArgumentTest(GameDifficulty gameDifficulty)
+        public static void GameDifficultyArgumentTest()
         {
+            GameDifficulty gameDifficulty = new GameDifficulty();
             switch (gameDifficulty)
             {
                 case GameDifficulty.Easy: return; 
@@ -79,8 +56,9 @@ namespace HangmanTest
 
         [TestMethod]
         [TestCategory("Argument")]
-        public static void GameDataArgumentTest(GameData gameData)
+        public static void GameDataArgumentTest()
         {
+            GameData gameData = new GameData();
             Assert.IsNotNull(gameData);
             
             if (gameData.Words.Count == 0)
@@ -181,7 +159,7 @@ namespace HangmanTest
 
             Word chosenWord = gameData.GetRandomWord();
             Word printWord = chosenWord;
-            char input = GameLogic.GetJoker(gameData, chosenWord, printWord);
+            char input = GameLogicConsole.GetJoker(gameData, chosenWord, printWord);
 
             if (!chosenWord.Name.Contains(input))
             {
@@ -205,7 +183,7 @@ namespace HangmanTest
 
             Word chosenWord = gameData.GetRandomWord();
             Word printWord = chosenWord;
-            char input = GameLogic.GetJoker(gameData, chosenWord, printWord);
+            char input = GameLogicConsole.GetJoker(gameData, chosenWord, printWord);
 
             Assert.AreNotEqual(unexpectedLetter, input);
         }

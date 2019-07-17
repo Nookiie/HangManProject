@@ -3481,7 +3481,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.0",
         "dependencies": {
-          "HM.Data": "1.0.0"
+          "HM.Data": "1.0.0",
+          "HM.Repositories": "1.0.0"
         },
         "compile": {
           "bin/placeholder/HM.Logic.dll": {}

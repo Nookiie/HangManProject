@@ -2515,13 +2515,27 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.0",
         "dependencies": {
-          "HM.Data": "1.0.0"
+          "HM.Data": "1.0.0",
+          "HM.Repositories": "1.0.0"
         },
         "compile": {
           "bin/placeholder/HM.Logic.dll": {}
         },
         "runtime": {
           "bin/placeholder/HM.Logic.dll": {}
+        }
+      },
+      "HM.Repositories/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "dependencies": {
+          "HM.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/HM.Repositories.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HM.Repositories.dll": {}
         }
       }
     }
@@ -8132,6 +8146,11 @@
       "type": "project",
       "path": "../HangmanLogic/HM.Logic.csproj",
       "msbuildProject": "../HangmanLogic/HM.Logic.csproj"
+    },
+    "HM.Repositories/1.0.0": {
+      "type": "project",
+      "path": "../Repos/HM.Repositories.csproj",
+      "msbuildProject": "../Repos/HM.Repositories.csproj"
     }
   },
   "projectFileDependencyGroups": {

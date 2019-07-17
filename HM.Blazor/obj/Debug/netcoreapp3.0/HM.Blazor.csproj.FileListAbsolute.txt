@@ -189,3 +189,5 @@ C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDecl
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\Words\Index.razor.g.cs
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Categories\Index.razor.g.cs
 C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Words\Index.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\RazorDeclaration\Pages\Accounts\Logout.razor.g.cs
+C:\Users\Nookie\source\repos\Hangman\HM.Blazor\obj\Debug\netcoreapp3.0\Razor\Pages\Accounts\Logout.razor.g.cs

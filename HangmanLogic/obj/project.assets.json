@@ -808,6 +808,19 @@
         "runtime": {
           "bin/placeholder/HM.Data.dll": {}
         }
+      },
+      "HM.Repositories/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.0",
+        "dependencies": {
+          "HM.Data": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/HM.Repositories.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HM.Repositories.dll": {}
+        }
       }
     }
   },
@@ -3028,11 +3041,17 @@
       "type": "project",
       "path": "../Data/HM.Data.csproj",
       "msbuildProject": "../Data/HM.Data.csproj"
+    },
+    "HM.Repositories/1.0.0": {
+      "type": "project",
+      "path": "../Repos/HM.Repositories.csproj",
+      "msbuildProject": "../Repos/HM.Repositories.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.0": [
-      "HM.Data >= 1.0.0"
+      "HM.Data >= 1.0.0",
+      "HM.Repositories >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3067,6 +3086,9 @@
           "projectReferences": {
             "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj": {
               "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Data\\HM.Data.csproj"
+            },
+            "C:\\Users\\Nookie\\source\\repos\\Hangman\\Repos\\HM.Repositories.csproj": {
+              "projectPath": "C:\\Users\\Nookie\\source\\repos\\Hangman\\Repos\\HM.Repositories.csproj"
             }
           }
         }

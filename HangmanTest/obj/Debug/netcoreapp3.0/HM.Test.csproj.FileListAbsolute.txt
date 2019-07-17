@@ -130,3 +130,5 @@ C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\Microso
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Options.dll
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Primitives.dll
 C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\System.Security.Permissions.dll
+C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\HM.Repositories.dll
+C:\Users\Nookie\source\repos\Hangman\HangmanTest\bin\Debug\netcoreapp3.0\HM.Repositories.pdb
