@@ -72,17 +72,17 @@ namespace HM.Data.Entities.GameItems
 
         #endregion
 
-        private int _currentFails = 0;
+        public int currentFails = 0;
 
-        private int _currentWins = 0;
+        public int currentWins = 0;
 
-        private int _jokers = 1;
+        public int jokers = 1;
 
-        private int _streak = 0;
+        public int streak = 0;
 
-        private int _scoreMultiplier = 1;
+        public int scoreMultiplier = 1;
 
-        private int _score = 0;
+        public int score = 0;
 
         #endregion
 

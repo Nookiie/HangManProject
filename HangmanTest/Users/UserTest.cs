@@ -9,8 +9,6 @@ namespace Test
     [TestClass]
     public class UserTest
     {
-        private static readonly string secret = Guid.NewGuid().ToString();
-
         [TestMethod]
         public static void UsersArgumentTest(List<User> users)
         {

@@ -6,6 +6,7 @@ using HM.Data.Entities.Difficulty;
 using HM.Data.Abstraction;
 using HangmanLogic.Logic;
 using HM.Data.Entities.GameCondition;
+using HM.Logic.Logic;
 
 namespace HangmanTest
 {
@@ -165,6 +166,41 @@ namespace HangmanTest
             {
                 throw new ApplicationException("Letter is not part of the chosen word: " + input.ToString());
             }
+        }
+
+        [TestMethod]
+        public static void GameLogicBlazorStartFlagTest()
+        {
+            GameLogicBlazor gameLogicBlazor = new GameLogicBlazor();
+            gameLogicBlazor.StartGame();
+
+            Assert.IsTrue(gameLogicBlazor.gameInProgress);
+        }
+
+        [TestMethod]
+        public static void GameLogicBlazorFlagEndGameTest()
+        {
+            GameLogicBlazor gameLogicBlazor = new GameLogicBlazor();
+            gameLogicBlazor.EndGame(GameCondition.Won);
+
+            Assert.IsTrue(gameLogicBlazor.gameFinished);
+            Assert.IsTrue(gameLogicBlazor.gameWon);
+
+            gameLogicBlazor.EndGame(GameCondition.Lost);
+
+            Assert.IsTrue(gameLogicBlazor.gameFinished);
+            Assert.IsTrue(gameLogicBlazor.gameLost);
+        }
+
+        [TestMethod]
+        public static void GameLogicBlazorFlagTest()
+        {
+            GameLogicBlazor gameLogicBlazor = new GameLogicBlazor();
+
+            var expectedJokers = gameLogicBlazor.jokers;
+            gameLogicBlazor.Joker();
+
+            Assert.AreEqual(expectedJokers, gameLogicBlazor.jokers - 1);
         }
 
         [TestMethod]
