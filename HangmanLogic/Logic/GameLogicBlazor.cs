@@ -197,6 +197,13 @@ namespace HM.Logic.Logic
             jokers = MAX_JOKERS;
         }
 
+        public void ResetGame()
+        {
+            gameInProgress = false;
+            gameWon = false;
+            gameLost = false;
+        }
+
         public void Joker()
         {
             if (jokers > 0)
@@ -213,10 +220,9 @@ namespace HM.Logic.Logic
                 {
                     inputDisplayFirstLetter = GetRandomLetterFromWord(chosenWordDisplay);
                 }
-                while (Regex.Matches(inputDisplayFirstLetter.ToString(), chosenWordDisplay.Name).Count() > sameLetterList.Min());
+                while (Regex.Matches(inputDisplayFirstLetter.ToString(), chosenWordDisplay.Name).Count() > sameLetterList.Min() || printWordDisplay.Name.Contains(inputDisplayFirstLetter));
 
                 jokers--;
-
                 GuessLetter();
             }
 

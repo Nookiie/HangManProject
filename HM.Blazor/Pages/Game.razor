@@ -37,17 +37,13 @@
     else if (!gameLogic.gameInProgress && gameLogic.gameWon)
     {
         <h1 style="font-family:Georgia;">You won!</h1>
-        <NavLink class="nav-link" href="game">
-            <button name="startBtn" class="btn btn-primary">New Game</button>
-        </NavLink>
+        <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.ResetGame">New Game</button>
     }
 
     else if (!gameLogic.gameInProgress && gameLogic.gameLost)
     {
         <h1 style="font-family:Georgia;">You lost!</h1>
-        <NavLink class="nav-link" href="game">
-            <button name="startBtn" class="btn btn-primary">New Game</button>
-        </NavLink>
+        <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.ResetGame">New Game</button>
     }
     else
     {
