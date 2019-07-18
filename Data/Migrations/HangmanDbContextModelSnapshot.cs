@@ -69,7 +69,7 @@ namespace HM.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryID");
+                    b.Property<int>("CategoryID");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -86,7 +86,9 @@ namespace HM.Data.Migrations
                 {
                     b.HasOne("HM.Data.Entities.GameItems.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryID");
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

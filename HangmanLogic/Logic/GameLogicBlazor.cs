@@ -250,7 +250,7 @@ namespace HM.Logic.Logic
 
         private List<Word> GetCategoryWords(List<Word> words, Category category)
         {
-            return words.Where(x => x.Category == category).ToList();
+            return words.Where(x => x.CategoryID == category.ID).ToList();
         }
 
         private Word GetRandomWord(List<Word> words)
