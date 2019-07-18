@@ -28,7 +28,7 @@ namespace HM.AppServices.Implementations
             return gameTrackersDto;
         }
 
-        public GameTrackerDTO GetById(object id)
+        public GameTrackerDTO GetById(int id)
         {
             GameTrackerDTO gameTrackerDtos = new GameTrackerDTO();
 

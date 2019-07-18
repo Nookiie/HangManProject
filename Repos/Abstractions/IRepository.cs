@@ -11,7 +11,7 @@ namespace HM.Repositories.Abstractions
     {
         IQueryable<T> Get();
 
-        T Get(object id);
+        T Get(int id);
 
         void Insert(T entity);
 
@@ -19,7 +19,7 @@ namespace HM.Repositories.Abstractions
 
         void Delete(T entity);
 
-        void Delete(object id);
+        void Delete(int id);
 
         IQueryable<T> Find(Expression<Func<T, bool>> where);
     }

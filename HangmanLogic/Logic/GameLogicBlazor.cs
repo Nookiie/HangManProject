@@ -74,12 +74,17 @@ namespace HM.Logic.Logic
 
         public void StartGame()
         {
+            /*
             List<Category> categories = new List<Category>()
             {
                 new Category("Animals"),
                 new Category("Stuff")
             };
+            */
 
+            List<Category> categories = GetCategoriesFromDB();
+
+            /*
             List<Word> words = new List<Word> // Example words to be used in case of DB failure
             {
                 new Word("flamingo", categories[0]),
@@ -90,11 +95,12 @@ namespace HM.Logic.Logic
                 new Word("imagination", categories[1]),
                 new Word("somerandomhardword", categories[1])
             };
+            */
 
-            words = GetWordsFromDB();
+            List<Word> words = GetWordsFromDB();
 
             words = GetDifficultySliderWords(words, gameDifficulty);
-            // words = GetCategoryWords(words, gameCategory);
+            words = GetCategoryWords(words, gameCategory);
 
             if (words.Count == 0)
             {
@@ -280,7 +286,7 @@ namespace HM.Logic.Logic
             }
         }
 
-        private async Task<List<Category>> GetCategoriesFromDB()
+        public List<Category> GetCategoriesFromDB()
         {
             Uri url = new Uri("https://localhost:44340/api/categories/");
             using (var client = new HttpClient())
@@ -289,9 +295,9 @@ namespace HM.Logic.Logic
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("get");
+                HttpResponseMessage response = client.GetAsync("get").Result;
 
-                string jsonString = await response.Content.ReadAsStringAsync();
+                string jsonString = response.Content.ReadAsStringAsync().Result;
                 var responseData = JsonConvert.DeserializeObject<List<Category>>(jsonString);
                 List<Category> categories = responseData;
 

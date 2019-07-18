@@ -28,7 +28,7 @@ namespace Repos.Implementations
             return this.DbSet.AsQueryable();
         }
 
-        public virtual TEntity Get(object id)
+        public virtual TEntity Get(int id)
         {
             return DbSet.Find(id);
         }
@@ -49,7 +49,7 @@ namespace Repos.Implementations
             Context.SaveChanges();
         }
 
-        public virtual void Delete(object id)
+        public virtual void Delete(int id)
         {
             TEntity entityToDelete = this.Get(id);
             if (entityToDelete != null)
@@ -75,8 +75,6 @@ namespace Repos.Implementations
                 this.DbSet.Attach(entityToDelete);
                 this.DbSet.Remove(entityToDelete);
             }
-            Context.SaveChanges();
-
         }
 
         public virtual void Update(object id, TEntity entityToUpdate)

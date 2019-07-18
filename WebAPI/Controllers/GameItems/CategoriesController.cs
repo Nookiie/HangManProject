@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
         }
             
         [HttpGet("{id}")]
-        public ActionResult<Category> Get(object id)
+        public ActionResult<Category> Get(int id)
         {
             return unitOfWork.Categories.Get(id);
         }
@@ -50,7 +50,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(object id)
+        public void Delete(int id)
         {
             unitOfWork.Categories.Delete(id);
         }

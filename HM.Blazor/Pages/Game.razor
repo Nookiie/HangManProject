@@ -76,10 +76,13 @@
 @code {
     GameLogicBlazor gameLogic = new GameLogicBlazor();
 
+    List<Category> categories = new List<Category>();
+
     string selectedCategory;
 
     string selectedDifficulty;
 
+    /*
     List<Category>
     categories = new List<Category>
         {
@@ -87,15 +90,15 @@
         new Category("Locations"),
         new Category("Programming")
             };
+    */
 
-    List<string>
-        difficulties = new List<string>
-            {
+    List<string> difficulties = new List<string>
+    {
                 GameDifficulty.Easy.ToString(),
                 GameDifficulty.Normal.ToString(),
                 GameDifficulty.Hard.ToString(),
                 GameDifficulty.Insane.ToString()
-                };
+    };
 
     void AssignDifficulty(UIChangeEventArgs e)
     {
@@ -113,6 +116,7 @@
 
     void AssignCategory(UIChangeEventArgs e)
     {
+        categories = gameLogic.GetCategoriesFromDB();
         selectedCategory = e.Value.ToString();
         gameLogic.gameCategory = categories.Where(x => x.Name == selectedCategory).FirstOrDefault();
     }

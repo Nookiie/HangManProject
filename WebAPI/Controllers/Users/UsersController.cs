@@ -15,7 +15,7 @@ namespace HM.WebAPI.Controllers.Users
     public class UsersController : ControllerBase
     {
         private readonly HangmanDbContext _context;
-
+            
         public UsersController(HangmanDbContext context)
         {
             _context = context;
