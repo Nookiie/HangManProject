@@ -82,8 +82,6 @@ namespace HM.Logic.Logic
             };
             */
 
-            List<Category> categories = GetCategoriesFromDB();
-
             /*
             List<Word> words = new List<Word> // Example words to be used in case of DB failure
             {
@@ -111,7 +109,7 @@ namespace HM.Logic.Logic
             Word printWord = new Word();
             printWord.Name = chosenWord.Name;
 
-            printWord.Name = new Regex("\\S").Replace(chosenWord.Name, "_ ");
+            printWord.Name = new Regex("\\S").Replace(chosenWord.Name, "_");
             printWordDisplay = printWord;
             chosenWordDisplay = chosenWord;
             StartGameFlag(); // Sets up the game flag 
@@ -158,7 +156,7 @@ namespace HM.Logic.Logic
                 tries++;
             }
 
-            if (wordCount == chosenWordDisplay.Name.Length)
+            if (printWordDisplay.Name == chosenWordDisplay.Name)
             {
                 EndGame(GameCondition.Won);
             }
@@ -207,7 +205,7 @@ namespace HM.Logic.Logic
 
                 foreach (var letter in chosenWordDisplay.Name)
                 {
-                    var sameLetterCounter = Regex.Matches(letter.ToString(), chosenWordDisplay.Name).Count();
+                    var sameLetterCounter = chosenWordDisplay.Name.Count(x => x == letter);
                     sameLetterList.Add(sameLetterCounter);
                 }
 
