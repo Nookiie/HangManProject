@@ -260,8 +260,13 @@ namespace HM.Logic.Logic
             return words;
         }
 
-        private List<Word> GetCategoryWords(List<Word> words, Category category)
+        private List<Word> GetCategoryWords(List<Word> words, Category? category)
         {
+            if (category == null)
+            {
+                return words;
+            }
+
             return words.Where(x => x.CategoryID == category.ID).ToList();
         }
 
