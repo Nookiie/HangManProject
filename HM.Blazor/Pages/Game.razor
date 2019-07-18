@@ -24,12 +24,25 @@
                     <button class="btn btn-primary" @onclick="@gameLogic.Joker">Use Joker</button>
                 }
             </div>
-            <div id="gameData" class="col-md-6 col-lg-4" style="font-family:Georgia">
+            <div id="gameData" class="col-md-6 col-lg-4 text-dark" style="font-family:Georgia">
                 <p>Words guessed:@gameLogic.wordCount</p>
                 <p>Number of tries:@gameLogic.tries</p>
                 <p>Score:@gameLogic.score</p>
                 <p>Jokers available:@gameLogic.jokers</p>
                 <p>Input:@gameLogic.inputDisplayFirstLetter</p>
+                
+            </div>
+
+            <div id="gameCheat" class="col-md-7 text-warning">
+                @if (gameLogic.gameCheatActivated)
+                {
+                    <p>Game Cheat Enabled</p>
+                    <p>Current Word:@gameLogic.chosenWordDisplay.Name</p>
+                }
+                else
+                {
+                    <button id="chtToggle" class="btn btn-primary" @onclick="@gameLogic.CheatToggle">Cheat</button>
+                }
             </div>
         </div>
     }

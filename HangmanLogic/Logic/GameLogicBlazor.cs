@@ -40,6 +40,8 @@ namespace HM.Logic.Logic
 
         public bool gameLost = false;
 
+        public bool gameCheatActivated = false;
+
         public int wordCount = 0;
 
         public int tries = 0;
@@ -202,6 +204,12 @@ namespace HM.Logic.Logic
             gameInProgress = false;
             gameWon = false;
             gameLost = false;
+            gameCheatActivated = false;
+        }
+        
+        public void CheatToggle()
+        {
+            gameCheatActivated = !gameCheatActivated;
         }
 
         public void Joker()
