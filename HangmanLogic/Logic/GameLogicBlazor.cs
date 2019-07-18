@@ -62,11 +62,11 @@ namespace HM.Logic.Logic
 
         private const int SCORE_MULTIPLIER_EASY = 5;
 
-        private const int SCORE_MULTIPLIER_NORMAL = 5;
+        private const int SCORE_MULTIPLIER_NORMAL = 10;
 
-        private const int SCORE_MULTIPLIER_HARD = 5;
+        private const int SCORE_MULTIPLIER_HARD = 15;
 
-        private const int SCORE_MULTIPLIER_INSANE = 5;
+        private const int SCORE_MULTIPLIER_INSANE = 20;
 
         private const int MAX_JOKERS = 1;
 
@@ -156,6 +156,17 @@ namespace HM.Logic.Logic
             if (!isGuessed)
             {
                 tries++;
+            }
+            else
+            {
+                switch (gameDifficulty)
+                {
+                    case GameDifficulty.Easy: score += SCORE_MULTIPLIER_EASY; break;
+                    case GameDifficulty.Normal: score += SCORE_MULTIPLIER_NORMAL; break;
+                    case GameDifficulty.Hard: score += SCORE_MULTIPLIER_HARD; break;
+                    case GameDifficulty.Insane: score += SCORE_MULTIPLIER_INSANE; break;
+                    default:score += SCORE_MULTIPLIER_NORMAL; break;
+                }
             }
 
             if (printWordDisplay.Name == chosenWordDisplay.Name)

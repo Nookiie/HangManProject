@@ -8,36 +8,37 @@
 @{
     if (gameLogic.gameInProgress)
     {
-        <div class="col-lg-auto text-center">
+        <div class="col-lg-7">
             @foreach (var letter in gameLogic.printWordDisplay.Name)
             {
-                <h1 style="display:inline;">@letter</h1>
+                <h1 style="display:inline; font-size:4em;">@letter</h1>
             }
+            <p style="font-family:Georgia; font-size:2em; font-style:oblique;">Input:@gameLogic.guessLetter</p>
         </div>
-        <div class="row" style="display:block;">
-            <div class="col-md-6 col-lg-4">
-                <input name="MainCharInput" @bind="@gameLogic.inputDisplay" type="text" />
-                <button class="btn btn-primary" @onclick="@gameLogic.GuessLetter">Guess</button>
-                <div class="col-md-3 col-lg-4">
+        <div class="row" style="display:inline;">
+            <div class="col-md-6 col-lg-7">
+                <div class="col-md-6 col-lg-7" style="padding:10px;">
+                    <button class="btn btn-primary" @onclick="@gameLogic.GuessLetter">Guess</button>
+                    @if (gameLogic.jokers != 0)
+                    {
+                        <button class="btn btn-primary" @onclick="@gameLogic.Joker">Use Joker</button>
+                    }
+                </div>
+                <div class="col-md-6 col-lg-7">
                     @foreach (var letter in letters)
                     {
                         <button class="btn-outline-primary" @onclick="@( () => AssignLetter(letter))">@letter</button>
                     }
                 </div>
-                @if (gameLogic.jokers != 0)
-                {
-                    <button class="btn btn-primary" @onclick="@gameLogic.Joker">Use Joker</button>
-                }
             </div>
-            <div id="gameData" class="col-md-6 col-lg-4 text-dark" style="font-family:Georgia">
+            <div id="gameData" class="col-md-6 col-lg-7 text-dark" style="font-family:Georgia">
                 <p>Words guessed:@gameLogic.wordCount</p>
                 <p>Number of tries:@gameLogic.tries</p>
                 <p>Score:@gameLogic.score</p>
                 <p>Jokers available:@gameLogic.jokers</p>
-                <p>Input:@gameLogic.guessLetter</p>
             </div>
 
-            <div id="gameCheat" class="col-md-7 text-warning">
+            <div id="gameCheat" class="col-md-6 text-warning">
                 @if (gameLogic.gameCheatActivated)
                 {
                     <p>Game Cheat Enabled</p>
