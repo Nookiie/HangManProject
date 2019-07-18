@@ -30,7 +30,7 @@ namespace HM.Logic.Logic
 
         public string inputDisplay;
 
-        public char inputDisplayFirstLetter;
+        public char guessLetter;
 
         public bool gameInProgress = false;
 
@@ -127,7 +127,7 @@ namespace HM.Logic.Logic
             if (string.IsNullOrWhiteSpace(inputDisplay))
                 return;
 
-            inputDisplayFirstLetter = inputDisplay[0];
+            guessLetter = inputDisplay[0];
         }
 
         public void GuessLetter()
@@ -135,17 +135,17 @@ namespace HM.Logic.Logic
             GetInput();
             bool isGuessed = false;
 
-            if (inputDisplayFirstLetter == '!')
+            if (guessLetter == '!')
             {
                 Joker();
             }
 
             for (int i = 0; i < chosenWordDisplay.Name.Length; i++)
             {
-                if (inputDisplayFirstLetter == chosenWordDisplay.Name[i])
+                if (guessLetter == chosenWordDisplay.Name[i])
                 {
                     StringBuilder sb = new StringBuilder(printWordDisplay.Name);
-                    sb[i] = inputDisplayFirstLetter;
+                    sb[i] = guessLetter;
                     printWordDisplay.Name = sb.ToString();
 
                     isGuessed = true;
@@ -226,9 +226,9 @@ namespace HM.Logic.Logic
 
                 do
                 {
-                    inputDisplayFirstLetter = GetRandomLetterFromWord(chosenWordDisplay);
+                    guessLetter = GetRandomLetterFromWord(chosenWordDisplay);
                 }
-                while (Regex.Matches(inputDisplayFirstLetter.ToString(), chosenWordDisplay.Name).Count() > sameLetterList.Min() || printWordDisplay.Name.Contains(inputDisplayFirstLetter));
+                while (Regex.Matches(guessLetter.ToString(), chosenWordDisplay.Name).Count() > sameLetterList.Min() || printWordDisplay.Name.Contains(guessLetter));
 
                 jokers--;
                 GuessLetter();
@@ -260,7 +260,7 @@ namespace HM.Logic.Logic
             return words;
         }
 
-        private List<Word> GetCategoryWords(List<Word> words, Category? category)
+        private List<Word> GetCategoryWords(List<Word> words, Category category)
         {
             if (category == null)
             {
@@ -272,7 +272,6 @@ namespace HM.Logic.Logic
 
         private Word GetRandomWord(List<Word> words)
         {
-
             Random rnd = new Random();
             var randomIndex = rnd.Next(0, words.Count - 1);
 

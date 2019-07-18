@@ -206,20 +206,36 @@ namespace HangmanTest
         [Theory]
         public static void GameLogicBlazorWordGuessTest()
         {
-
             GameLogicBlazor gameLogic = new GameLogicBlazor();
             gameLogic.chosenWordDisplay = new Word("pineapple");
-            gameLogic.printWordDisplay = new Word("_ _ _ _ _ _ _ _ _");
+            gameLogic.printWordDisplay = new Word("_________");
             gameLogic.GetInput();
-            gameLogic.inputDisplayFirstLetter = 'i';
+            gameLogic.guessLetter = 'i';
             gameLogic.GuessLetter();
 
-            var printWordExpected = "_i_ _ _ _ _ _ _ _";
+            var printWordExpected = "_i_______";
 
-            if (gameLogic.chosenWordDisplay.Name.Contains(gameLogic.inputDisplayFirstLetter))
+            if (gameLogic.chosenWordDisplay.Name.Contains(gameLogic.guessLetter))
             {
                 Assert.AreEqual(gameLogic.printWordDisplay.Name, printWordExpected);
             }
+        }
+
+        [Theory]
+        public static void GameLogicBlazorWordGuessMinPriorityTest()
+        {
+            GameLogicBlazor gameLogic = new GameLogicBlazor();
+
+            gameLogic.chosenWordDisplay = new Word("coffee");
+            gameLogic.printWordDisplay = new Word("______");
+
+            gameLogic.Joker();
+
+            var printWordUnexpected = "__ff__";
+            var printWordUnexpectedAlt = "____ee";
+
+            Assert.AreNotEqual(gameLogic.printWordDisplay.Name, printWordUnexpected);
+            Assert.AreNotEqual(gameLogic.printWordDisplay.Name, printWordUnexpectedAlt);
         }
 
         #endregion
