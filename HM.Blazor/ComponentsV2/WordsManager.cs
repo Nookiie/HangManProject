@@ -13,7 +13,7 @@ namespace ComponentsV2
 {
     public class WordsManager : ComponentBase
     {
-        private readonly Uri url = new Uri("https://localhost:44340/api");
+        private readonly Uri url = new Uri("https://localhost:44340");
 
         public List<Category> GetAllCategories()
         {
@@ -23,7 +23,7 @@ namespace ComponentsV2
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = client.GetAsync("/categories/get").Result;
+                HttpResponseMessage response = client.GetAsync("/api/categories/get").Result;
 
                 string jsonString = response.Content.ReadAsStringAsync().Result;
                 var responseData = JsonConvert.DeserializeObject<List<Category>>(jsonString);
@@ -39,7 +39,7 @@ namespace ComponentsV2
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = client.GetAsync("/words/get").Result;
+                HttpResponseMessage response = client.GetAsync("/api/words/get").Result;
 
                 string jsonString = response.Content.ReadAsStringAsync().Result;
                 var responseData = JsonConvert.DeserializeObject<List<Word>>(jsonString);

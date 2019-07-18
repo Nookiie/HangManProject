@@ -2,6 +2,9 @@
 @using HM.Data.Entities.GameItems;
 @using HM.Logic.Logic;
 @using HM.Data.Entities.Difficulty;
+@using ComponentsV2;
+
+@inherits GameManager
 @{
     if (gameLogic.gameInProgress)
     {
@@ -34,15 +37,17 @@
     else if (!gameLogic.gameInProgress && gameLogic.gameWon)
     {
         <h1 style="font-family:Georgia;">You won!</h1>
-
-        <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.StartGame">New Game</button>
+        <NavLink class="nav-link" href="game">
+            <button name="startBtn" class="btn btn-primary">New Game</button>
+        </NavLink>
     }
 
     else if (!gameLogic.gameInProgress && gameLogic.gameLost)
     {
         <h1 style="font-family:Georgia;">You lost!</h1>
-
-        <button name="startBtn" class="btn btn-primary" @onclick="@gameLogic.StartGame">New Game</button>
+        <NavLink class="nav-link" href="game">
+            <button name="startBtn" class="btn btn-primary">New Game</button>
+        </NavLink>
     }
     else
     {
@@ -51,7 +56,7 @@
                 <div class="form-group">
                     <label for="sel1">Difficulty:</label>
                     <select class="form-control" id="difficultySel" @onchange="@AssignDifficulty">
-                        @foreach (var difficulty in difficulties)
+                        @foreach (var difficulty in Difficulties)
                         {
                             <option id="difficultyDropDown" value="@selectedDifficulty">@difficulty</option>
                         }
@@ -62,7 +67,7 @@
                     <label for="sel1">Category:</label>
                     <select class="form-control" id="categorySel" @onchange="@AssignCategory">
 
-                        @foreach (var item in categories.Select(x => x.Name))
+                        @foreach (var item in Categories.Select(x => x.Name))
                         {
                             <option id="categoryDropDown" value="@selectedCategory">@item</option>
                         }
@@ -80,23 +85,6 @@
 
     string selectedDifficulty;
 
-    
-    List<Category> categories = new List<Category>
-        {
-        new Category("Animals"),
-        new Category("Locations"),
-        new Category("Programming")
-     };
-    
-
-    List<string> difficulties = new List<string>
-    {
-                GameDifficulty.Easy.ToString(),
-                GameDifficulty.Normal.ToString(),
-                GameDifficulty.Hard.ToString(),
-                GameDifficulty.Insane.ToString()
-    };
-
     void AssignDifficulty(UIChangeEventArgs e)
     {
         selectedDifficulty = e.Value.ToString();
@@ -113,9 +101,8 @@
 
     void AssignCategory(UIChangeEventArgs e)
     {
-        categories = gameLogic.GetCategoriesFromDB();
         selectedCategory = e.Value.ToString();
-        gameLogic.gameCategory = categories.Where(x => x.Name == selectedCategory).FirstOrDefault();
+        gameLogic.gameCategory = Categories.Where(x => x.Name == selectedCategory).FirstOrDefault();
     }
 }
 
