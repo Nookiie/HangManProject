@@ -67,7 +67,7 @@
                     <select class="form-control" id="difficultySel" @onchange="@AssignDifficulty">
                         @foreach (var difficulty in Difficulties)
                         {
-                            <option id="difficultyDropDown" value="@selectedDifficulty">@difficulty</option>
+                            <option id="difficultyDropDown" value="@difficulty">@difficulty</option>
                         }
                     </select>
                 </div>
@@ -75,10 +75,9 @@
                 <div class="form-group">
                     <label for="sel1">Category:</label>
                     <select class="form-control" id="categorySel" @onchange="@AssignCategory">
-
                         @foreach (var item in Categories.Select(x => x.Name))
                         {
-                            <option id="categoryDropDown" value="@selectedCategory">@item</option>
+                            <option id="categoryDropDown" value="@item">@item</option>
                         }
                     </select>
                 </div>
@@ -108,9 +107,9 @@
         }
     }
 
-    void AssignCategory(UIChangeEventArgs e)
+    void AssignCategory(UIChangeEventArgs e1)
     {
-        selectedCategory = e.Value.ToString();
+        selectedCategory = e1.Value.ToString();
         gameLogic.gameCategory = Categories.Where(x => x.Name == selectedCategory).FirstOrDefault();
     }
 }
