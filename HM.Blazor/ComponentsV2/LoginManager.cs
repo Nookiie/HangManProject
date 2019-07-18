@@ -47,7 +47,6 @@ namespace ComponentsV2
 
                 User user = responseData;
                 session.MapToSession(user);
-
             }
         }
     }

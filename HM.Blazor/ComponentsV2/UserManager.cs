@@ -26,7 +26,7 @@ namespace ComponentsV2
 
         public string Email { get; set; }
 
-        public async Task RegisterUser()
+        public void RegisterUser()
         {
             using (var client = new HttpClient())
             {
@@ -34,9 +34,9 @@ namespace ComponentsV2
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("create");
+                HttpResponseMessage response = client.GetAsync("create").Result;
 
-                string jsonString = await response.Content.ReadAsStringAsync();
+                string jsonString = response.Content.ReadAsStringAsync().Result;
                 var responseData = JsonConvert.DeserializeObject<User>(jsonString);
                 User user = responseData;
                 

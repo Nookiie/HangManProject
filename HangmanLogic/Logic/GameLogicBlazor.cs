@@ -99,8 +99,8 @@ namespace HM.Logic.Logic
 
             List<Word> words = GetWordsFromDB();
 
-            words = GetDifficultySliderWords(words, gameDifficulty);
-            words = GetCategoryWords(words, gameCategory);
+            words = GetDifficultySliderWords(words, gameDifficulty); // Word difficulty transformation
+            words = GetCategoryWords(words, gameCategory); // Word category transformation
 
             if (words.Count == 0)
             {
