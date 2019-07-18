@@ -216,7 +216,7 @@ namespace HM.Logic.Logic
         {
             if (jokers > 0)
             {
-                var sameLetterList = new List<int>();
+                var sameLetterList = new List<int>(); // Keeping a list of same letter matches
 
                 foreach (var letter in chosenWordDisplay.Name)
                 {
@@ -228,7 +228,7 @@ namespace HM.Logic.Logic
                 {
                     guessLetter = GetRandomLetterFromWord(chosenWordDisplay);
                 }
-                while (Regex.Matches(guessLetter.ToString(), chosenWordDisplay.Name).Count() > sameLetterList.Min() || printWordDisplay.Name.Contains(guessLetter));
+                while (chosenWordDisplay.Name.Count(x => x == guessLetter) != sameLetterList.Min() || printWordDisplay.Name.Contains(guessLetter));
 
                 jokers--;
                 GuessLetter();
