@@ -25,15 +25,6 @@
 @code {
     bool isAdmin = false;
 
-    async void LogUserBlazor()
-    {
-        LoginManager loginManager = new LoginManager();
-        loginManager.Username = Username;
-        loginManager.Password = Password;
-        loginManager.Email = Email;
-        await loginManager.LogUser();
-    }
-
     void ToggleAdminValue()
     {
         isAdmin = !isAdmin;

@@ -15,7 +15,7 @@ namespace ComponentsV2
     {
         private readonly Uri url = new Uri("https://localhost:44340/api");
 
-        public async Task<List<Category>> GetAllCategories()
+        public List<Category> GetAllCategories()
         {
             using (var client = new HttpClient())
             {
@@ -23,15 +23,15 @@ namespace ComponentsV2
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("categories/get");
+                HttpResponseMessage response = client.GetAsync("/categories/get").Result;
 
-                string jsonString = await response.Content.ReadAsStringAsync();
+                string jsonString = response.Content.ReadAsStringAsync().Result;
                 var responseData = JsonConvert.DeserializeObject<List<Category>>(jsonString);
                 return responseData;
             }
         }
 
-        public async Task<List<Word>> GetAllWords()
+        public List<Word> GetAllWords()
         {
             using (var client = new HttpClient())
             {
@@ -39,9 +39,9 @@ namespace ComponentsV2
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("words/get");
+                HttpResponseMessage response = client.GetAsync("/words/get").Result;
 
-                string jsonString = await response.Content.ReadAsStringAsync();
+                string jsonString = response.Content.ReadAsStringAsync().Result;
                 var responseData = JsonConvert.DeserializeObject<List<Word>>(jsonString);
                 return responseData;
             }

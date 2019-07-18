@@ -80,20 +80,22 @@
 
     string selectedDifficulty;
 
-    List<Category> categories = new List<Category>
-{
+    List<Category>
+    categories = new List<Category>
+        {
         new Category("Animals"),
         new Category("Locations"),
         new Category("Programming")
-    };
+            };
 
-    List<string> difficulties = new List<string>
-{
-        GameDifficulty.Easy.ToString(),
-        GameDifficulty.Normal.ToString(),
-        GameDifficulty.Hard.ToString(),
-        GameDifficulty.Insane.ToString()
-    };
+    List<string>
+        difficulties = new List<string>
+            {
+                GameDifficulty.Easy.ToString(),
+                GameDifficulty.Normal.ToString(),
+                GameDifficulty.Hard.ToString(),
+                GameDifficulty.Insane.ToString()
+                };
 
     void AssignDifficulty(UIChangeEventArgs e)
     {

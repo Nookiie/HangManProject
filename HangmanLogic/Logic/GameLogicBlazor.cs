@@ -90,6 +90,9 @@ namespace HM.Logic.Logic
                 new Word("imagination", categories[1]),
                 new Word("somerandomhardword", categories[1])
             };
+
+            words = GetWordsFromDB();
+
             words = GetDifficultySliderWords(words, gameDifficulty);
             // words = GetCategoryWords(words, gameCategory);
 
@@ -253,18 +256,18 @@ namespace HM.Logic.Logic
             return words[randomIndex];
         }
 
-        private async Task<List<Word>> GetWordsFromDB()
+        private List<Word> GetWordsFromDB()
         {
-            Uri url = new Uri("https://localhost:44340/api/words");
+            Uri url = new Uri("https://localhost:44340/api/words/");
             using (var client = new HttpClient())
             {
                 client.BaseAddress = url;
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("get");
+                HttpResponseMessage response = client.GetAsync("get").Result;
 
-                string jsonString = await response.Content.ReadAsStringAsync();
+                string jsonString = response.Content.ReadAsStringAsync().Result;
                 var responseData = JsonConvert.DeserializeObject<List<Word>>(jsonString);
                 List<Word> words = responseData;
 
@@ -279,7 +282,7 @@ namespace HM.Logic.Logic
 
         private async Task<List<Category>> GetCategoriesFromDB()
         {
-            Uri url = new Uri("https://localhost:44340/api/categories");
+            Uri url = new Uri("https://localhost:44340/api/categories/");
             using (var client = new HttpClient())
             {
                 client.BaseAddress = url;

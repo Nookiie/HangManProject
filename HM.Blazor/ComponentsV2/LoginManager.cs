@@ -27,7 +27,7 @@ namespace ComponentsV2
 
         public string Token { get; set; }
 
-        public async Task LogUser()
+        public void LogUser()
         {
             using (var client = new HttpClient())
             {
@@ -35,9 +35,9 @@ namespace ComponentsV2
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                HttpResponseMessage response = await client.GetAsync("get/" + Username);
+                HttpResponseMessage response = client.GetAsync("getbyusername/" + Username).Result;
 
-                string jsonString = await response.Content.ReadAsStringAsync();
+                string jsonString = response.Content.ReadAsStringAsync().Result;
                 var responseData = JsonConvert.DeserializeObject<User>(jsonString);
 
                 if (responseData.GetType() != typeof(User))
